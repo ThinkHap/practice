@@ -80,7 +80,7 @@
                         value: '.bounce-list',
                     },
                     axis: {  //跳动方向，水平方向(X) or 垂直方向(Y)
-                        value: Y
+                        value: 'Y'
                     },
                     position: { //px, 水平和垂直方向上，相对父元素的位置， y  or [x,y], 默认为[0,0]
                         value: defaultPosition,
@@ -174,9 +174,9 @@
                         var list_left = parseInt(list.css('left'));
                         var list_top = parseInt(list.css('top'));
                         var position = [list_left, list_top];
-                        if(axis == X){
+                        if(axis == 'X'){
                             list.animate({left: position[0] + offset + PX}, duration, effect[0], function(){list.animate({left: position[0] + PX}, duration, effect[1], self._autoPlay())});
-                        }else if(axis == Y){
+                        }else if(axis == 'Y'){
                             list.animate({top: position[1] + offset + PX}, duration, effect[0], function(){list.animate({top: position[1] + PX}, duration, effect[1], self._autoPlay())});
                         }
                     }
