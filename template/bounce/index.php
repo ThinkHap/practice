@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="gbk" />
-        <title>demo - bounce</title>
+        <title>bounce - demo</title>
         <style type="text/css">
             body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
             body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
