@@ -43,9 +43,9 @@
             var S = KISSY, D = S.DOM, E = S.Event;
 
             S.add('Bounce', {
-                fullpath:'../src/bounce/bounce.js'
+                fullpath:'../../src/bounce/bounce.js'
             });
-
+            
             KISSY.use('Bounce', function(S, Bounce){
                 var Bounce = new Bounce('#J_Bounce', {interval: 3, position: [5,5], offset: -20});
             });
