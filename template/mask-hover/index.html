@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>mask hover - demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+            
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+        <style type="text/css">
+            .container {
+                width: 830px;
+                margin: 0 auto;
+                overflow:hidden;
+            }
+            .container ul {
+                margin-right: -10px;
+            }
+            .container li {
+                position:relative;
+                float: left;
+                width: 200px;
+                height: 200px;
+                margin: 0 10px 10px 0;
+            }
+            .container li span {
+                position:absolute;
+                top: 0;
+                left: 0;
+                width: 200px;
+                height: 200px;
+                background-color: #000;
+                opacity: 0.6;
+                display:none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container" class="container">
+            <ul class="clear-fix">
+                <li>
+                    <a href="#" title="" data-stat="" target="_blank"><img src="http://img.la/f90/200x200" alt=""/></a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="#" title="" data-stat="" target="_blank"><img src="http://img.la/f90/200x200" alt=""/></a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="#" title="" data-stat="" target="_blank"><img src="http://img.la/f90/200x200" alt=""/></a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="#" title="" data-stat="" target="_blank"><img src="http://img.la/f90/200x200" alt=""/></a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="#" title="" data-stat="" target="_blank"><img src="http://img.la/f90/200x200" alt=""/></a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="#" title="" data-stat="" target="_blank"><img src="http://img.la/f90/200x200" alt=""/></a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="#" title="" data-stat="" target="_blank"><img src="http://img.la/f90/200x200" alt=""/></a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="#" title="" data-stat="" target="_blank"><img src="http://img.la/f90/200x200" alt=""/></a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="#" title="" data-stat="" target="_blank"><img src="http://img.la/f90/200x200" alt=""/></a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="#" title="" data-stat="" target="_blank"><img src="http://img.la/f90/200x200" alt=""/></a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="#" title="" data-stat="" target="_blank"><img src="http://img.la/f90/200x200" alt=""/></a>
+                    <span></span>
+                </li>
+                <li>
+                    <a href="#" title="" data-stat="" target="_blank"><img src="http://img.la/f90/200x200" alt=""/></a>
+                    <span></span>
+                </li>
+            </ul>
+        </div>
+        <script>
+            var container = $('#container');
+            var ul = $('#container ul');
+            var lists = $('#container li');
+            var masks = $('#container li span');
+
+            container.hover(function(){
+                $(this).find('span').show();
+            },function(){
+                $(this).find('span').hide();
+            })
+            container.find('li').mouseover(function(){
+                container.find('span').show();
+                $(this).find('span').hide();
+            });
+        </script>
+    </body>
+</html>
