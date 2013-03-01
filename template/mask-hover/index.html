@@ -109,10 +109,18 @@
             },function(){
                 $(this).find('span').hide();
             })
-            container.find('li').mouseover(function(){
+
+            container.find('li').hover(function(){
                 container.find('span').show();
                 $(this).find('span').hide();
             });
+
+            //container.find('li').hover(function(){
+            //    $(this).find('span').hide();
+            //}, function(){
+            //    $(this).find('span').show();
+            //});
+
         </script>
     </body>
 </html>
