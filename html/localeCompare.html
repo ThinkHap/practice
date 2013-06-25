@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>测试字母拼音排序 param1.localeCompare(param2)</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+            
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+    </head>
+    <body>
+        <script>
+            var arr = ["州","信","源","信","息","技","术",'推荐','s','2','a','扩展', '埋点','护眼','测试','第一个','z','名称','截屏'];
+            document.write(arr.sort(function(n,m){
+              return n.localeCompare(m)
+            }));
+         </script>
+    </body>
+</html>
