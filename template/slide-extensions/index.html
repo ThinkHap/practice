@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>slide-ext</title>
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+	    <meta name="viewport" content="width=1024, user-scalable=no">
+        <style type="text/css">
+            /*
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+            */
+        </style>
+
+        <!-- Deck Core and extensions -->
+	    <link rel="stylesheet" href="../../src/slide-ext/core/deck.core.css">
+	    <link rel="stylesheet" href="../../src/slide-ext/extensions/goto/deck.goto.css">
+	    <link rel="stylesheet" href="../../src/slide-ext/extensions/menu/deck.menu.css">
+	    <link rel="stylesheet" href="../../src/slide-ext/extensions/navigation/deck.navigation.css">
+	    <link rel="stylesheet" href="../../src/slide-ext/extensions/status/deck.status.css">
+	    <link rel="stylesheet" href="../../src/slide-ext/extensions/hash/deck.hash.css">
+	    <link rel="stylesheet" href="../../src/slide-ext/extensions/scale/deck.scale.css">
+
+	    <!-- Style theme. More available in /themes/style/ or create your own. -->
+        <!--
+	    <link rel="stylesheet" href="../../src/slide-ext/themes/style/swiss.css">
+	    <link rel="stylesheet" href="../../src/slide-ext/themes/style/web-2.0.css">
+        -->
+	    <link rel="stylesheet" href="../../src/slide-ext/themes/style/neon.css">
+	    
+	    <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+	    <link rel="stylesheet" href="../../src/slide-ext/themes/transition/horizontal-slide.css">
+	    
+	    <!-- Required Modernizr file -->
+	    <script src="../../src/slide-ext/modernizr.custom.js"></script>
+
+        <script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+    </head>
+    <body class="deck-container">
+        <!-- Begin slides. Just make elements with a class of slide. -->
+        <section class="slide">
+        	<h1>Chrome扩展开发介绍</h1>
+        </section>
+        <section class="slide">
+            <h2>在chrome中可以开发什么？</h2>
+            <ul class="clear-fix">
+                <li>扩展（Extension）：html+css+js</li>
+                <li>插件（plugins）：一般是比较底层的应用, 有问题找 CC</li>
+                <li>主题（Theme）</li>
+                <li>应用（APP）</li>
+            </ul>
+        </section>
+        
+        <section class="slide">
+        	<h2>扩展组成</h2>
+            <ul class="clear-fix">
+                <li>BrowserAction</li>
+                <li>PageAction</li>
+                <li><img src="../../src/slide-ext/images/03.jpg" alt="" style="margin:0"/></li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <h2>扩展与页面的通信</h2>
+            <ul>
+                <li><img src="../../src/slide-ext/images/04.jpg" alt="" style="margin:0"/></li>
+                <li>Content Script和页面本身的Script分别存储在两个不同的容器，互不影响，也不能相互访问，但是都可以直接操作页面DOM</li>
+                <li>扩展进程不能直接访问页面渲染进程，两者之间的交互只能通过sendRequest和onRequest.addListener的方式进行（消息机制）</li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <h2>扩展进程</h2>
+            <ul>
+                <li>background Page:  后台运行的文件，用来控制整个扩展的活动，随浏览器启动</li>
+                <li>Popup Page:  扩展的一个弹窗页面，点击时才启动</li>
+                <li>Options Page:  扩展内部的配置页面</li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <h2>Content Scripts</h2>
+            <ul>
+                <li>访问或更新页面DOM</li>
+                <li>执行各种请求</li>
+                <li>与页面script互不影响</li>
+            </ul>
+        </section>
+
+        <section class="slide">
+            <h2>消息机制</h2>
+            <pre>
+            <code>
+//发送消息
+chrome.externsion.sendRequest({hello: 'world'}, function(response){
+    //do something    
+});
+
+
+//接收消息
+chrome.extension.onRequest.addListener(function(request, sender, sendResponse) { 
+    console.log(request); //{hello: 'world'}
+    //sendResponse({});
+});
+            </code>
+            </pre>
+        </section>
+        
+        <section class="slide">
+            <h2>manifest.json</h2>
+            <pre>
+                <code>
+{
+    "manifest_version": 2, 
+    "name": "埋点检测工具",  //扩展名称
+    "version": "1.3",  //扩展版本
+    "description": "一键检测页面埋点布置情况",  //扩展描述
+    "icons": { "128": "etao.png" },   //扩展图标 16 24 32 48 96 128 
+    "permissions": [ "http://*.etao.com/*", "http://s.taobao.com/*"],   //扩展权限
+    "browser_action": {
+        "default_icon": "etao.png",  //扩展栏icon
+        "default_popup": "popup.html"  //扩展栏页面
+    },
+    "background_page": "background.html",
+    "content_scripts": [  //页面内脚本
+        {
+            "matches": ["http://*.etao.com/*", "http://s.taobao.com/*"],
+            "js": ["kissy-min.js"]
+        }
+    ]
+}
+                </code>
+            </pre>
+        </section>
+
+        <section class="slide">
+            <h2>一个扩展的文件结构</h2>
+            <ul>
+                <li>1. manifest.json</li>
+                <li>2. background.html</li>
+                <li>3. popup.html  //可选</li>
+                <li>4. options.html  //可选</li>
+                <li>5. 还有其它必要的文件: *.css, *.js, *.png</li>
+            </ul>
+        </section>
+
+
+        <section class="slide">
+        	<h2>参考网址：</h2>
+            <ul>
+                <li><a href="https://developer.chrome.com/extensions/index.html" target="_blank">https://developer.chrome.com/extensions/index.html</a></li>
+            </ul>
+        </section>
+        
+        <section class="slide">
+            <h2>欢迎发布扩展</h2>
+            <h1><a href="http://browser.taobao.com/extensions/index.htm" target="_blank" style="color: #f0a;text-decoration:none;">淘宝浏览器扩展中心<br/>上线了</a></h1>
+        </section>
+
+        <!-- End slides. -->
+        
+        
+        <!-- Begin extension snippets. Add or remove as needed. -->
+        <!-- deck.navigation snippet -->
+        <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+        <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+        
+        <!-- deck.status snippet -->
+        <p class="deck-status">
+        	<span class="deck-status-current"></span>
+        	/
+        	<span class="deck-status-total"></span>
+        </p>
+        
+        <!-- deck.goto snippet -->
+        <form action="." method="get" class="goto-form">
+        	<label for="goto-slide">Go to slide:</label>
+        	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+        	<datalist id="goto-datalist"></datalist>
+        	<input type="submit" value="Go">
+        </form>
+        
+        <!-- deck.hash snippet -->
+        <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+        
+        <!-- End extension snippets. -->
+        
+        
+        <!-- Required JS files. -->
+        <script src="../../src/slide-ext/core/deck.core.js"></script>
+        
+        <!-- Extension JS files. Add or remove as needed. -->
+        <script src="../../src/slide-ext/core/deck.core.js"></script>
+        <script src="../../src/slide-ext/extensions/hash/deck.hash.js"></script>
+        <script src="../../src/slide-ext/extensions/menu/deck.menu.js"></script>
+        <script src="../../src/slide-ext/extensions/goto/deck.goto.js"></script>
+        <script src="../../src/slide-ext/extensions/status/deck.status.js"></script>
+        <script src="../../src/slide-ext/extensions/navigation/deck.navigation.js"></script>
+        <script src="../../src/slide-ext/extensions/scale/deck.scale.js"></script>
+        
+        <!-- Initialize the deck. You can put this in an external file if desired. -->
+        <script>
+        	$(function() {
+        		$.deck('.slide');
+        	});
+        </script>
+    </body>
+</html>
