@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+            
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.1.6/kissy-min.js?t=20111231.js"></script>
+    </head>
+    <body>
+         <div id="J_json" class="">
+         
+         </div>
+    <script>
+        (function(S){
+            var D = S.DOM;
+            S.io({
+                type : 'GET',
+                url : '/test/kissy/json.js',
+                data : null,
+                dataType : 'json',
+                success : function(data){
+                    console.log(data.length)
+                     processJson('#J_json',data);
+                }
+            })
+
+            function processJson(container,data){
+                console.log(data.length)
+            	if(data.length > 0){
+            		var arrHtml = [],_li = null,user;
+            		//数据处理
+            		S.each(data,function(item,i){
+                        //if(i >= MAX ) return;
+            			user = item["user"];
+            			_li = "<li class='clearfix'><div class='user l'><img src='"+user['profile_image_url']+"' /><p>"+user["screen_name"]+"</p></div>"+item["text"]+"</li>";
+            			arrHtml.push(_li);
+            		});
+            		//将生成的li添加到列表内
+            		S.DOM.html(container,arrHtml.join(""));
+            	}
+            }
+            
+            
+            
+        })(KISSY);
+    </script>
+    </body>
+</html>

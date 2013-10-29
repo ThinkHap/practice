@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+
+
+  #demo2 {
+                position: relative;
+                width: 750px;
+                padding-top: 29px;
+                left:10px;
+            }
+
+            #demo2 .ks-switchable-nav {
+                position: absolute;
+                left: 20px;
+                margin-top: -29px;
+                z-index: 99;
+            }
+
+            #demo2 .ks-switchable-nav li {
+                float: left;
+                width: 130px;
+                height: 27px;
+                line-height: 21px;
+                text-align: center;
+                background: url(http://docs.kissyui.com/docs/html/static/demo/switchable/assets/tabs-sprite.gif) no-repeat 0 6px;
+                margin-right: 3px;
+                padding-top: 8px;
+                cursor: pointer;
+            }
+
+            #demo2 .ks-switchable-nav li.ks-active {
+                background-position: 0 -40px;
+                cursor: default;
+            }
+
+            #demo2 .ks-switchable-content {
+                position: relative;
+                height: 120px;
+                padding: 20px;
+                border: 1px solid #AEC7E5;
+            }
+ 
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy-min.js?t=111229.js"></script>
+    </head>
+    <body>
+<div id="demo2" class="s-demo">
+     <ul class="ks-switchable-nav">
+         <li aria-labelledby='a_tip' title="标题的title">
+             <span style="display:none" id="a_tip">标题 A，可左右键切换操作</span>
+             <a href="http://www.taobao.com">标题 A</a></li>
+         <li><a href="http://www.taobao.com">标题 B</a></li>
+         <li>标题 C</li>
+         <li>标题 D</li>
+         <li>标题 E</li>
+     </ul>
+     <div class="ks-switchable-content">
+         <div style="display: none"><a href="#"> 内容 a</a></div>
+         <div style="display: none"><a href="#">内容 B</a></div>
+         <div style="display: none"><a href="#">内容 C</a></div>
+         <div style="display: none"><a href="#">内容 D</a></div>
+         <div style="display: none">
+             <!-- 使用textarea实现延迟内容加载 -->
+             <textarea class="ks-datalazyload-custom">
+                 <a href="#">我是延迟内容</a>
+                 <script>alert('我是延迟内容中的脚本，仅在第一次加载时执行。');</script>
+             </textarea>
+         </div>
+     </div>
+ </div>
+       
+
+        <script>
+            (function(S){
+                    var DOM = S.DOM, 
+                        Event = S.Event;
+                    S.use("datalazyload, switchable", function(S){
+                        var Tabs = S.Tabs;
+                        S.ready(function(S){
+                            //通过DOM元素DEMO2新建一个Tab
+                            var tabs = new Tabs('#demo2', {
+                                switchTo : 0
+                            })
+                            //增加事件，更多事件请查看API
+                            tabs.on('beforeSwitch', function(ev) {
+                                var index = ev.toIndex;
+                                if(index !== 0 &&index !== 4) {
+                                
+                                }
+                            });
+                        });
+                    });
+              
+               
+            })(KISSY);
+        </script>
+
+    </body>
+</html>

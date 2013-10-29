@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.1.6/kissy-min.js?t=20111130.js"></script>
+    </head>
+    <body>
+        <div id="demo1" class="demo">
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+        </div>
+        <script>
+            var S = KISSY, DOM = S.DOM;
+            var div = DOM.create('<div>');
+            var a = DOM.create('<a>', {href:'http://thinkhap.com', title:'ThinkHap'});
+            DOM.append(a,div);
+            DOM.insertAfter(div,'#demo1');
+            //alert(DOM.docHeight());
+            console.log(DOM.offset('#demo1'));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,113 @@
+<cms:page name="moduleName"><cms:insertLayout><cms:layout id="layout-1"><cms:insertModule name="insertModule"><cms:module name="moduleName" id="module-1"><div class="module" ><cms:control template="module-control"/><!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=GB18030"/>
+    <meta name="spm-id" content="1.150967">
+    <title>商品</title>
+    <meta name="description" content="淘宝网-亚洲最大、最安全的网上交易平台，提供各类服饰、美容、家居、数码、话费/点卡充值……2亿优质特价商品，同时提供担保交易(先收货后付款)、先行赔付、假一赔三、七天无理由退换货、数码免费维修等安全交易保障服务，让你全面安心享受网上购物乐趣。"/>
+    <meta name="keywords" content=""/>
+    <link rel="shortcut icon" href="http://pics.taobaocdn.com/favicon.ico" type="image/x-icon"/>
+    <link rel="search" type="application/opensearchdescription+xml" href="http://a.tbcdn.cn/plugins/opensearch/provider.xml" title="淘宝购物"/>
+    <style>
+        body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0}
+        body,button,input,select,textarea{font:12px/1.5 tahoma,arial}
+        h1,h2,h3,h4,h5,h6{font-size:100%}
+        address,cite,dfn,em,var{font-style:normal}
+        code,kbd,pre,samp{font-family:courier new,courier,monospace}
+        small{font-size:12px}
+        ul,ol{list-style:none}
+		img {border:0 none;vertical-align:top;}
+        a{text-decoration:none}
+        a:hover{text-decoration:underline}
+        sup{vertical-align:text-top}
+        sub{vertical-align:text-bottom}
+        legend{color:#000}
+        fieldset,img{border:0}
+        button,input,select,textarea{font-size:100%}
+        article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{display:block;margin:0;padding:0}
+        mark{background:#ff0}
+        html,legend{color:#333}
+        a{color:#0063dc}
+        a:hover{color:#f44;text-decoration:underline}
+        table{border-collapse:collapse;border-spacing:0}
+        button{cursor:pointer;overflow:hidden}
+        .clear-fix:after{content:"020";display:block;height:0;clear:both;visibility:hidden}
+        .clear-fix{*zoom:1}
+        #content{width:430px}
+        #etao-content .items {margin:0 -10px 8px 0;}
+        #etao-content .items li {float:left;width:100px;margin-right:10px;}
+        #etao-content .item-news {margin:0 -10px 8px 0;}
+        #etao-content .item-news li {float:left;width:210px;margin-right:10px;}
+        #etao-content .item-news li .news-img {float:left;width:120px;height:140px;margin-right:10px;}
+        #etao-content .item-news li ul {float:left;width:80px;overflow:hidden;padding-top:8px;}
+        #etao-content .item-news li ul li {padding:6px 0;line-height:1.2;border-bottom: 1px dashed #d0d0d0;}
+        #etao-content .item-news li ul li.last {border-bottom:none;}
+        #etao-content .item-news li ul li a {color:#8a8a8a;}
+        #etao-content .item-news li ul li a:hover {color:#ff4400;}
+        #etao-content .item-news li ul li span {color:#FD4400;}
+
+        #footer{width:430px;height:22px;}
+        .hot-catelog{overflow:hidden;}
+        .hot-catelog .p4p_link {height:22px !important;}
+        .hot-catelog ul{background-position:0 0;float:left;font-family:"宋体";height:22px;line-height:22px;margin-right:5px;width:320px;margin-left:-1px;}
+        .hot-catelog ul, #more-hot-catelog {background-image:url("http://img03.taobaocdn.com/tps/i3/T1I3HyXgNjXXcdAjYC-320-44.png")}
+        .hot-catelog li { float: left; line-height: 14px; height: 14px; display: block; overflow: hidden; padding: 0 10px; border-left: 1px solid #A5E3F6; margin-top: 4px; margin-right: -1px; text-align: center; background:none; }
+        .hot-catelog a{color:#357ab5;+zoom:1;font-family:"宋体"}
+        .hot-catelog a:hover{color:#f60}
+        #more-hot-catelog{background-position:0 -22px;color:#fff;display:inline-block;font-weight:bold;height:22px;line-height:22px;text-align:center;width:70px;margin-left:10px;}
+    </style>
+</head>
+<body>
+<div id="page-insider">
+    <div id="content" data-spm="1.150967.213722">
+        <div id="etao-header">
+        </div>
+        <div id="etao-content" class="clear-fix">
+            <ul class="items clear-fix">
+                <cms:custom title="上方图片[100x169]" group="上方区块" fields="img:图片[100X169]:img,href:链接:string,text:名称:string,num:链接随机数:string" defaultRow="4" row="4" name="6c7cc412-5af5-4d34-8d2e-5d191b0955fc">
+                #foreach($item in $customList)
+                <li>
+                    <a href="$!item.href$!item.num" target="_blank" title="$!item.text"><img src="$!item.img" width="100px" height="169px" alt="$!text"></a>
+                </li>
+                #end
+                </cms:custom>
+            </ul>
+            <ul class="item-news clear-fix">
+                <cms:repeat title="下方区块" group="下方区块" row="2" name="7908ec23-a869-4abe-a8c2-3fc1f4bdc6f8">
+                <li>
+                    <cms:custom title="图片[120x140]" group="图片" fields="href:链接:href,num:链接随机数:string,text:名称:string,img:图片[120x140]:img" name="2c60baa4-75e6-46f2-95d8-aba2e43d6b0b">
+                    <a href="$!href$!num" target="_blank" title="$!text" class="news-img"><img src="$img" width="120px" height="140px" alt="$!text"></a>
+                    </cms:custom>
+                    <ul>
+                        <cms:custom title="文字链" group="文字链" fields="href:链接:string,text1:文字1(6个字):string,text2:文字2:string,text3:高亮文字:string,text4:文字4:string,num:链接随机数:string" defaultRow="3" row="3" name="fe033496-5110-4210-98ba-9514482d2872">
+                        #foreach($item in $customList)
+                        <li #if($velocityCount == 3)class="last"#end>
+                            <a href="$!item.href$!item.num" title="$!item.text1  $!item.text2" target="_blank">
+                                <p>$!item.text1</p>
+                                <p>$!item.text2<span>$!item.text3</span>$!item.text4</p>
+                            </a>
+                        </li>
+                        #end
+                        </cms:custom>
+                    </ul>
+                </li>
+                </cms:repeat>
+            </ul>
+        </div>
+    </div>
+    <div id="footer">
+        <?php @include('/home/admin/go/rgn/act/ww_insider_sihui_bottom_crumb.php');?>    
+    </div>
+</div>
+<script type="text/javascript">
+    (function () {
+        //禁用右键
+        document.oncontextmenu = function() {
+            return false;
+        }
+    })();
+</script>
+</body>
+</html>
+</div></cms:module></cms:insertModule></cms:layout></cms:insertLayout></cms:page>
+

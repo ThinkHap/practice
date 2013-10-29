@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo - tel</title>
+        <link rel="stylesheet" href="http://a.tbcdn.cn/apps/tcc/phone/20120830/etao_home.css"/>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+
+            .wrap {
+                position:relative;
+                width: 990px;
+                height: 650px;
+                margin:0 auto;
+            }
+        </style>
+        <script src="https://s.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+        <script src="http://a.tbcdn.cn/apps/tcc/phone/20120830/etao.js"></script>
+    </head>
+    <body>
+        <div id="recharger" class="wrap">
+        </div>        
+        <script>
+            var S = KISSY, E = S.Event, D = S.DOM;
+            S.config({
+                packages: [{
+                    name: 'gallery',
+                    path: 'http://a.tbcdn.cn/s/kissy',
+                    charset: 'utf-8'
+                }]
+            });
+            S.use('tcc/phone/3.0/etao', function(S, Recharger){
+                var recharger = new Recharger('recharger', {
+                    env: 'etao_home',
+                    onSubmitAsAVisitor: function(sku){
+                        //sku.denom, sku.number
+                    }
+                })
+            });
+        </script>
+    </body>
+</html>

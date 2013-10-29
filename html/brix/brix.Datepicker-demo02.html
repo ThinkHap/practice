@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>brix demo 02</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+            .datepicker .datepicker-bd .range span.input-split {
+                margin: 0 7px;
+            }
+        </style>
+        <link rel='stylesheet' href="http://a.tbcdn.cn/apps/e/brix/brix-min.css">
+        <script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+        <script src="http://a.tbcdn.cn/apps/e/brix/brix-min.js" bx-config="{autoConfig: true}"></script>
+    </head>
+    <body>
+        <div id="container" class="container">
+            <a href="#" id="click1" title="" data-stat="" ><span>点击我</span></a>
+        </div>
+        <hr />
+        <div id="container2" class="container">
+        </div>
+        <hr />
+        <div id="container3" class="container">
+        </div>
+
+        <script>
+            var S = KISSY, D = S.DOM, E = S.Event;
+
+            KISSY.use('brix/gallery/datepicker/, brix/gallery/calendar/calendar.css, brix/gallery/datepicker/datepicker.css', function(S, DatePicker){
+                var Brix_Date = DatePicker.Date;
+
+                var datepicker = new DatePicker({
+                    trigger: '#click1 span',
+                    triggerType: ['click','focus'],
+                    isQuick: true,
+                    dates: {
+                        start: '2012/10/01',
+                        end: '2012/10/31'
+                    },
+                    minDateStart: '2011/11/01',
+                    maxDateEnd: new Date(),
+                    pages: 1
+
+                });
+
+                datepicker.on('selected',function(e){
+                    S.one('#click1').html(Brix_Date.format(e.start,'isoDate') + '至' +Brix_Date.format(e.end,'isoDate'));
+                });
+
+
+                //var datepicker = new DatePicker({
+                //    trigger: '#click1',
+                //    triggerType: 'focus',
+                //    isQuick: false,
+                //    dates: {
+                //        start: '2012/10/01',
+                //        end: '2012/10/31'
+                //    },
+                //    minDateStart: '2011/11/01',
+                //    maxDateEnd: new Date()
+                //});
+
+                //var datepicker2 = new DatePicker({
+                //    trigger: '#test1',
+                //    dates: {
+                //        start: new Date(),
+                //        end: new Date()
+                //    },
+                //    quickDates: {
+                //        'today': {
+                //            text: '今天',
+                //            dateRange: [new Date(), new Date()]
+                //        },
+                //        'yestoday': {
+                //            text: '昨天',
+                //            dateRange: [new Date(2011,11,26), new Date(2011,11,27)]
+                //        },
+                //        'week': {
+                //            text: '过去一周',
+                //            dateRange: [new Date(2011,11,26), new Date(2011,12,02)]
+                //        },
+                //        'month': {
+                //            text: '过去一周',
+                //            dateRange: [new Date(2011,11,26), new Date(2011,12,25)]
+                //        }
+                //    },
+                //    align: {
+                //        points: ['tr', 'tc'],
+                //        offset: [0, 0]
+                //    }
+                //});
+            });
+            
+        </script>
+    </body>
+</html>

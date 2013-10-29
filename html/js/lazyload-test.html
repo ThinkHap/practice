@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+            
+        </style>
+    </head>
+    <body>
+        <div>
+            立即渲染内容1
+            <ul>
+              <li>张三<img src="p01.jpg"/></li>
+              <li>张四<img src="p02.jpg"/></li>
+            </ul>
+        </div>
+             
+        <div>
+            <script>document.write('<textarea id="lazyRender01" style="display:none">');</script>
+                懒惰渲染内容2
+                <ul>
+                  <li>李三<img src="p11.jpg"/></li>
+                  <li>李四<img src="p12.jpg"/></li>
+                </ul>
+            </textarea>
+        </div>
+        <script>
+        setTimeout(function(){//懒惰渲染
+        var el =document.getElementById('lazyRender01');
+          el.parentNode.innerHTML = el.value;
+        },3000);
+        </script>
+         
+    </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>brix demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+            
+        </style>
+        <script src="https://s.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+        <script type="text/javascript" src="http://a.tbcdn.cn/apps/e/brix/brix-min.js"></script>
+    </head>
+    <body>
+        <div id="container" class="container">
+
+        </div>
+
+       <script type="text/template" id="tmpl_list">
+            <h1>{{header}}</h1>
+            {{#bug}}
+            {{/bug}}
+            
+            {{#items}}
+              {{#first}}
+                <li><strong>{{name}}</strong></li>
+              {{/first}}
+              {{#link}}
+                <li><a href="{{url}}">{{name}}</a></li>
+              {{/link}}
+            {{/items}}
+            
+            {{#empty}}
+              <p>The list is empty.</p>
+            {{/empty}}
+        </script>
+
+        <script>
+            var S = KISSY, D = S.DOM, E = S.Event;
+            var list_data = {
+                "empty": true,
+                "header": "Colors",
+                "items": [
+                    {"name": "red", "first": true, "url": "#Red"},
+                    {"name": "green", "link": true, "url": "#Green"},
+                    {"name": "blue", "link": true, "url": "#Blue"}
+                ]
+            };
+
+            KISSY.use('brix/core/mu', function(S, Mustache) {
+                var template = D.html('#tmpl_list');
+                var json =  list_data;
+                var html = Mustache.to_html(template, json);
+                D.html('#container', html);
+            });
+        </script>
+    </body>
+</html>

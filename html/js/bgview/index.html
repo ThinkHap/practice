@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="GBK" />
+<title>背景视差</title>
+<script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy.js" ></script>
+<style>
+    /*{{{*/
+    .box {
+        width: 100%;
+        height: 1000px;
+        background: transparent url(http://img04.taobaocdn.com/tps/i4/T18iy8XlBiXXXXXXXX-1440-709.png) no-repeat -20% 200px;
+    }
+    .bg2 {
+        width:100%;
+        height:100%;
+        background:url(http://img04.taobaocdn.com/tps/i4/T1d5a8XaBjXXXXXXXX-1440-744.png) no-repeat 180% 0px;
+    }
+    .box1 {
+        background-color: #FFAE00;
+    }
+    .box2 {
+        background-color: #67CB33;
+    }
+    .box3 {
+        background-color: #FFEACB;
+    }
+    .box4 {
+        background-color: #C3EBF8;
+    }
+    .box5 {
+        background-color: #FFF0EF;
+    }
+    .desc {
+        font:normal 12px/1.5em "Arial";
+        color: #fff;
+    }
+    .desc p {
+        margin-left:20px;
+    }
+    .box li {
+        line-height:150px;
+    }
+    .desc dl, .desc dd {
+        margin: 10px 20px;
+    }
+    .desc .cnt {
+        padding-left:20px;
+    }
+    /*}}}*/
+</style>
+<script type="text/javascript">
+<!--
+    KISSY.add({
+        'component/bgview': {
+            //fullpath: 'http://assets.etao.net/apps/e/component/120401/bgview.js'
+            fullpath: 'base.js'
+        }
+    });
+//-->
+</script>
+</head>
+<body>
+    <div id="wrap" class="wrap">
+        <div class="box box1 J_bg1 desc">
+        <div class="bg2 J_bg2">
+            <dl>
+                <dt>接口：</dt>
+                <dd>1. Bgview(cfg) : 构造函数</dd>
+                <dd>2. init : 组件初始化函数</dd>
+            </dl>
+            <dl>
+                <dt>cfg说明：</dt>
+                <dd>a). 类型 ： 对象</dd>
+                <dd>b). 字段 ：</dd>
+                <dd class="cnt">trigger : '.J_bg'    放置背景图片的class</dd>
+                <dd class="cnt">speed : '-0.5'       背景图片的相对于页面的滚动速率</dd>
+                <dd class="cnt">trigger2 : '.J_bg2'  这是第二组图片</dd>
+                <dd class="cnt">speed2 : '0.2'       这是第二组图片</dd>
+                </dd>
+            </dl>
+            <p>目前只支持2组背景图片及Y轴的移动</p>
+        </div>
+        </div>
+        <div class="box box2 J_bg1">
+        <div class="bg2 J_bg2">
+            <ul>
+                <li>b</li>
+                <li>o</li>
+                <li>x</li>
+                <li>2</li>
+            </ul>
+        </div>
+        </div>
+        <div class="box box3 J_bg1">
+        <div class="bg2 J_bg2">
+            <ul>
+                <li>b</li>
+                <li>o</li>
+                <li>x</li>
+                <li>3</li>
+            </ul>
+        </div>
+        </div>
+        <div class="box box4 J_bg">
+        <div class="bg2 J_bg2">
+            <ul>
+                <li>这是J_bg，没有触发效果的</li>
+                <li>b</li>
+                <li>o</li>
+                <li>x</li>
+                <li>4</li>
+            </ul>
+        </div>
+        </div>
+        <div class="box box5 J_bg1">
+        <div class="bg2 J_bg2">
+            <ul>
+                <li>b</li>
+                <li>o</li>
+                <li>x</li>
+                <li>5</li>
+            </ul>
+        </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    <!--
+    KISSY.use('component/bgview',function(S){
+        var bgview = new S.Bgview({
+            trigger: '.J_bg1', 
+            speed: '-0.6', //速率
+            trigger2: '.J_bg2', 
+            speed2: '0.2' //速率
+        });
+        bgview.init();
+
+    });
+    //-->
+    </script>
+</body>
+</html>

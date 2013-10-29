@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+
+            /*-----拆合菜单---*/
+            #menu{
+            	width:250px;
+            	background-color:#FFF;
+            	border:1px solid #CDC8CF;border-bottom:none;
+            }
+            #menu li{padding-left:0px !important;}
+            #menu .menu-item{
+            	display:inline;
+            }
+            #menu .menu-item div{
+            	height:27px;
+            	background:url(http://www.36ria.com/demo/ks/style/images/menu-header-bg.jpg) 0px 0px repeat-x #99F;
+            	border-bottom:1px solid #CDC8CF;
+            	padding-top:3px;
+            	cursor:pointer;
+            }
+            #menu .menu-item div a{
+            	font-size:14px;font-weight:bold;color:#765D97;
+            	margin-left:10px;
+            	background:url(http://www.36ria.com/demo/ks/style/images/menu-arrow.gif) 0px -24px no-repeat;padding-left:20px;
+            }
+            #menu .menu-item div a:hover{
+            	text-decoration:none;
+            }
+            #menu .menu-item  ul{
+            	border-bottom:1px solid #CDC8CF;
+            	padding:5px 10px;
+                margin:0px !important;
+            }
+            #menu .menu-item  ul li{
+            	padding:2px 20px !important;
+            	border:1px solid #FFF;
+                color:#7958D1;
+                background:url(http://www.36ria.com/wp-content/themes/36ria3.0/images/li-icon.png) no-repeat 0 5px;
+            }
+            #menu .menu-item  ul li a{
+            	color:#666;
+            }
+            #menu .menu-item  ul li a:hover{
+            	color:#06C;
+            }
+            .arrow-down{
+            	background-position:0px 2px !important;
+            }
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.1.6/kissy-min.js?t=20111130.js"></script>
+    </head>
+    <body>
+        <div id="demo1" class="demo">
+            <ul id="menu" class="menu">
+                <li class="menu-item">
+                    <div>
+                        <a class="cur" href="#" title="" target="_blank" onclick="return false;">jQuery</a>
+                    </div>
+                    <ul>
+                        <li><a href="#" title="" target="_blank">jquery插件</a></li>
+                        <li><a href="#" title="" target="_blank">jquery教程</a></li>
+                        <li><a href="#" title="" target="_blank">jquery与ajax</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <div>
+                        <a href="#" title="" target="_blank" onclick="return false;">flex</a>
+                    </div>
+                    <ul>
+                        <li><a href="#" title="" target="_blank">flex插件</a></li>
+                        <li><a href="#" title="" target="_blank">flex教程</a></li>
+                        <li><a href="#" title="" target="_blank">flex与ajax</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <div>
+                        <a href="#" title="" target="_blank" onclick="return false;">javascript</a>
+                    </div>
+                    <ul>
+                        <li><a href="#" title="" target="_blank">javascript插件</a></li>
+                        <li><a href="#" title="" target="_blank">javascript教程</a></li>
+                        <li><a href="#" title="" target="_blank">javascript与ajax</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <input type="button" name="some_name" value="使用one方式获取拆合菜单的父节点" id="button1"/>
+            <br />
+            <input type="button" name="some_name" value="使用get方式获取拆合菜单的父节点" id="button2"/>
+            <br />
+            <input type="button" name="some_name" value="children()返回实例判断" id="button3"/>
+            <br />
+            <input type="button" name="some_name" value="获取一级菜单标题文本值为'flex'的菜单项索引值" id="button4"/>
+            <br />
+            <input type="button" name="some_name" value="向第二个子菜单添加新的菜单项" id="button6"/>
+            <br />
+            <input type="button" name="some_name" value="替换第二个子菜单的菜单项" id="button8"/>
+            <br />
+            <input type="button" name="some_name" value="隐藏除了第二个子菜单外的子菜单" id="button5"/>
+            <br />
+            <!--
+            <input type="button" name="some_name" value="删除新添加的菜单项" id="button7"/>
+            <br />
+            <input type="button" name="some_name" value="获取拆合菜单下所有li的个数" id="button9"/>
+            -->
+            <br />
+        </div>
+        <script>
+            (function(S){
+                S.use('core',function(){
+                    var Event = S.Event, DOM = S.DOM;
+
+                    Event.on('#button1','click',function(ev){
+                        var menu = S.one('#menu');
+                        alert(menu);
+                    });
+
+                    Event.on('#button2','click',function(ev){
+                        var menu = S.get('#menu');
+                        alert(menu);
+                    });
+
+                    Event.on('#button6','click',function(ev){
+                        S.one('#menu').children('li').item(1).children('ul').append('<li class="new"><a href="#">newLi</a></li>');
+                    });
+
+                    Event.on('#button9','click',function(ev){
+                        var lis = S.all('#menu li');
+                        alert(lis.length);
+                    });
+
+                    Event.on('#button3','click',function(ev){
+                        alert(S.one('#menu').children('li') instanceof KISSY.Node);
+                    });
+
+                    Event.on('#button4','click',function(ev){
+                        S.all('#menu div').each(function(o,i){
+                            var txt = o.text();
+                            console.log(i);
+                            if(txt == 'flex') {
+                                console.log(i);
+                                alert(txt);
+                            };
+                        });
+                    });
+
+                    var $menu = S.one('#menu');
+                    var $childrenMenus = S.all('#menu ul');
+                    var $menuHeader = S.all('#menu div');
+                    $childrenMenus.hide();
+                    $childrenMenus.item(1).show();
+                    $menuHeader.item(1).children().addClass('arrow-down');
+                    $menuHeader.on('click',function(ev){
+                        $childrenMenus.hide();
+                        S.all('#menu .arrow-down').removeClass('arrow-down');
+                        var $menu = S.one(ev.target).next();
+                        var $arrow = S.one(ev.target).children();
+                        var display = $menu.css('display');
+                        if(display == 'none'){
+                            $menu.animate('height:0',0.3,S.Easing.easeNone,function(){
+                                $menu.show().height(h);
+                            });
+
+                            $arrow.addClass('arrow-down');
+                        }else {
+                            $menu.hide()
+                            $arrow.removeClass('arrow-down');
+                        }
+                        return false;
+                    });
+                });
+            })(KISSY);
+        </script>
+    </body>
+</html>

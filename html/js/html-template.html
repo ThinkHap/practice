@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>html-template demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;} body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+                
+        </style>
+        <script src="https://s.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+    </head>
+    <body>
+        <script type="text/template" id="entry">
+            <div class="entry">
+                <h1>[[title]]</h1>
+                <div class="body">
+                    [[body]]
+                    <p>
+                        [[name]]
+                    </p>
+                </div>
+            </div>
+        </script>
+        <div id="wrap" class="wrap">
+            
+        </div>        
+        <script>
+            var jtpl = (function(){
+                var tag = ['if', 'foreach'];
+                return {
+                    delimiterLeft: "\\[\\[",
+                    delimiterRight: "\\]\\]",
+                    replaceVars: function(html, obj){
+                        if(typeof(obj) != 'object') return '';
+                        //for(var p in obj){
+                        //    html = html.replace(new RegExp(this.delimiterLeft + p + this.delimiterRight, 'gm'), obj[p]);
+                        //}
+                        //return html;
+                        return html.replace(new RegExp(this.delimiterLeft + "([^\\[\\]]*?)" + this.delimiterRight, 'igm'), function($, $1){
+                            console.log($);
+                            console.log($1);
+                            console.log(obj[$1]);
+                            return obj[$1] ? obj[$1]: $; 
+                        });
+                    },
+                    parse: function(){
+                        var html = arguments[0] || '',
+                            obj  = arguments[1] || {};
+                        return this.replaceVars(html, obj);
+                    }
+                }
+            }());
+
+            var html = document.getElementById('entry').innerHTML;
+            var source = jtpl.parse(html, {title: 'entrytitle', body: 'this is body ', name: 'this is name'});
+            document.getElementById('wrap').innerHTML = source;
+            console.log(source);
+        </script>
+    </body>
+</html>

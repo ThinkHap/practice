@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+            
+            .main {
+                position:relative;
+                width: 200px;
+                height: 100px;
+                border:1px solid #000;
+                margin: 50px;
+            }
+            .main .arrow {
+                position:absolute;
+                left: 10px;
+                top: 100px;
+            }
+            .main .arrow span {
+                position:absolute;
+                top: 0
+                left: 0;
+                display:block;
+                width:0px;
+                height:0px;
+            }
+            .main .arrow .arrow-outer {
+                border:10px solid #000;
+                border-color: #000 transparent transparent transparent;
+            }
+            .main .arrow .arrow-inner {
+                left: 1px;
+                border:9px solid #fff;
+                border-color: #fff transparent transparent transparent;
+            }
+
+            .main2 {
+                position:relative;
+                width:200px;
+                height:100px;
+                border:1px solid #f40;
+                margin:50px;
+            }
+            .main2 .arrow {
+                position:absolute;
+                top: 92px;
+                left: 10px;
+                width: 14.14px;
+                height:14.14px;
+                border: 1px solid #f40;
+                border-color: transparent #f40 #f40 transparent;
+                background-color:#fff;
+                transform:rotate(45deg);
+                -moz-transform:rotate(45deg);
+                -webkit-transform:rotate(45deg);
+                -o-transform:rotate(45deg);
+            }
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+    </head>
+    <body>
+        <div class="main">
+            <div class="arrow">
+                <span class="arrow-outer"></span>
+                <span class="arrow-inner"></span>
+            </div>
+        </div>        
+
+        <div class="main2">
+            <div class="arrow"></div>
+        </div>        
+    </body>
+</html>

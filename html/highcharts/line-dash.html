@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk"/>
+    <title></title>
+    <script src="http://a.tbcdn.cn/??s/kissy/1.2.0/kissy-min.js"></script>
+    <script src="http://assets.etao.net/apps/e/component/120511/highcharts.js"></script>
+    <!--<script src="http://a.tbcdn.cn/apps/e/component/120511/highcharts.js?t=20121102114320"></script>-->
+    <style>
+        .tool-tip-html {
+            margin: 0;
+            height: 20px;
+            line-height: 20px;
+            padding: 0 5px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div id="container" style="width: 330px; height: 125px; margin: 0 auto"></div>
+</body>
+<script>
+    var chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'container',
+            width: 330,
+            height: 125,
+            marginRight:0,
+            marginLeft:40,
+            marginTop:20,
+            marginBottom:20,
+        },
+        legend:{
+            enabled:false
+        },
+        credits:{
+            enabled:false
+        },
+        xAxis: {
+            startOnTick: false,
+            type: 'datetime',
+            gridLineWidth:1,
+            gridLineColor:'#f00',
+            gridLineDashStyle:'dash',
+            tickmarkPlacement:'between',
+            lineColor:'#f60',
+            lineWidth:0,
+            tickPixelInterval:30,
+            tickLength: 0,
+            title:{
+                style:{
+                    display:'none'
+                }
+            },
+            labels:{
+                formatter:function () {
+                    var data = new Date(this.value);
+                    var m = data.getMonth() + 1;
+                    var d = data.getDate();
+                    return m + '/' + d;
+                },
+
+            },
+            plotLines:[
+                { // mark the start
+                    color:'red',
+                    width:1,
+                    value:Date.UTC(2010, 0, 1),
+                    dashStyle:'longdash'
+                }
+            ],
+            tickInterval: 30 * 24 * 3600 * 1000,
+            dateTimeLabelFormats:{
+                day:'%m.%e'
+            }
+            
+        },
+        yAxis: {
+            gridLineDashStyle:'longdash',
+            tickPixelInterval:20,
+            startOnTick: false,
+            tickLength: 20
+            //maxPadding: 0.2,
+            //min: 29.9-10
+        },
+        tooltip:{
+            shadow:false,
+            backgroundColor:'#f60',
+            borderWidth:0,
+            borderRadius:0,
+            //snap:0,
+            style:{
+                padding:0
+            },
+            useHTML:true,
+            //heaerFormat:'',
+            //pointFormat:'',
+            //footerFormat:'',
+            formatter:function () {
+                var data = new Date(this.x);
+                var m = data.getMonth() + 1;
+                var d = data.getDate();
+                console.log(this);
+                return '<p class="tool-tip-html">' + m + '/' + d + '    ￥' + this.y + '</p>'
+            }
+        },
+        plotOptions:{
+            line:{
+                color:'#f90',
+                lineWidth:1,
+                shadow:false,
+                marker:{
+                    radius:3
+                }
+            }
+        },
+        title:{
+            text:'当前商家',
+            align:'left',
+            style:{
+                display:'none'
+            }
+        },
+        
+        series:[
+            {
+                name:'时间',
+                'data':[
+                    [Date.UTC(2010, 0, 1), 29.9],
+                    [Date.UTC(2010, 0, 13), 71.5],
+                    [Date.UTC(2010, 0, 20), 106.4],
+                    [Date.UTC(2010, 1, 5), 129.2],
+                    [Date.UTC(2010, 1, 11), 176.0],
+                    [Date.UTC(2010, 1, 25), 135.6],
+                    [Date.UTC(2010, 2, 1), 148.5],
+                    [Date.UTC(2010, 2, 10), 216.4],
+                    [Date.UTC(2010, 2, 15), 194.1],
+                    [Date.UTC(2010, 2, 20), 95.6],
+                    [Date.UTC(2010, 2, 25), 54.4]
+                ],
+            }
+        ]
+    });
+    
+    var aa = {
+        "Item":{
+            "nid":"6226900202500624895",
+            "Title":"\u82f9\u679c\uff08APPLE\uff09iPhone 5 16G\u7248 3G\u624b\u673a\uff08\u9ed1\u8272\uff09WCDMA\/GSM",
+            "Price":"\uffe55099.00",
+            "DetailPageURL":"http:\/\/www.360buy.com\/product\/764901.html",
+            "SmallImageUrl":"http:\/\/img08.taobaocdn.com\/imgextra\/etao\/T1ffkkXbJcXXb1upjX_80x80.jpg",
+            "LargeImageUrl":"http:\/\/img08.taobaocdn.com\/imgextra\/etao\/T1ffkkXbJcXXb1upjX_310x310.jpg",
+            "FastTrack":"\u4eac\u4e1c\u5546\u57ce",
+            "Stars":"\u6708\u9500\u91cf 1218 \u4ef6",
+            "ShopName":"\u4eac\u4e1c",
+            "Prices":[
+                [1350809488, null],
+                [1354371272, 5288],
+                [1357283489, 5188],
+                [1357313821, 5288],
+                [1357314104, 5188],
+                [1357470089, 5288],
+                [1357471270, 5099],
+                [1357496196, 5188],
+                [1357497040, 5099]
+            ],
+            "ClickUrl":"http:\/\/ruyi.etao.com\/ext\/clickurl?pid=rc001&url=http%3A%2F%2Fwww.360buy.com%2Fproduct%2F764901.html&t=1358761104&token=f49bd15fedeedd848fbf9ec6a3c553b5"}};
+</script>
+</html>
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>object 封装 - demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+            
+        </style>
+        <script src="https://s.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+    </head>
+    <body>
+        <div id="container" class="container">
+             结果见console控制台
+        </div>
+        <script>
+            function Cat(name, color) {
+                this.name = name;
+                this.color = color;
+            }
+             var cat1 = new Cat('大毛','黄色');
+             var cat2 = new Cat('小毛','黑色');
+
+             //constructor构造函数
+             console.log('cat1.constructor == Cat');
+             console.log(cat1.constructor == Cat);
+             console.log(cat2.constructor == Cat);
+             console.log('');
+
+             //instanceof运算符，验证原型对象与实例对象之间的关系
+             console.log('cat1 instanceof Cat');
+             console.log(cat1 instanceof Cat);
+             console.log(cat2 instanceof Cat);
+             console.log('');
+
+             //给Cat添加共有方法
+             Cat.prototype.type = '猫科动物';
+             Cat.prototype.eat = function(){ console.log('吃老鼠'); };
+             //Cat.prototype = function(){
+             //   this.type = '猫科动物',
+             //   this.eat = function(){
+             //       console.log('吃老鼠'); 
+             //   }
+             //}
+
+             console.log(cat1.type);
+             console.log(cat1.eat());
+             console.log(cat1.eat === cat2.eat);
+             console.log('');
+
+
+             //isPrototypeOf()  用这个方法判断，某个prototype对象和某个实例之间的关系
+             console.log('Cat.prototype.isPrototypeOf(cat1)');
+             console.log(Cat.prototype.isPrototypeOf(cat1));
+             console.log(Cat.prototype.isPrototypeOf(cat2));
+             console.log('');
+
+
+             //hasOwnProperty() 用这个方法判断某一个属性是本地属性，还是prototype属性
+             console.log("cat1.hasOwnProperty('name')");
+             console.log(cat1.hasOwnProperty('name'));
+             console.log('');
+             console.log("cat2.hasOwnProperty('type')");
+             console.log(cat2.hasOwnProperty('type'));
+             console.log('');
+
+
+             //in运算符 可以用来判断，某个实例是否含有某个属性，不管是不是本地属性
+             console.log("'name' in cat1");
+             console.log('name' in cat1);
+             console.log('');
+             console.log("'type' in cat1");
+             console.log('type' in cat1);
+             console.log('');
+
+             //in还可以用来遍历某个对象的所有属性
+             for(var i in cat1) {
+                console.log('cat1['+i+']:'+cat1[i]);
+             }
+        </script>
+    </body>
+</html>

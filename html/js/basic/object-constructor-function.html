@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>object 构造函数 - demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+            
+        </style>
+        <script src="https://s.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+    </head>
+    <body>
+        <div id="container" class="container">
+             
+        </div>
+        <script>
+            //一个Animal的构造函数
+            function Animal(){
+                this.species = '动物';
+            }
+
+            //一个Cat的构造函数
+            function Cat(name, color) {
+                this.name = name;
+                this.color = color;
+            }
+
+            //1.构造函数绑定：为了让Cat继承Animal, 使用call或apply方法，将父对象的构造函数绑定到子对象
+            function Cat1(name, color) {
+                //console.log(this);
+                Animal.apply(this, arguments);
+                this.name = name;
+                this.color = color;
+            }
+
+            var cat1 = new Cat1('大毛', '黄色');
+            console.log(cat1.species); 
+            console.log(cat1.name); 
+            console.log('');
+
+
+            //2.prototype模式：
+            function Cat2(name, color) {
+                this.name = name;
+                this.color = color;
+            }
+            Cat2.prototype = new Animal();
+            Cat2.prototype.constructor = Cat2;
+            //console.log(Cat2);
+            //console.log(Cat2.prototype);
+            //console.log(Cat2.prototype.constructor);
+            var cat2 = new Cat2('小毛','黑色');
+            console.log(cat2.species);
+            console.log(cat2.name); 
+            console.log('');
+
+
+            //3.直接继承prototype
+            function Cat3(name, color) {
+                this.name = name;
+                this.color = color;
+            }
+            function Animal3(){};
+            Animal3.prototype.species = '动物';
+
+            Cat3.prototype = Animal3.prototype;
+            Cat3.prototype.constructor = Cat3;
+            var cat3 = new Cat3('大小毛','棕色');
+            console.log(cat3.species);
+            console.log(cat3.name);
+            console.log('');
+            //console.log(Animal3.prototype);
+
+
+            //4.利用空对象作为中介
+            function Cat4(name, color) {
+                this.name = name;
+                this.color = color;
+            }
+            function Animal4(){};
+            Animal4.prototype.species = '动物';
+            var F = function(){};
+            F.prototype = Animal4.prototype;
+            Cat4.prototype = new F();
+            //console.log(Cat4.prototype);
+            Cat4.prototype.constructor = Cat4;
+            var cat4 = new Cat4('小小毛','花色');
+            console.log(cat4.species);
+            console.log(cat4.name);
+            console.log('');
+            //console.log(Animal4.prototype.constructor);
+
+
+            //5.封装上面的空对象方法
+            function Cat5(name, color) {
+                this.name = name;
+                this.color = color;
+            }
+            function Animal5(){};
+            Animal5.prototype.species = '动物';
+
+            function extend(Child, Parent) {
+                var F = function() {};
+                F.prototype = Parent.prototype;
+                Child.prototype = new F();
+                Child.prototype.constructor = Child;
+                Child.uber = Parent.prototype;
+            }
+            extend(Cat5, Animal5);
+            var cat5 = new Cat5('大大毛','白色');
+            console.log(cat5.species);
+            console.log(cat5.name);
+            console.log('');
+
+
+            //6.拷贝继承
+            function Cat6(name, color) {
+                this.name = name;
+                this.color = color;
+            }
+            function Animal6(){};
+            Animal6.prototype.species = '动物';
+
+            function extend2(Child, Parent) {
+                var p = Parent.prototype;
+                var c = Child.prototype;
+                for (var i in p) {
+                    c[i] = p[i];
+                }
+                c.uber = p;
+            }
+            extend2(Cat6, Animal6);
+            var cat6 = new Cat6('大大', '杂色');
+            console.log(cat6.species);
+            console.log(cat6.name);
+            console.log('');
+
+        </script>
+    </body>
+</html>

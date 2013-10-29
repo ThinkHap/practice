@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+</head>
+<body>
+<div style="width:1000px;height:2000px;background:#CCC">
+<div style="overflow: hidden; height: 118px;width:528px;" id="mq">
+<div class="ct7">
+<a class="ct7img" target="_blank" href="#"><img width="158" height="118" src="http://www.yhnw.com/uploadFiles/2010-07/news_1279160406375.jpg"></a> <a target="_blank" href="#">杭州博望龙悦水庄</a>
+</div>
+<div class="ct7">
+<a class="ct7img" target="_blank" href="#"><img width="158" height="118" src="http://www.yhnw.comhttp://www.yhnw.com/uploadFiles/2010-07/news_1279164416469.jpg"></a> <a target="_blank" href="#">杭州向山园艺农业休闲...</a>
+</div>
+<div class="ct7">
+<a class="ct7img" target="_blank" href="#"><img width="158" height="118" src="http://www.yhnw.com/uploadFiles/2010-07/news_1279164159984.jpg"></a> <a target="_blank" href="#">杭州格林农庄有限公司...</a>
+</div>
+<div class="ct7">
+<a class="ct7img" target="_blank" href="#"><img width="158" height="118" src="http://www.yhnw.com/uploadFiles/2010-07/news_1279176061969.jpg"></a> <a target="_blank" href="#">余杭苕源大拇指农庄</a>
+</div>
+<div class="ct7">
+<a class="ct7img" target="_blank" href="#"><img width="158" height="118" src="http://www.yhnw.com/uploadFiles/2010-07/news_1279181057016.jpg"></a> <a target="_blank" href="#">杭州阿汤农业观光园区</a>
+</div>
+<div class="ct7">
+<a class="ct7img" target="_blank" href="#"><img width="158" height="118" src="http://www.yhnw.com/uploadFiles/2010-07/news_1278646256078.jpg"></a> <a target="_blank" href="#">杭州同家乡村乐园</a>
+</div>
+</div>
+<!--滚动代码 -->
+<script type="text/javascript"> 
+var oMarquee = document.getElementById("mq"),pause=true,iLineHeight = 118;
+oMarquee.innerHTML += oMarquee.innerHTML;
+oMarquee.onmouseover=function(){pause=false;}
+oMarquee.onmouseout=function(){pause=true;}
+function run() {
+var ostop=oMarquee.scrollTop%iLineHeight==0&&!pause;
+if (!ostop)oMarquee.scrollTop==parseInt(oMarquee.scrollHeight/2)?oMarquee.scrollTop=0:oMarquee.scrollTop++;
+window.setTimeout(arguments.callee,oMarquee.scrollTop%iLineHeight==0?2000:10 );
+}
+window.setTimeout("run()", 1000 );
+</script>
+<!--漂浮代码 -->
+<script type="text/javascript">
+document.write("<div id='img0' style='position:absolute;'>");
+document.write("<a href=javascript:guanbi0();><img src=http://www.yhnw.com/includes/guanbi.gif width=109 height=20 border=0></a><br><img src='http://bbs.blueidea.com/images/default/logo.gif' border='0'>");
+document.write("</div>");
+<!-- Begin 
+var xPos0 = 20; 
+var yPos0 = document.documentElement.clientHeight; 
+var step0 = 1; 
+var delay0 = 30;  
+var height0 = 0; 
+var Hoffset0 = 0; 
+var Woffset0 = 0; 
+var yon0 = 0; 
+var xon0 = 0; 
+var pause0 = true; 
+var interval0; 
+var img0=document.getElementById("img0");
+img0.style.top = yPos0+"px"; 
+function changePos0() {
+width0 = document.documentElement.clientWidth;
+height0 =document.documentElement.clientHeight;
+Hoffset0 = img0.offsetHeight;
+Woffset0 = img0.offsetWidth; 
+img0.style.left = xPos0 + document.documentElement.scrollLeft+"px";
+img0.style.top = yPos0 + document.documentElement.scrollTop+"px";
+if (yon0) {yPos0 = yPos0 + step0;} 
+else {yPos0 = yPos0 - step0;} 
+if (yPos0 <100) {yon0 = 1;yPos0 = 100;} 
+if (yPos0>= (height0 - Hoffset0)) {yon0 = 0;yPos0 = (height0 - Hoffset0);} 
+if (xon0) {xPos0 = xPos0 + step0;} 
+else {xPos0 = xPos0 - step0;} 
+if (xPos0 <0) {xon0 = 1;xPos0 = 0;} 
+if (xPos0>= (width0 - Woffset0)) {xon0 = 0;xPos0 = (width0 - Woffset0);}
+} 
+function start0() {interval0 = setInterval('changePos0()', delay0);} 
+start0(); 
+function guanbi0() {
+    clearInterval(interval0);
+    img0.innerHTML = "";
+}
+// End --> 
+</script>
+</body>
+</html>
+

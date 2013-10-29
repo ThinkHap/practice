@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>html-template demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;} body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+                
+        </style>
+        <script src="https://s.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+    </head>
+    <body>
+        <script type="text/template" id="entry">
+            <div class="entry">
+                @if([[paid]])
+                <h1>付费</h1>
+                @else
+                <h1>免费</h1>
+                @/if
+                <h1>[[title]]</h1>
+                <div class="body">
+                    [[body]]
+                    <p>
+                        [[name]]
+                    </p>
+                </div>
+            </div>
+        </script>
+        <div id="wrap" class="wrap">
+            
+        </div>        
+        <script>
+            var jtpl = (function(){
+                var tag = ['if', 'foreach'];
+                return {
+                    delimiterLeft: "\\[\\[",
+                    delimiterRight: "\\]\\]",
+                    parseIfSyntax: function(content, obj){// if标签解析
+                        return content
+                                .replace(
+                                    new RegExp("@if[\s]*\\(" + this.delimiterLeft + "([^\\[\\]]*?)[\s]*" + this.delimiterRight + "\\)([^@]*?)@else([^@]*?)@/if", 'igm'),
+                                    function($, $1, $2, $3){
+                                        return (typeof(obj[$1]) !== 'undefined' && obj[$1]) ? $2 : $3;
+                                    });
+                    },
+                    replaceVars: function(html, obj){//变量替换
+                        if(typeof(obj) != 'object') return '';
+                        //for(var p in obj){
+                        //    html = html.replace(new RegExp(this.delimiterLeft + p + this.delimiterRight, 'gm'), obj[p]);
+                        //}
+                        //return html;
+                        return html
+                                .replace(new RegExp(this.delimiterLeft + "([^\\[\\]]*?)" + this.delimiterRight, 'igm'), function($, $1){
+                            return obj[$1] ? obj[$1]: $; 
+                        });
+                    },
+                    parse: function(){
+                        var html = arguments[0] || '',
+                            obj  = arguments[1] || {};
+                        html = this.parseIfSyntax(html, obj);
+                        return this.replaceVars(html, obj);
+                    }
+                }
+            }());
+
+            var html = document.getElementById('entry').innerHTML;
+            var source = jtpl.parse(html, {title: 'entrytitle', body: 'this is body ', name: 'this is name', paid: 'true'});
+            document.getElementById('wrap').innerHTML = source;
+            console.log(source);
+        </script>
+    </body>
+</html>

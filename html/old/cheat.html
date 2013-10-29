@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>X</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+        </style>
+    </head>
+         <script src="http://a.tbcdn.cn/s/kissy/1.1.6/kissy-min.js?t=20111130.js"></script>
+    <body>
+        <a href="#" title="" target="_blank" id="cheat">点击我</a>
+        <script>
+            (function(S){
+                var dom = S.DOM;
+                var cheat = document.getElementById("cheat");
+                cheat.onclick = function(){
+			        var _sUrl = 'http://fengkuang.etao.com' + '?id=3' + '&p=1468';
+			        S.getScript(_sUrl,function(){
+			        	var ques = json.que;
+
+			        	if(ques != ""){
+			        		divs[1].innerHTML = ques;
+			        	}else{
+			        		divs[1].innerHTML = '<img src="http://img02.taobaocdn.com/tps/i2/T16WJqXaXeXXXXXXXX-32-32.gif" class="onload_img"/>';
+			        	}
+			        	dom.get("#yz_btn").onclick = function(){
+			        		var inputV = S.query("#zp_yzm input")[0].value;
+			        		if(inputV != ""){
+			        			if(json.hit == "1002"){
+			        				var _tUrl = 'http://fengkuang.etao.com' + '?id=' + (j+1) + '&p=' + value +'&key=' + inputV + '&que=' + ques;
+			        				dom.get("#zp_mask2").style.display = "none";
+			        				dom.get("#zp_yzm").style.display = "none";
+			        				S.query("#zp_yzm input")[0].value = "";
+			        				S.getScript(_tUrl,function(){
+			        					if(json.win == "1001"){
+			        						msg(3);
+			        					}else{
+			        						msg(2);
+			        					}
+			        				});
+			        			}else{
+			        				divs[0].innerHTML = "价格没有猜对哦！";
+			        			}
+			        		}else{
+			        			alert("请输入验证码！");
+			        		}
+			        		return false;
+			        	}
+			        });
+                }
+
+            })(KISSY);  
+        </script>
+    </body>
+</html>

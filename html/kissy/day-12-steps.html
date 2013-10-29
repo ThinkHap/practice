@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+
+            /*-----拆合菜单---*/
+            #menu{
+            	width:250px;
+            	background-color:#FFF;
+            	border:1px solid #CDC8CF;border-bottom:none;
+            }
+            #menu li{padding-left:0px !important;}
+            #menu .menu-item{
+            	display:inline;
+            }
+            #menu .menu-item div{
+            	height:27px;
+            	background:url(http://www.36ria.com/demo/ks/style/images/menu-header-bg.jpg) 0px 0px repeat-x #99F;
+            	border-bottom:1px solid #CDC8CF;
+            	padding-top:3px;
+            	cursor:pointer;
+            }
+            #menu .menu-item div a{
+            	font-size:14px;font-weight:bold;color:#765D97;
+            	margin-left:10px;
+            	background:url(http://www.36ria.com/demo/ks/style/images/menu-arrow.gif) 0px -24px no-repeat;padding-left:20px;
+            }
+            #menu .menu-item div a:hover{
+            	text-decoration:none;
+            }
+            #menu .menu-item  ul{
+            	border-bottom:1px solid #CDC8CF;
+            	padding:5px 10px;
+                margin:0px !important;
+            }
+            #menu .menu-item  ul li{
+            	padding:2px 20px !important;
+            	border:1px solid #FFF;
+                color:#7958D1;
+                background:url(http://www.36ria.com/wp-content/themes/36ria3.0/images/li-icon.png) no-repeat 0 5px;
+            }
+            #menu .menu-item  ul li a{
+            	color:#666;
+            }
+            #menu .menu-item  ul li a:hover{
+            	color:#06C;
+            }
+            .arrow-down{
+            	background-position:0px 2px !important;
+            }
+            .box{
+                width: 150px;
+                height: 100px;
+                border:1px solid #f00;
+                background-color:#00CCFF;
+            }
+            .box1 li {
+                float:left;
+                width:90px;
+                padding:3px 50px;
+                margin:0;
+                text-align:center;
+                background-color:#FFE6BA;
+                position:relative;
+            }
+            .box1 .first {border-radius:5px 0 0 5px;-moz-border-radius:5px 0 0 5px;-webkit-border-radius:5px 0 0 5px;}
+            .box1 .second {background-color:#f60;}
+            .box1 .third {background-color:#ccc;border-radius:0 5px 5px 0;-moz-border-radius:0 5px 5px 0;-webkit-border-radius:0 5px 5px 0;}
+            .demo a {display:inline-block;background-color:#ffe6ba;}
+            .arrow {position:absolute;top:0;right:0px;width:14px;height:24px;background-color:#f60;}
+            .arrow span {position:absolute;left:0;top:0px;display:block;line-height:0px;overflow:hidden;}
+            .arrow .bol {top:-2px;border:14px dashed transparent;border-left-color:#fff;border-left-style:solid;}
+            .arrow .bor {border:12px dashed transparent;border-left-color:#ffe6ba;border-left-style:solid;}
+            .second .arrow {background-color:#ccc;}
+            .second .arrow .bor {border-left-color:#f60;}
+
+            .box2 {position:relative;width:14px;height:24px;background-color:#000;}
+            .box2 span {
+                position:absolute;
+                left: 0;
+                top: 0;
+                display:block;
+            }
+            .box2 .bor {
+                top: -2px;
+                border:14px solid transparent;
+                border-left-color: #fff;
+
+            }
+            .box2 .bol {
+                border:12px solid transparent;
+                border-left-color: #f60;
+            }
+
+            #step6{} 
+        </style>
+        <link rel="stylesheet" type="text/css" href="http://www.36ria.com/demo/steps/steps.css" />
+        <script src="http://a.tbcdn.cn/s/kissy/1.1.6/kissy-min.js?t=20111130.js"></script>
+        <script src="http://www.36ria.com/demo/steps/steps.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div id="demo1" class="demo">
+             <div class="box1">
+                <ul class="cf">
+                    <li class="first">1.加入购物车<div class="arrow"><span class="bol"></span><span class="bor"></span></div></li>
+                    <li class="second">2.确认订单信息<div class="arrow"><span class="bol"></span><span class="bor"></span></div></li>
+                    <li class="third">3.付款到支付宝</li>
+                </ul>
+             </div>
+             <br />
+             <div class="box2">
+                <span class="bor"></span>
+                <span class="bol"></span>
+             </div>
+        </div>
+        <br />
+        <ul id="step1" class="cf">
+            <li>1.加入购物车</li>
+            <li>2.确认订单信息</li>
+            <li>3.付款到支付宝</li>
+        </ul>
+        <br />
+        <ul id="step2" class="cf">
+            <li>1.加入购物车</li>
+            <li>2.确认订单信息</li>
+            <li>3.付款到支付宝</li>
+            <li>4.确认收货</li>
+        </ul>
+        <br />
+        <ul id="step3" class="cf">
+            <li>1.加入购物车</li>
+            <li>2.确认订单信息</li>
+            <li>3.付款到支付宝</li>
+            <li>4.确认收货</li>
+        </ul>
+        <br />
+        <ul id="step4" class="cf">
+            <li>1.加入购物车</li>
+            <li>2.确认订单信息</li>
+            <li>3.付款到支付宝</li>
+            <li>4.确认收货</li>
+        </ul>
+        <br />
+        <ul id="step5" class="cf">
+            <li>1.加入购物车</li>
+            <li>2.确认订单信息</li>
+            <li>3.付款到支付宝</li>
+            <li>4.确认收货</li>
+        </ul>
+        <br />
+        <ul id="step6" class="cf co">
+            <li>1.加入购物车</li>
+            <li>2.确认订单信息</li>
+            <li>3.付款到支付宝</li>
+            <li>4.确认收货</li>
+            <li>5.评价</li>
+        </ul>
+        <br />
+        <input type="button" name="some_name" value="激活第三个步骤" id="button1"/>
+        <input type="button" name="some_name" value="改变颜色为红色" id="button2"/>
+        <input type="button" name="some_name" value="重新设置激活步骤和颜色" id="button3"/>
+        <br />
+        <script>
+            (function(S){
+                S.use('core',function(){
+                    var Event = S.Event, DOM = S.DOM;
+
+                    step1 = new S.Steps('#step1');
+                    step1.render();
+                    step1.set('act',1);
+                    S.log(step1.get('act'));
+
+                    step2 = new S.Steps('#step2',{'autoRender':true,'act':2});
+                    step3 = new S.Steps('#step3',{'autoRender':true,'act':2,'color':'blue'});
+                    step4 = new S.Steps('#step4');
+                    step4.render();
+                    step4.set('act',3);
+                    step4.set('color','pink');
+
+                    step5 = new S.Steps('#step5',{'autoRender':true,'act':2,'color':'green','width':200});
+                    step5.on('render',function(ev){
+                        alert('共有'+ ev.steps.length +'个步骤;');
+                        step5.set('width',300);
+                    });
+                    //step5.render();
+
+                    step6 = new S.Steps('#step6');
+                    step6.render();
+                    Event.on('#button1','click',function(ev){
+                        step6.set('act',3);
+                    });
+                    Event.on('#button2','click',function(ev){
+                        step6.set('color','red');
+                    });
+                    Event.on('#button3','click',function(ev){
+                        step6.reset();
+                    });
+                });
+            })(KISSY);
+        </script>
+    </body>
+</html>

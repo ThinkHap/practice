@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+            
+            .main {
+                width: 600px;
+                height: 180px;
+                word-break: break-all;
+                background-image: url(http://img02.taobaocdn.com/tps/i2/T1.znfXeFuXXcVdnPS-300-180.gif),url(http://img03.taobaocdn.com/tps/i3/T15vTgXdlpXXX81os3-450-180.gif),url(http://img01.taobaocdn.com/tps/i1/T1w56hXoBjXXb15MYo-600-180.gif); 
+                background-repeat: no-repeat;
+                word-wrap: break-word;
+                word-break: break-all;
+            }
+        </style>
+        <script src="https://s.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+    </head>
+    <body>
+        <div id="main" class="main">
+            background-image
+        </div>    
+        <script>
+            var main = document.getElementById('main');
+            var style = main.currentStyle ? main.currentStyle : window.getComputedStyle(main, null);
+            var getPropertyValue = function(prop){
+                
+            };
+            if(style.getPropertyValue){
+                var res = style.getPropertyValue('background-image');
+                res += '<br />' + style.getPropertyValue('word-wrap');
+                res += '<br />' + style.getPropertyValue('word-break');
+            }else {
+                var res = style.getAttribute('backgroundImage');
+                res += '<br />' + style.getAttribute('wordWrap');
+                res += '<br />' + style.getAttribute('wordBreak');
+            };
+            //console.log(res);
+            main.innerHTML = res;
+            //alert(res);
+            //inline[property] = prefixed;
+        </script>
+    </body>
+</html>

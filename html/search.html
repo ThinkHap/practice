@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="GBK">
+	<title></title>
+	<script src="http://a.tbcdn.cn/??s/kissy/1.1.6/kissy-min.js,p/global/1.0/global-min.js?t=2011092320100214.js"></script>
+</head>
+<style type="text/css">
+	/***#zp_wrap 公用样式(部分)***********************************************************/
+	html {overflow-y: scroll;}
+	body,ol{ margin: 0;padding: 0;}
+	#zp_wrap .fix_float:after {content: ".";display: block;height: 0;visibility: hidden;clear: both;}
+	#zp_wrap .fix_float { *display:inline-block;}
+	.zp_wrap {font: normal 12px / 1.5 "宋体";}
+	.zp_wrap ul, .zp_wrap ol {margin: 0;padding: 0;list-style: none outside;}
+	.zp_wrap a {text-decoration: none;}
+	.zp_wrap a:focus {outline: none;}
+	.zp_wrap a:hover {text-decoration: underline;}
+	.zp_wrap a img, .zp_wrap img {margin: 0;border: 0;vertical-align: top;line-height: 0;font-size: 0;}
+	.zp_wrap strong {font-weight: 700;}
+	.zp_wrap em {font-style: normal;display: inline-block;}
+	.zp_wrap p, .zp_wrap h1, .zp_wrap dd, .zp_wrap h5, .zp_wrap h3{margin: 0;padding: 0;}
+	.zp_foot ul {*font-size:0;* line-height: 0;}
+	.zp_foot li {padding-top: 6px;vertical-align: top;}
+	 button, input, select, textarea{font-size:100%;}	        
+	/*#zp_wrap 独立样式**********************************************************/
+	.zp_wrap{margin:200px 0 0 200px;}
+	.tb-srch-may .tb-srch-may-tab li{float:left;position:relative;}
+	.tb-srch-may .tb-srch-may-tab li.current a{background:#F27B04;color:#fff;font-weight:bold;}
+	.tb-srch-may .tb-srch-may-tab li a{display:block;float:left;height:23px;line-height:23px;padding:0 15px;}
+	.tb-srch-may .rc-lt, .tb-srch-may .rc-lb, .tb-srch-may .rc-rb, .tb-srch-may .rc-rt{font-family:serif;font-size:0;height:1px;position:absolute;width:1px;}
+	.tb-srch-may .rc-lt{left:0;top:0;}
+	.tb-srch-may .tb-srch-may-tab .current .rc-lt, .tb-srch-may .tb-srch-may-tab .current .rc-rt{background:#FFDEBB;display:block;}
+	.search-input{border:1px solid #999;height:20px;padding:3px 2px 2px 4px;width:300px;}
+</style>
+<body>
+	<div class="zp_wrap" id="zp_wrap">
+		<div id="J_TBSearch" class="tb-srch-may">
+			<ul class="tb-srch-may-tab fix_float">
+				<li class="current">
+					<a href="http://list.taobao.com/browse/cat-0.htm">宝贝</a>
+					<b class="rc-lt"></b>
+					<b class="rc-rt"></b>
+				</li>
+				<li>
+					<a href="http://shopsearch.taobao.com/browse/shop_search.htm">商城</a>
+					<b class="rc-lt"></b>
+					<b class="rc-rt"></b>
+				</li>
+			</ul>
+			<div class="tb-srch-may-panel fix_float">
+				<form action="http://search1.taobao.com/browse/search_auction.htm" method="get" name="search">
+					<input type="hidden" name="sort" value="">
+                    <input type="hidden" name="f" value="D9_5_1">
+                    <input type="hidden" name="promote" value="">
+                    <input type="hidden" name="isnew" value="2">
+                    <input type="hidden" name="atype" value="b">
+                    <input type="hidden" name="commend" value="all">
+                    <input type="hidden" name="search_type" value="auction">
+                    <input type="hidden" name="user_action" value="initiative">
+                    <input type="hidden" name="ssid" value="s1-e">
+                    <input class="search-input" id="qstab" name="q" autocomplete="off">
+                    <button class="search-submit" type="submit">淘我喜欢</button>
+				</form>
+			</div>
+		</div>
+		<script type="text/javascript">
+			(function(S){
+				KISSY.use("node,suggest", function(S, Node, Suggest) {
+					// 如果是 1.1.6, Node 和 Suggest 都是直接在 KISSY 上的
+					Node = S.Node;
+					Suggest = S.Suggest;
+
+					// 初始化一个Suggest 对象, 给定所提示input的元素节点, 数据源, 及配置项
+					var _suggest = new Suggest('#qstab', 'http://suggest.taobao.com/sug?code=utf-8&extras=1', {
+							resultFormat: '约%result%个宝贝',
+							dataType: 1
+						}),
+						// 切换 tab, 当切换到不同 tab 时, 数据源和显示格式有所差异
+						tab = S.one('.tb-srch-may-tab'),
+						tabList = tab.all('li'),
+						switchToTab = function(n) {
+							// 动态设置数据源和结果格式
+							_suggest.config.resultFormat = '约%result%个宝贝';
+							if (n == 1) {
+								_suggest.dataSource = 'http://suggest.taobao.com/sug?area=b2c&code=utf-8&extras=1&callback=KISSY.Suggest.callback';
+								_suggest.config.resultFormat = '约%result%个商品';
+							} else {
+								_suggest.dataSource = 'http://suggest.taobao.com/sug?code=utf-8&extras=1&callback=KISSY.Suggest.callback';
+							}
+							S.each(tabList, function(tab, i) {
+								tab = new Node(tab);
+
+								tab[(i == n) ? "addClass" : "removeClass"]('current');
+							});
+						};
+
+					// 绑定 tab 切换
+					S.each(tabList, function(tab, i) {
+						tab = new Node(tab);
+						tab.on("click", function(ev) {
+							ev.halt();
+							switchToTab(i);
+						});
+					});
+
+					_suggest.on('beforeSubmit', function(e) {
+						//alert(e);
+                        document.search.submit();
+						return false;
+					});
+
+                    //var _beforeSubmit = function(e){
+                    //    var b=e,
+                    //        d=b.sug,
+                    //        //e=d.textInput.value,
+                    //        //f=d.query,
+                    //        g=!1,
+                    //        h=b.form;
+                    //        //j=d.selectedItem;
+                    //    if(b._loading) return;
+                    //    if(j&&j.className){
+                    //        var k=j.parentNode,
+                    //            l=j.className,
+                    //            m=c.query("li",k),
+                    //            n=1;
+                    //        a.each(m,function(a,b){
+                    //            if(a==j) return n=b+1,!1
+                    //        });
+                    //        var o="0";
+                    //        function p(a){
+                    //            return j.className.indexOf(a)>-1
+                    //        }
+                    //        if(p("ks-suggest-extras-top"))
+                    //            return location.href="http://top.taobao.com/?from=sr_top_combobox&"+d.extrasTopData[1],!1;
+                    //        p("ks-suggest-extras-cate")?(i("cat",c.attr(d.selectedItem,"data-cateId"),h),o="cat"):p("ks-suggest-extras-tc")?o="celnum":p("ks-suggest-extras-jp")&&(o="flt"),
+                    //        i("suggest",o+"_"+n,h),
+                    //        g=!0
+                    //    }
+                    //    g&&(i("source","suggest",h),e!=f&&i("wq",f,h))
+                    //};
+				});
+			})(KISSY)
+		</script>
+	</div>
+</body>
+</html>

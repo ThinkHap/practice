@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="gbk">
+<title>mvc_tab</title>
+<link rel="stylesheet" href="http://junyi.me/demo/tab/inc/reset.css" />
+<link rel="stylesheet" href="http://junyi.me/demo/tab/tab.css" />
+
+<script src="http://junyi.me/demo/tab/inc/json2.js"></script>
+<script src="http://junyi.me/demo/tab/inc/jquery-1.6.4.js"></script>
+<script src="http://junyi.me/demo/tab/inc/underscore-1.2.2.js"></script>
+<script src="http://junyi.me/demo/tab/inc/backbone.js"></script>
+</head>
+<body>
+<div id="content">
+    <ul id="tab-nav">
+        <li class="active"><a href="#tab/0">潮流服装</a></li>
+        <li><a href="#tab/1">数码家电</a></li>
+        <li><a href="#tab/2">名品鞋包</a></li>
+        <li><a href="#tab/3">运动户外</a></li>
+        <li><a href="#tab/4">母婴食品</a></li>
+        <li><a href="#tab/5">彩妆珠宝</a></li>
+    </ul>
+    <div id="tab-con">
+        <ul></ul>
+    </div>
+</div>
+<script type="text/template" id="item-template">
+    <li><a href="<% print(i.href) %>" target="_blank"><img width="70" height="70" src="<% print(i.img) %>" alt="<%  print(i.alt); %>" /></a></li>
+</script>
+<!--
+<script src="http://junyi.me/demo/tab/tab.js"></script>
+-->
+<script>
+var Tab = {
+    View: {},
+    Model: {},
+    Router: {},
+    Collection: {},
+    init: function() {
+        var TabRouter = new Tab.Router;
+        Backbone.history.start();
+    }
+};
+
+var arrUl = [];
+
+Tab.Model = Backbone.Model.extend({
+});
+
+Tab.Collection = Backbone.Collection.extend({
+    model: Tab.Model
+});
+
+Tab.View = Backbone.View.extend({
+    el: $('#tab-con ul'),
+    template: $('#item-template').html(),
+
+    render: function(data) {
+        var list = '<% _.each(item, function(i){ %>' + this.template +'<% });%>';
+        this.el.html(_.template(list, data));
+    }
+});
+
+Tab.Router = Backbone.Router.extend({
+    _view: null,
+
+    routes: {
+         "":         "defaultTab",
+        "tab/:id":   "showTab"
+    },
+
+    initialize: function() {
+        this._view = new Tab.View;
+    },
+
+    defaultTab: function() {
+        this.showTab(0);
+    },
+
+    showTab: function(id) {
+        var _this = this;
+        $('#tab-nav .active').removeClass('active');
+        $('#tab-nav li').eq(id).addClass('active');
+        if (!arrUl[id]) {
+            $.ajax({
+                url: 'ajax.php?n='+ id,
+                dataType: 'json',
+                async: false,
+                success: function(data) {
+                    _this._view.render(data);
+                    arrUl[id] = data;
+                }
+            });
+        } else {
+            _this._view.render(arrUl[id]);
+        }
+    }
+});
+
+$(function() {
+    Tab.init();
+});
+
+</script>
+</body>
+</html>
+

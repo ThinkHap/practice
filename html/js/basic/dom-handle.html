@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>dom handle - demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+            
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+    </head>
+    <body>
+        <div id="handler" class="handler">
+            <input type="button" name="add" value="add dom" id="add"/>
+            <input type="button" name="remove" value="remove dom" id="remove"/>
+            <input type="button" name="insert" value="insert dom" id="insert"/>
+        </div>
+        <div id="container" class="container"></div>
+        <script>
+            var container = document.getElementById("container");
+            var add = document.getElementById("add");
+            var remove = document.getElementById("remove");
+            var insert = document.getElementById("insert");
+
+            //add dom
+            add.addEventListener('click', function(){
+                var div = document.createElement('div');
+                var para = document.createElement('p');
+                para.innerText = ('增加一个p节点');
+                //para.textContent = ('增加一个p节点');
+                div.appendChild(para);
+                container.appendChild(div);
+            }, false);
+
+            //remove dom
+            remove.addEventListener('click', function(){
+                var div = container.getElementsByTagName("div");
+                //console.log(container.firstChild);
+                if(div.length>0){
+                    console.log(div[0].nodeType);
+                    console.log(div[0].firstChild.nodeType);
+                    console.log(div[0].firstChild.firstChild.nodeType);
+                    //container.removeChild(div[0]);
+                    div[0].parentNode.removeChild(div[0]);
+                }else{
+                    console.log('container中没有div节点啦！');
+                }
+            }, false);
+
+            //insert dom 
+            insert.addEventListener('click', function(){
+                var div = document.createElement('div');
+                var strong = document.createElement('strong');
+                strong.innerText = ('这是一个插入的strong节点');
+                div.appendChild(strong);
+
+                var divs = container.getElementsByTagName("div");
+                var len = divs.length;
+                if(len > 0){
+                    var i = Math.ceil(len / 2);
+                    container.insertBefore(div, divs[i]);
+                }else{
+                    container.appendChild(div);
+                }
+            }, false);
+
+        </script>
+    </body>
+</html>

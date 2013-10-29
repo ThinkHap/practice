@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+            
+        </style>
+    </head>
+    <body>
+        <div class="test">
+            
+        </div>
+        <script>
+            var names = new Array("Paul","Ca","Steve");
+            var ages = new Array(31,29,34);
+            var concatArray = names.concat(ages);
+            for (var i = 0; i < concatArray.length; i++){
+                document.write(concatArray[i] + "<br />");
+            }
+
+            document.write("sliceArray as below <br />");
+
+            var sliceArray = concatArray.slice(2,4);
+            for (var i = 0; i < sliceArray.length; i++){
+                document.write(sliceArray[i] + "<br />");
+            }
+
+            document.write("joinString as below <br />");
+
+            var joinString = concatArray.join("<br />")
+            document.write(joinString);
+
+            document.write("sortString as below <br />");
+
+            var sortArray = concatArray.sort();
+            var sortString = sortArray.join("<br />");
+            document.write(sortString);
+
+            document.write("reverseString as below <br />");
+
+            var reverseArray = names.reverse();
+            var reverseString = reverseArray.join("  ");
+            document.write(reverseString);
+        </script>
+    </body>
+</html>

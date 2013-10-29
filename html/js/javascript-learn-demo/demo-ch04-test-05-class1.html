@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+            
+        </style>
+    </head>
+    <body>
+        <div class="test">
+            
+        </div>
+        <script>
+            function CustomerBooking(bookingId, customerName, film, showDate){
+                this.customerName = customerName;
+                this.bookingId = bookingId;
+                this.showDate = showDate;
+                this.film = film;
+            }
+
+            CustomerBooking.prototype.getCustomerName = function(){
+                return this.customerName;
+            }
+            CustomerBooking.prototype.setCustomerName = function(customerName){
+                this.customerName = customerName;
+            }
+
+            CustomerBooking.prototype.getShowDate = function(){
+                return this.showDate;
+            }
+            CustomerBooking.prototype.setShowDate = function(showDate){
+                this.showDate = showDate;
+            }
+
+            CustomerBooking.prototype.getFilm = function(){
+                return this.film;
+            }
+            CustomerBooking.prototype.setFilm = function(film){
+                this.film = film;
+            }
+
+            CustomerBooking.prototype.getBookingId = function(){
+                return this.bookingId;
+            }
+            CustomerBooking.prototype.setBookingId = function(bookingId){
+                this.bookingId = bookingId;
+            }
+
+            var firstBooking = new CustomerBooking(1234, "Robert Smith", "Raging Bull", "25 July 2004 18:20");
+            var secondBooking = new CustomerBooking(1244, "Arnold Palmer", "Toy Story", "27 July 2004 20:15");
+            document.write("1st booking persons name is " + firstBooking.getCustomerName() + "<br />");
+            document.write("2nd booking persons name is " + secondBooking.getCustomerName() + "<br />");
+
+            //cinema class
+            function cinema(){
+                this.bookings = new Array();
+            }
+            cinema.prototype.addBooking = function(bookingId, customerName, film, showDate){
+                this.bookings[bookingId] = new CustomerBooking(bookingId, customerName, film, showDate);
+            }
+            cinema.prototype.getBookingsTable = function(){
+                var booking;
+                var bookingsTableHTML = "<table border=1>";
+                for (booking in this.bookings){
+                    bookingsTableHTML += "<tr><td>";
+                    bookingsTableHTML += this.bookings[booking].getBookingId();
+                    bookingsTableHTML += "</td>"; 
+                    bookingsTableHTML += "<td>"; 
+                    bookingsTableHTML += this.bookings[booking].getCustomerName();
+                    bookingsTableHTML += "</td>"; 
+                    bookingsTableHTML += "<td>"; 
+                    bookingsTableHTML += this.bookings[booking].getFilm();
+                    bookingsTableHTML += "</td>"; 
+                    bookingsTableHTML += "<td>"; 
+                    bookingsTableHTML += this.bookings[booking].getShowDate();
+                    bookingsTableHTML += "</td>"; 
+                    bookingsTableHTML += "</tr>"; 
+                }
+                bookingsTableHTML += "</table>"; 
+                return bookingsTableHTML; 
+            }
+
+            var londonOdeon = new cinema();
+            londonOdeon.addBooking(342, "Arnold Palmer", "Toy Story", "15 July 2009 20:15");
+            londonOdeon.addBooking(335, "Louise Anderson", "The Shawshank Redemption", "27 July 2009 11:25");
+            londonOdeon.addBooking(566, "Catherine Hughes", "Never Say Never", "27 July 2009 17:50");
+            londonOdeon.addBooking(324, "Beci Smith", "Shrek", "29 July 2009 15:14");
+            document.write(londonOdeon.getBookingsTable());
+
+        </script>
+    </body>
+</html>

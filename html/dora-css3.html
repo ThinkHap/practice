@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+            
+            .dora {position:relative;margin:50px auto;width:500px;}
+            .head {position:relative;width:310px;height:310px;border-radius:150px;-moz-border-radius:150px;-webkit-border-radius:150px;border:2px solid #000;background-color:#0EACD5;background:-moz-radial-gradient(100% 0%, #7DDDF4, #05A9DB);background:-webkit-radial-gradient(100% 0%, #7DDDF4 20%, #05A9DB 60%);}
+            .face {position:absolute;top:80px;left:23px;width:264px;height:210px;border-radius:120px/105px;-moz-border-radius:120px/105px;-webkit-border-radius:120px/105px;border:2px solid #000;background-color:#fff;}
+            .eye {position:absolute;top:42px;left:80px;width:72px;height:83px;border:2px solid #000;background-color:#fff;border-radius:35px;-moz-border-radius:35px;-webkit-border-radius:35px;}
+            .eye-right {left:154px;}
+            .eye span {position:absolute;top:55px;left:50px;display:block;width:15px;height:15px;border-radius:7px;-moz-border-radius:7px;-webkit-border-radius:7px;background-color:#000;-webkit-animation-name:eyesMove;-webkit-animation-duration:3s;-webkit-animation-iteration-count:200;-webkit-animation-timing-function: linear;}
+            .eye-right span {left:7px;}
+            @-webkit-keyframes eyesMove {
+	            0%{ margin:0 0 0 0; }
+	            80%	{ margin:0px 0 0 0; }
+	            85%	{ margin:-20px 0 0 0; }
+	            90%{ margin:0 0 0 0; }
+	            93%{ margin:0 0 0 5px; }
+	            96%{ margin:0 0 0 0; }
+	            100%{ margin:0 0 0 0; }
+            }
+            
+            .nose {position:absolute;top:115px;left:50%;margin-left:-18px;width:32px;height:32px;border:2px solid #000;border-radius:16px;-moz-border-radius:16px;-webkit-border-radius:16px;background-color:#C93E00;z-index:10;}
+            .nose span {position:absolute;top:34px;left:14px;width:3px;height:105px;background-color:#000;}
+            .mouse {position:absolute;top:-185px;left:50%;margin-left:-120px;width:240px;height:440px;border-bottom:3px solid #000;border-radius:120px;}
+            .mustache {position:absolute;top:130px;left:35px;width:240px;height:90px;background-color:#fff;border-radius:18px;-moz-border-radius:18px;-webkit-border-radius:18px;}
+            .mustache span {position:absolute;top:44px;left:20px;display:block;width:60px;height:2px;background-color:#000;line-height:2px;}
+            .mustache .one {-moz-transform:rotate(15deg);-webkit-transform:rotate(15deg);-o-transform:rotate(15deg);margin-top:-20px;}
+            .mustache .three {-moz-transform:rotate(-15deg);-webkit-transform:rotate(-15deg);-o-transform:rotate(-15deg);margin-top:20px;}
+            .mustache .right.one {-moz-transform:rotate(165deg);-webkit-transform:rotate(165deg);-o-transform:rotate(165deg);margin-top:-20px;}
+            .mustache .right.three {-moz-transform:rotate(195deg);-webkit-transform:rotate(195deg);-o-transform:rotate(195deg);margin-top:20px;}
+            .mustache .right {margin-left:140px;}
+
+            .neck {position:relative;margin:-30px 0 0 35px;z-index:9;}
+            .belt {width:240px;height:20px;border:2px solid #000;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px;background-color:#820500;background:linear-gradient(top, #C84000, #820500);background:-moz-linear-gradient(top, #C84000, #820500);background:-webkit-linear-gradient(top, #C84000, #820500);background:-o-linear-gradient(top, #C84000, #820500);}
+            .bell {position:relative;width:40px;height:40px;border:2px solid #000;margin:-15px 0 0 100px;background-color:#F4EC25;border-radius:22px;-moz-border-radius:22px;-webkit-border-radius:22px;z-index:9;}
+            .bell .line {position:absolute;top:0;left:0;display:block;height:2px;line-height:0;background-color:#000;}
+            .bell .line1 {width:38px;top:10px;}
+            .bell .line2 {width:40px;top:14px;}
+            .bell .line3 {width:3px;height:10px;top:30px;left:18px;}
+            .bell .circle {position:absolute;top:20px;left:14px;display:block;width:12px;height:12px;background-color:#000;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;}
+
+            .body {position:relative;width:240px;height:140px;margin:-30px 0 0 37px;background-color:#0EACD5;border-bottom:2px solid #000;overflow:hidden;z-index:3;}
+            .body .line {position:absolute;top:40px;left:0;display:block;width:2px;height:100px;background-color:#000;}
+            .body .line2 {left:238px;}
+            .pocket {width:170px;height:170px;border:2px solid #000;margin:-50px 0 0 33px;background-color:#fff;border-radius:87px;-moz-border-radius:87px;-webkit-border-radius:87px;-o-border-radius:87px;}
+            .pocket span {display:block;width:130px;height:65px;border:2px solid #000;margin:85px 0 0 20px;border-bottom-right-radius:67px;border-bottom-left-radius:67px;}
+
+            .hand {position:absolute;top:316px;left:-10px;}
+            .hand-right {left:260px;}
+            .hand .arm {width:60px;height:50px;background-color:#0EACD5;border:1px solid #000;-moz-transform:rotate(-25deg);-webkit-transform:rotate(-25deg);-o-transform:rotate(-25deg);}
+            .hand-right .arm {-moz-transform:rotate(25deg);-webkit-transform:rotate(25deg);-o-transform:rotate(25deg);}
+            .hand .fist {position:absolute;top:10px;left:-35px;width:60px;height:60px;background-color:#fff;border-radius:30px;-moz-border-radius:30px;-webkit-border-radius:30px;-o-border-radius:30px;border:2px solid #000;}
+            .hand-right .fist {position:absolute;left:35px;}
+
+            .foot {position:relative;z-index:4;}
+            .foot .middle {position:absolute;bottom:-10px;left:145px;width:20px;height:20px;border:2px solid #000;background-color:#fff;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;-o-border-radius:10px;}
+            .foot .middle-over {position:absolute;bottom:-10px;left:147px;width:20px;height:12px;background-color:#fff;}
+            .footer {position:absolute;top:-2px;left:26px;width:125px;height:30px;border:2px solid #000;background-color:#fff;border-radius:15px;}
+            .footer.left {border-top-left-radius:20px;border-bottom-left-radius:10px;}
+            .footer.right {left:159px;border-top-right-radius:20px;border-bottom-right-radius:10px;}
+        </style>
+    </head>
+    <body>
+        <div id="dora" class="dora">
+            <div class="head">
+                <div class="face"></div>
+                <div class="eye eye-left"><span></span></div>
+                <div class="eye eye-right"><span></span></div>
+                <div class="nose"><span></span></div>
+                <div class="mouse"></div>
+                <div class="mustache">
+                    <span class="left one"></span>
+                    <span class="left two"></span>
+                    <span class="left three"></span>
+                    <span class="right one"></span>
+                    <span class="right two"></span>
+                    <span class="right three"></span>
+                </div>
+            </div>
+            <div class="neck">
+                <div class="belt"></div>
+                <div class="bell">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                    <span class="circle"></span>
+                </div>
+            </div>
+            <div class="body">
+                <div class="pocket">
+                    <span></span>
+                </div>
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+            </div>
+            <div class="hand hand-left">
+                <div class="arm"></div>
+                <div class="fist"></div>
+            </div>
+            <div class="hand hand-right">
+                <div class="arm"></div>
+                <div class="fist"></div>
+            </div>
+            <div class="foot">
+            <div class="foot">
+                <div class="middle"></div>
+                <div class="middle-over"></div>
+                <div class="footer left"></div>
+                <div class="footer right"></div>
+            </div>
+        </div>       
+    </body>
+</html>

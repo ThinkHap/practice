@@ -1,0 +1,91 @@
+
+<html>
+<head>
+<title>获取服务器端时间</title>
+<style type="text/css"> 
+#dayTime{border:1px solid #ccc; width:100px; height:100px; overflow:hidden;}
+</style>
+<script src="http://a.tbcdn.cn/s/kissy/1.1.6/kissy-min.js?t=20111130.js"></script>
+<script language="javascript" type="text/javascript">
+    
+    (function(S){
+        var DOM = S.DOM;
+        S.io({
+            url: 'http://e.etao.com/ajax/currentTime.htm',
+            dataType: 'json',
+            data:{
+                t: new Date().getTime()+Math.ceil(Math.random()*1000)
+            },
+            success: function(time){
+                console.log(time)
+                var _time = new Date();
+                _time.setTime(time);
+                var day = _time.getDay();
+                switch(day) {
+                    case 0: 
+                        alert('今天是星期天');
+                        break;
+                    case 1: 
+                        alert('今天是星期一');
+                        break;
+                    case 2: 
+                        alert('今天是星期二');
+                        break;
+                    case 3: 
+                        alert('今天是星期三');
+                        break;
+                    case 4: 
+                        alert('今天是星期四');
+                        break;
+                    case 5: 
+                        alert('今天是星期五');
+                    case 6: 
+                        alert('今天是星期六');
+                        break;
+                }
+            }
+            //error: function(_error){
+            //    console.log(_error)       
+            //}
+        });
+        console.log(S.now());
+
+        //S.IO.get('http://e.etao.com/ajax/currentTime.htm' + '?t=' + new Date().getTime()+Math.ceil(Math.random()*1000), function(time){
+        //    var _time = new Date();
+        //    console.log(time);
+        //    _time.setTime(time);
+        //    var day = _time.getDay();
+        //    switch(day) {
+        //        case 0: 
+        //            alert('今天是星期天');
+        //            break;
+        //        case 1: 
+        //            alert('今天是星期一');
+        //            break;
+        //        case 2: 
+        //            alert('今天是星期二');
+        //            break;
+        //        case 3: 
+        //            alert('今天是星期三');
+        //            break;
+        //        case 4: 
+        //            alert('今天是星期四');
+        //            break;
+        //        case 5: 
+        //            alert('今天是星期五');
+        //        case 6: 
+        //            alert('今天是星期六');
+        //            break;
+        //    }
+        //});
+    })(KISSY);
+</script>
+</head>
+<body >
+<div id="servertime"></div>
+<div id="dayTime"></div>
+
+</body>
+</html>
+
+

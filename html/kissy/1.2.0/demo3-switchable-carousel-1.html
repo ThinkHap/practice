@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+
+
+            body{
+                background-color:#000;
+            }
+
+            .hc-switchable-pic {
+                position: relative;
+            }
+
+            .hc-switchable-pic .scroller{
+                margin: 50px;
+            }
+
+
+            .hc-switchable-pic .scroller,
+            .hc-switchable-pic .scroller a {
+                width: 300px;
+                height: 250px;
+                overflow: hidden;
+            }
+
+            .hc-switchable-pic .scroller a {
+                display: block;
+            }
+
+            .hc-switchable-pic .prev,
+            .hc-switchable-pic .next {
+                width: 25px;
+                height: 42px;
+                position: absolute;
+                top: 105px;
+                z-index: 2;
+                cursor: pointer;
+                background-color: #488fcd;
+            }
+            .hc-switchable-pic .prev {
+                left: 55px;
+            }
+            
+            .hc-switchable-pic .next {
+                left: 320px;
+            }
+            
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+    </head>
+    <body>
+        <div class="hc-switchable-pic" id="J_hc-swpic">
+            <span id="scroller-prev" class="prev disable J_hc-swpic-prev"></span>
+            <span id="scroller-next" class="next J_hc-swpic-next"></span>
+            <div class="scroller">
+                <div class="ks-switchable-content">
+                    <a href="#" title="" data-stat><img width="300px" height="251px" alt="" src="http://placehold.it/300x251/ffc60a"/></a>
+                    <a href="#" title="" data-stat><img width="300px" height="251px" alt="" src="http://placehold.it/300x251/905103"/></a>
+                    <a href="#" title="" data-stat><img width="300px" height="251px" alt="" src="http://placehold.it/300x251/ff8872"/></a>
+                    <a href="#" title="" data-stat><img width="300px" height="251px" alt="" src="http://placehold.it/300x251/95c002"/></a>
+                    <a href="#" title="" data-stat><img width="300px" height="251px" alt="" src="http://placehold.it/300x251/eeeeee"/></a>
+                </div>
+            </div>
+        </div>
+        <script>
+            (function(S){
+                    var DOM = S.DOM, 
+                        Event = S.Event;
+                    S.use("switchable", function(S){
+                        var carousel = new S.Carousel('#J_hc-swpic', {
+                            effect:'scrollx',
+                            easing:'easeOutStrong',
+                            steps:1,
+                            viewSize:[300],
+                            circular:true,
+                            prevBtnCls:'prev',
+                            nextBtnCls:'next',
+                            hasTriggers: false,
+                            interval: 3,
+                            autoplay:true, //是否自动切换
+                            //disableBtnCls: 'disable',
+                            lazyDataType:'img-src'
+                        });
+                    });
+              
+               
+            })(KISSY);
+        </script>
+
+    </body>
+</html>

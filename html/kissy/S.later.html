@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+            
+            .test {
+                width:100px;
+                height:30px;
+                text-align:center;
+                font-weight:bold;
+                background-color:#ff4;
+            }
+        </style>
+        <script src="https://s.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+    </head>
+    <body>
+        <div id="test" class="test">test</div>
+        <script>
+            var S = KISSY, E = S.Event;
+            var i = 0;
+            var testTimer = S.later(function(){});
+            E.on('.test', 'mouseenter', function(){
+                testTimer = S.later(function() {
+                    console.log(i)
+                    i++
+                    //S.log(data);
+                }, 0, false, null, 'I am later data.');
+            
+            });
+            E.on('.test', 'mouseleave' ,function(){
+                testTimer.cancel();
+                console.log('Timer.cancel');
+            });
+        </script>
+       
+    </body>
+</html>

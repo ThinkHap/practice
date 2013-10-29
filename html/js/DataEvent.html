@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+            
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.3.0/kissy.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+    </head>
+    <body>
+        <div id="test" class="">test</div>
+        <button>send</button>
+        <button>run</button>
+        <script>
+            var dataEvent = {};
+            dataEvent.send = function (target, datatype, data) {
+                if ( typeof target == 'string') target = document.getElementById(target);
+                if ( document.createEvent) {
+                  var e = document.createEvent('Events'); //W3C创建新事件的写法
+             	 e.initEvent('customdataavailable', true , false);
+                } else if (document.createEventObject) {
+                  var e = document.createEventObject(); //IE的创建新事件的写法
+                } else {
+                  return;
+                }
+                e.datatype = datatype;
+                e.data = data;
+                if (target.dispatchEvent) {
+                  target.dispatchEvent(e);
+                } else if (target.fireEvent) {
+                  target.fireEvent('oncustomdataavailable', e);
+                }
+            }
+            dataEvent.receive = function (target, handler) {
+              if (typeof target == 'string') target = document.getElementById(target);
+              if (target.addEventListener) {
+                target.addEventListener('customdataavailable', handler, false);
+              } else if( target.attachEvent) {
+                target.attachEvent('oncustomdataavailable', handler); //IE 
+              }
+            }
+            dataEvent.receive('test',function(e){
+                console.log(e);
+                console.log(e.data);
+               alert('test');
+            });
+
+            var data={'name': 'phpzxh'}
+            dataEvent.send('test','json', data);
+
+            var send = document.getElementsByTagName('button')[0];
+            send.onclick = function(e){
+                dataEvent.send('test','jsonp', {'hello': 'world-hap'});
+            };
+        </script>
+
+        <script>
+            var S = KISSY;
+
+            // 定义 Dog 类
+            function Dog(name) {
+                this.name = name;
+            }
+            
+            // 让 Dog 成为事件目标
+            S.augment(Dog, S.EventTarget);
+            console.log(S.EventTarget);
+
+            console.log(Dog);
+            
+            // 给 Dog 添加 run 方法
+            S.augment(Dog, {
+               run: function() {
+                   // 触发 running 事件
+                   this.fire('running', {speed: '80km/h'});
+               }
+            });
+            
+            var dog = new Dog('Lady Gogo');
+            console.log(dog);
+            
+            // 添加监听函数
+            dog.on('running', function(ev) {
+                // 注意 ev 的参数传递大使身份
+                console.log(this.name + ' is running now. Its speed is ' + ev.speed);
+            });
+            
+            // 让可爱的小狗跑起来吧
+            var run = document.getElementsByTagName('button')[1];
+            run.addEventListener('click', function(e){
+                dog.run();
+            }, false);
+
+        </script>
+    </body>
+</html> 

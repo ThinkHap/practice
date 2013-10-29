@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>viewScroll</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+
+            .header {
+                background-color:#372C2C;
+                height:100px;
+            }
+
+            .content1, .content2 {
+                width: 990px;
+                margin: 0 auto;
+            }
+            .box1 {
+                background:url("http://img03.taobaocdn.com/tps/i3/T1OI56XddkXXXXXXXX-1680-522.png") no-repeat center top;
+            }
+            .content1 {padding-top: 44px;}
+
+            .box2 {
+                background:url("http://img04.taobaocdn.com/tps/i4/T1gHK6XnhhXXXXXXXX-1680-619.png") no-repeat center top;
+            }
+            .box3 {
+                height:600px;
+                background:url("http://img04.taobaocdn.com/tps/i4/T1XKa6XapdXXXXXXXX-1680-249.png") repeat-y center top;
+            }
+            .box3 .content {
+                background:url("http://img02.taobaocdn.com/tps/i2/T1Uua6XoVcXXXXXXXX-1680-485.png") no-repeat center top;
+            }
+            .box4 {
+                height:600px;
+                background:url("http://img02.taobaocdn.com/tps/i2/T1kKi6Xl8cXXXXXXXX-1680-551.png") repeat-y center top;
+            }
+            .box4 .content {
+                height:82px;
+                background:url("http://img02.taobaocdn.com/tps/i2/T1Jva6XeRcXXXXXXXX-1680-82.png") no-repeat center top;
+            }
+            .box5 {
+                height:600px;
+                background:url("http://img02.taobaocdn.com/tps/i2/T1r096XbRdXXXXXXXX-1680-39.png") repeat-y center top;
+            }
+            .box5 .content {
+                height:79px;
+                background:url("http://img04.taobaocdn.com/tps/i4/T1NYG6XolhXXXXXXXX-1680-79.png") no-repeat center top;
+            }
+            .box6 {
+                height:600px;
+                background:url("http://img01.taobaocdn.com/tps/i1/T1IYK6XmhhXXXXXXXX-1680-679.png") repeat-y center top;
+            }
+            .box6 .content {
+                height:79px;
+            }
+
+            .wrap {
+                position:relative;
+            }
+            .move {
+                top: 0;
+                width:100%;
+            }
+
+            
+        </style>
+        <script src="https://s.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+    </head>
+    <body>
+        <div id="header" class="header">header</div>
+        <div id="container" class="container">
+            <div id="" class="wrap wrap1">
+                <div id="" class="box box1 move J_move">
+                    <div id="" class="content content1">
+                        <img src="http://img01.taobaocdn.com/tps/i1/T1Z256Xf8cXXXXXXXX-990-478.jpg" alt=""/>
+                    </div>
+                </div>
+            </div>
+            <div id="" class="wrap wrap2">
+                <div id="" class="box box2 move J_move">
+                    <div id="" class="content content2">
+                        <img src="http://img03.taobaocdn.com/tps/i3/T1WrG6Xn4hXXXXXXXX-990-83.jpg" alt=""/>
+                        <img src="http://img02.taobaocdn.com/tps/i2/T1FrG6XoxhXXXXXXXX-990-536.jpg" alt=""/>
+                    </div>
+                </div>
+            </div>
+            <div id="" class="wrap wrap3">
+                <div id="" class="box box3 move J_move">
+                    <div id="" class="content content3">
+                        <img src="http://img04.taobaocdn.com/tps/i4/T1.bO6XjJhXXXXXXXX-990-82.jpg" alt=""/>
+                    </div>
+                </div>
+            </div>
+            <div id="" class="wrap wrap4">
+                <div id="" class="box4 move J_move">
+                    <div id="" class="content content4">
+                    </div>
+                </div>
+            </div>
+            <div id="" class="wrap wrap6">
+                <div id="" class="box6 move J_move">
+                    <div id="" class="content content6">
+                    </div>
+                </div>
+            </div>
+            <div id="" class="wrap wrap5">
+                <div id="" class="box5 move J_move">
+                    <div id="" class="content content5">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer" class="footer"></div>
+        <script>
+            (function(S){
+                var D = S.DOM,
+                    E = S.Event;
+                S.all('.J_move').each(function(obj){
+                    E.on(window, 'scroll load', function(){
+                        if(!D.next(obj)){
+                            var divEle = document.createElement("div");
+                            D.append(divEle, D.parent(obj));
+                        }
+                        var scrollTop = D.scrollTop(),
+                            objContentTop = D.offset(obj).top,
+                            objHeight = D.height(obj),
+                            nextObj = D.next(obj),
+                            objTop = D.offset(nextObj).top;
+                        if(scrollTop >= objTop){
+                            D.css(obj, 'position', 'fixed');
+                            D.css(nextObj, 'height', objHeight);
+                        }else if(scrollTop < objTop){
+                            D.css(obj, 'position', 'absolute');
+                            D.css(nextObj, 'height', objHeight);
+                        }
+                    })
+                }) 
+            })(KISSY);
+        </script>
+    </body>
+</html>

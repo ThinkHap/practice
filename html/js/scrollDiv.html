@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>scrollDiv</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+                    
+            .wrap {
+                position: relative;
+                width: 990px;
+                margin: 0 auto;
+            }
+            .main {
+                position: fixed;
+                _position: absolute;
+                top: 0;
+                _left: 0;
+                width:550px;
+                height: 500px;
+                overflow: hidden;
+            }
+            .column {
+                position: absolute;
+                left: 0;
+                top: 0;
+                transition: all 0.5s ease-in;
+                -webkit-transition: all 0.5s ease-in;
+                -moz-transition: all 0.5s ease-in;
+                -o-transition: all 0.5s ease-in;
+            }
+            .side {
+                float: right;
+                width: 400px;
+            }
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+    </head>
+    <body>
+        <div id="wrap" class="wrap cf">
+            <div id="main" class="main">
+                <ul class="column cf" style="">
+                    <li class="left-column"><img src="http://placehold.it/550x500/eee" alt=""/></li>
+                    <li class="left-column"><img src="http://placehold.it/550x500/ccc" alt=""/></li>
+                    <li class="left-column"><img src="http://placehold.it/550x500/eee" alt=""/></li>
+                    <li class="left-column"><img src="http://placehold.it/550x500/eee" alt=""/></li>
+                    <li class="left-column"><img src="http://placehold.it/550x500/ccc" alt=""/></li>
+                    <li class="left-column"><img src="http://placehold.it/550x500/ccc" alt=""/></li>
+                </ul>       
+            </div>
+            <div id="side" class="side">
+                <ul class="cf">
+                    <li class="right-column"><img src="http://placehold.it/400x900/bbb" alt=""/></li>
+                    <li class="right-column"><img src="http://placehold.it/400x800/aaa" alt=""/></li>
+                    <li class="right-column"><img src="http://placehold.it/400x1200/ddd" alt=""/></li>
+                    <li class="right-column"><img src="http://placehold.it/400x1000/ccc" alt=""/></li>
+                    <li class="right-column"><img src="http://placehold.it/400x600/eee" alt=""/></li>
+                    <li class="right-column"><img src="http://placehold.it/400x500/ddd" alt=""/></li>
+                </ul>
+            
+            </div>
+        </div>
+    <script>
+        var S = KISSY, D = S.DOM, E = S.Event;
+
+        E.on(window, 'scroll', function(){
+            var sT = D.scrollTop(),
+                cH = document.documentElement.clientHeight || document.body.clientHeight,
+                main = D.get('.main'),
+                column = D.get('.column')
+                oH = sT + cH/2;
+            var leftColumns = D.query('.left-column'),
+                rightColumns = D.query('.right-column');
+            var leftColHeight =0,
+                rightColHeight = rightColumns[0].offsetHeight,
+                len = 0;
+            function colHeight(len,ele){
+                var colH = 0;
+                if(ele == leftColumns){
+                    len--;
+                }
+                for (var i = 0; i < len; i++) {
+                    colH += ele[i].offsetHeight;    
+                }
+                return colH;
+            };
+
+            while(rightColHeight < oH && len < rightColumns.length){
+                len++;
+                rightColHeight = colHeight(len,rightColumns);
+            };
+
+            leftColHeight = colHeight(len, leftColumns)
+            var top = '-'+ leftColHeight + 'px';
+            column.style.top = '-'+ leftColHeight + 'px';
+
+            if(S.UA.ie == 6){
+                main.style.top = sT + 'px';
+            }
+            
+            //column.slide(0.5, function(
+            //    column.css({'top':top});
+            //))
+            //var anim = new S.Anim(column, {'top': '-' + leftColHeight + 'px'}, 0.5 , S.Easing.easeIn);
+            //anim.run();
+
+        })
+    </script>
+    </body>
+</html>

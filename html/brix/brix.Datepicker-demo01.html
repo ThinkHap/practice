@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>brix demo 02</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+        </style>
+        <link rel='stylesheet' href="http://a.tbcdn.cn/apps/e/brix/brix-min.css">
+        <script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+        <script src="http://a.tbcdn.cn/apps/e/brix/brix-min.js" bx-config="{autoConfig: true,autoPagelet: true}"></script>
+    </head>
+    <body>
+        <div class="container">
+            <a id="test1" class="btn" href="#" bx-name="datepicker" bx-config="{trigger: '#test1',isQuick: false,page: 1}">时间段</a>
+            <hr />
+            <a id="test2" class="btn" href="#">比较</a>
+            <a id="update" style="display:none" class="btn" href="#">修改比较时间</a>
+            <hr />
+            <a id="test3" class="btn" href="#">测试3</a>
+            <hr />
+            <a id="test4" class="btn" href="#" style="float: right; margin: 20px;">测试4</a>
+        </div>
+
+        <script>
+            KISSY.ready(function(S) {
+                KISSY.use("brix/gallery/datepicker/,brix/gallery/calendar/calendar.css,brix/gallery/datepicker/datepicker.css", function(S, DatePicker) {
+                    var Brix_Date = DatePicker.Date;
+                    //var datepicker = new DatePicker({
+                    //    trigger: '#test1',
+                    //    //isQuick: true,
+                    //    dates: {
+                    //        start: '2012/10/01',
+                    //        end: '2012/10/31'
+                    //    },
+                    //    minDateStart: '2011/11/01',
+                    //    maxDateEnd: new Date()//,
+                    //    //pages: 3
+
+                    //});
+
+                    
+                });
+            });
+        </script>
+        
+    </body>
+</html>

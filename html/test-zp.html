@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="GBK">
+	<title></title>
+	<script src="http://a.tbcdn.cn/??s/kissy/1.1.6/kissy-min.js,p/global/1.0/global-min.js?t=2011092320100214.js"></script>
+	<style type="text/css">
+		body,html{padding:0;margin:0;}
+		#zp_wrap em{font-style:normal;}
+		#zp_wrap .w990{width:990px;margin:0 auto;}
+		.time_list{background:#d9d9d9;height:30px;position:relative;}
+		.time_list span{cursor:pointer;float:left;width:40px;padding-top:10px;text-align:center;font-size:11px;color:#808080;height:20px;position:relative;}
+		.time_list .cur_sel{background:#da2121;color:#fff;}
+		.time_list .hover{background:#9E9FA1;}
+		.cur_sel s{background:#f00;height:10px;position:absolute;left:0;opacity:0.2;filter:alpha(opacity=20);overflow:hidden;top:30px;width:40px;}
+		.triangle{border:6px solid;border-color:transparent transparent #009900 transparent;border-style:dashed dashed solid dashed;width:0;height:0;position:absolute;top:35px;left:15px;}
+	</style>
+</head>
+<body>
+	<div class="zp_wrap" id="zp_wrap">
+		<div class="time_list w990" id="time_list">
+			<span class="cur_sel">
+				<s></s>
+				<em>00:00</em>
+			</span>
+			<span>
+				<s></s>
+				<em>01:00</em>
+			</span>
+			<span>
+				<s></s>
+				<em>02:00</em>
+			</span>
+			<span>
+				<s></s>
+				<em>03:00</em>
+			</span>
+			<span>
+				<s></s>
+				<em>04:00</em>
+			</span>
+			<span>
+				<s></s>
+				<em>05:00</em>
+			</span>
+			<span>
+				<s></s>
+				<em>06:00</em>
+			</span>
+			<span>
+				<s></s>
+				<em>07:00</em>
+			</span>
+			<span>
+				<s></s>
+				<em>08:00</em>
+			</span>
+			<div class="triangle" id="triangle"></div>
+		</div>
+		<script type="text/javascript">
+			(function(S){
+				var spans = S.query("#time_list span");
+				S.each(spans,function(item,index){
+					S.Event.on(spans[index],"mouseover mouseout",function(ev){
+						if(S.DOM.hasClass(spans[index],"cur_sel") == false){
+							S.DOM[ev.type == 'mouseover' && 'addClass' || ev.type == 'mouseout' && 'removeClass'](spans[index],'hover');
+						}
+					});
+				});
+				var spas = S.one(".time_list").all("span");
+				spas.each(function(o,index){
+					o.on("click",function(){
+						o.removeClass("hover");
+						spas.removeClass("cur_sel");
+						o.addClass("cur_sel");
+						offsetLeft = o.width()*index + o.width()/2 - 5;
+						t = setInterval(ani_slide,7);
+					})
+				});
+				
+				function ani_slide(){
+					var _left = parseInt(S.DOM.css("#triangle","left")),d_len = offsetLeft - _left;
+					if(_left !== offsetLeft){
+						d_len > 0 ? _left += 2 : _left -= 2;
+						S.DOM.css('#triangle',{position:'absolute',left:_left});
+					}else{
+						clearInterval(t);
+					}
+				}
+			})(KISSY)
+		</script>
+	</div>
+</body>
+</html>

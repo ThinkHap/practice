@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+            .wrap {width:990px;margin:50px auto;}
+            .wrap li {float:left;width:327px;border:2px dashed #f44;background-color:#ccc;}
+            .wrap li.second {margin-left:-2px;}
+            .wrap li.row2 {margin-top:-2px;}
+            .wrap li:hover {border-color:#00f;position:relative;z-index:1;}
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.1.6/kissy-min.js"></script>
+    </head>
+    <body>
+        <div class="wrap" id="J_TimeRemain">
+            <ul class="f-cf">
+                <li class="first cur">
+                    <div class="time-remain" date-end="24:00:00">剩余时间：${h}:${m}:${s}</div>
+                    <img src="http://img.f2e.taobao.net/img.png?x=327x266" alt=""/>
+                </li>
+                <li class="second">
+                    <div class="time-remain" date-end="20:00:00">剩余时间：${h}:${m}:${s}</div>
+                    <img src="http://img.f2e.taobao.net/img.png?x=327x266" alt=""/>
+                </li>
+                <li class="second">
+                    <div class="time-remain" date-end="18:00:00">剩余时间：${h}:${m}:${s}</div>
+                    <img src="http://img.f2e.taobao.net/img.png?x=327x266" alt=""/>
+                </li>
+                <li class="first row2">
+                    <img src="http://img.f2e.taobao.net/img.png?x=327x266" alt=""/>
+                </li>
+                <li class="second row2">
+                    <img src="http://img.f2e.taobao.net/img.png?x=327x266" alt=""/>
+                </li>
+                <li class="second row2">
+                    <img src="http://img.f2e.taobao.net/img.png?x=327x266" alt=""/>
+                </li>
+            </ul>
+        </div>        
+        <script>window.EPServerTime = 1310955571009;</script>
+        <script>
+            var EP = KISSY.app('EP');
+            EP.add('fp', function() {
+	            var S = KISSY, DOM = S.DOM, Event = S.Event;
+	            EP.FP = {
+	            	init: function() {
+                        this._downTimer();
+                    },
+
+                    _downTimer: function(){
+                    //此处的dateEnd暂时只支持24:00:00这样的形式
+	                    var DownTimer = EP.DownTimer;
+                        DOM.query('#J_TimeRemain .time-remain').each(function(el) {
+	                        DownTimer.add(el, {
+		                        template: '<span>{h}</span><span>{m}</span><span>{s}</span>',
+		                        outputType: 'hour',
+		                        dateEnd: DOM.attr(el, 'data-end')
+	                        });
+                        });
+	                    DownTimer.run(window.EPServerTime);
+                    }
+                }
+            });
+            KISSY.ready(function(S){
+                EP.FP.init();
+            });
+
+        </script>
+    </body>
+</html>

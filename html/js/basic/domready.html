@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>domready - demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+            
+        </style>
+        <script src="https://s.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+    </head>
+    <body>
+        <div id="container" class="container">
+             结果见console控制台
+        </div>
+        <script>
+            KISSY.add('domReady2', function(S) {
+            //define(function(){
+            //    'use scrict';
+
+                var isTop, testDiv, scrollIntervalId,
+                    isBrowser = typeof window !== 'undefined' && window.document,
+                    isPageLoaded = !isBrowser,
+                    doc = isBrowser ? document : null,
+                    readyCalls = [];
+
+                function runCallbacks(callbacks) {
+                    for (var i = 0; i < callbacks.length; i++) {
+                        callbacks[i](doc);
+                    }    
+                }
+
+                function callReady() {
+                    var callbacks = readyCalls;
+                    if(isPageLoaded) {
+                        //Call the Dom ready callbacks
+                        if(callbacks.length) {
+                            readyCalls = [];
+                            runCallbacks(callbacks);
+                        }
+                    }
+                }
+
+                /**
+                 * Sets the page as loaded.
+                 */
+                 function pageLoaded() {
+                    if(!isPageLoaded) {
+                        isPageLoaded = true;
+                        if(scrollIntervalId) {
+                            clearInterval(scrollIntervalId);
+                        }
+                        callReady();
+                    }
+                 }
+
+                 if(isBrowser) {
+                     if(document.addEventListener) {
+                        //standarts. Assumption here that if standards based,
+                        //if knows about DOMContentLoaded.
+                        document.addEventListener("DOMContentLoaded", pageLoaded, false);
+                        window.addEventListener("DOMContentLoaded", pageLoaded, false);
+                    }else if(window.attachEvent) {
+                        window.attachEvent("onload", pageLoaded);   
+
+                        testDiv = document.createElement("div");
+                        try {
+                            isTop = window.frameElement === null;
+                        }catch(e) {
+                        }
+
+                        if(testDiv.doScroll && isTop && window.external) {
+                            scrollIntervalId = setInterval(function(){
+                                try {
+                                    testDiv.doScroll();
+                                    pageLoaded();
+                                } catch(e) {}
+                            }, 30);
+                        }
+                    }
+
+                    //Check if document already complete, and if so, just trigger page load
+                    //listeners. Latest webkit browsers also use "interactive", and will 
+                    //fire the on DOMContentLoaded before "interactive" but not after
+                    //entering "interactive" or "complete". 
+                    //There is still a window.onload binding that should get fired if 
+                    //DOMContentLoaded is missed.
+                    if(document.readyState === "complete") {
+                        pageLoaded();
+                    }
+                 }
+
+
+                 //START OF PUBLIC API
+                 //Registers a callback for DOM ready. If DOM is already ready, the 
+                 //callback is called immediately.
+                 // @param {Function} callback
+
+                 function domReady(callback) {
+                    if (isPageLoaded) {
+                        callback(doc);
+                    }else {
+                        readyCalls.push(callback);
+                    }
+                    return domReady;
+                }
+
+                domReady.version = '2.0.1';
+
+                /*
+                 * Loader Plugin API method
+                 */
+                domReady.load = function(name, req, onLoad, config) {
+                    if (config.isBuild) {
+                        onLoad(null);
+                    }else {
+                        domReady(onLoad);
+                    }
+                }
+                
+                // END OF PUBLIC API
+                return domReady;
+            });
+
+            KISSY.use('domReady2', function(S, domReady2) {
+                console.log(domReady2);
+                var t1 = new Date();
+                var t2;
+                var duration;
+                domReady2(function(){
+                    t2 = new Date();
+                    duration = t2 - t1;
+                    console.log('dom Ready duration');
+                    console.log(duration);
+                    
+                })
+            });
+        </script>
+    </body>
+</html>

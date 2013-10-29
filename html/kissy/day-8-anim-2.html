@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+
+            /*-----拆合菜单---*/
+            #menu{
+            	width:250px;
+            	background-color:#FFF;
+            	border:1px solid #CDC8CF;border-bottom:none;
+            }
+            #menu li{padding-left:0px !important;}
+            #menu .menu-item{
+            	display:inline;
+            }
+            #menu .menu-item div{
+            	height:27px;
+            	background:url(http://www.36ria.com/demo/ks/style/images/menu-header-bg.jpg) 0px 0px repeat-x #99F;
+            	border-bottom:1px solid #CDC8CF;
+            	padding-top:3px;
+            	cursor:pointer;
+            }
+            #menu .menu-item div a{
+            	font-size:14px;font-weight:bold;color:#765D97;
+            	margin-left:10px;
+            	background:url(http://www.36ria.com/demo/ks/style/images/menu-arrow.gif) 0px -24px no-repeat;padding-left:20px;
+            }
+            #menu .menu-item div a:hover{
+            	text-decoration:none;
+            }
+            #menu .menu-item  ul{
+            	border-bottom:1px solid #CDC8CF;
+            	padding:5px 10px;
+                margin:0px !important;
+            }
+            #menu .menu-item  ul li{
+            	padding:2px 20px !important;
+            	border:1px solid #FFF;
+                color:#7958D1;
+                background:url(http://www.36ria.com/wp-content/themes/36ria3.0/images/li-icon.png) no-repeat 0 5px;
+            }
+            #menu .menu-item  ul li a{
+            	color:#666;
+            }
+            #menu .menu-item  ul li a:hover{
+            	color:#06C;
+            }
+            .arrow-down{
+            	background-position:0px 2px !important;
+            }
+            .box{
+                width: 150px;
+                height: 100px;
+                border:1px solid #f00;
+                background-color:#00CCFF;
+            }
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.1.6/kissy-min.js?t=20111130.js"></script>
+    </head>
+    <body>
+        <div id="demo1" class="demo">
+            <!--
+            <ul id="menu" class="menu">
+                <li class="menu-item">
+                    <div>
+                        <a class="cur" href="#" title="" target="_blank" onclick="return false;">jQuery</a>
+                    </div>
+                    <ul>
+                        <li><a href="#" title="" target="_blank">jquery插件</a></li>
+                        <li><a href="#" title="" target="_blank">jquery教程</a></li>
+                        <li><a href="#" title="" target="_blank">jquery与ajax</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <div>
+                        <a href="#" title="" target="_blank" onclick="return false;">flex</a>
+                    </div>
+                    <ul>
+                        <li><a href="#" title="" target="_blank">flex插件</a></li>
+                        <li><a href="#" title="" target="_blank">flex教程</a></li>
+                        <li><a href="#" title="" target="_blank">flex与ajax</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <div>
+                        <a href="#" title="" target="_blank" onclick="return false;">javascript</a>
+                    </div>
+                    <ul>
+                        <li><a href="#" title="" target="_blank">javascript插件</a></li>
+                        <li><a href="#" title="" target="_blank">javascript教程</a></li>
+                        <li><a href="#" title="" target="_blank">javascript与ajax</a></li>
+                    </ul>
+                </li>
+            </ul>
+            -->
+            <input type="button" name="some_name" value="隐藏下面的层" id="button1"/>
+            <div class="box box1"></div>
+            <br />
+            <input type="button" name="some_name" value="淡入\淡出下面的层" id="button2"/>
+            <div class="box box2"></div>
+            <br />
+            <input type="button" name="some_name" value="slide/toggle方法" id="button3"/>
+            <div class="box box3"></div>
+            <br />
+        </div>
+        <script>
+            (function(S){
+                S.use('core',function(){
+                    var Event = S.Event, DOM = S.DOM;
+
+                    Event.on('#button1','click',function(){
+                        var $div = S.one('.box1');
+                        //$div.show(0.5);
+                        if($div.css('display') == 'block'){
+                            $div.hide(0.5);
+                        }else{
+                            $div.show(0.5);
+                        }
+                    });
+
+                    Event.on('#button2','click',function(){
+                        var $div = S.one('.box2');
+                        if($div.css('display')=='none'){
+                            $div.fadeIn(0.5,function(){
+                                $div.css({'display':'block'});
+                            });
+                        }else{
+                            $div.fadeOut(0.5,function(){
+                                $div.css({'display':'none'});
+                            });
+                        }
+                    });
+
+                    Event.on('#button3','click',function(){
+                        var $div = S.one('.box3');
+                        if($div.css('display')=='none'){
+                            $div.slideDown(0.5,function(){
+                                $div.css({'display':'block'});
+                            });
+                        }else{
+                            $div.slideUp(0.5,function(){
+                                $div.css({'display':'none'});
+                            });
+                        }
+                    });
+
+                });
+            })(KISSY);
+        </script>
+    </body>
+</html>

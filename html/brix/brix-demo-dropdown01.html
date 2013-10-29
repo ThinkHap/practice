@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>hello brix - demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+            
+        </style>
+        <link rel="stylesheet" type="text/css" href="http://a.tbcdn.cn/apps/e/brix/brix-min.css" />
+        <script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy.js"></script>
+        <script src="http://a.tbcdn.cn/apps/e/brix/1.0/brix.js" bx-config="{autoConfig:true}"></script>
+    </head>
+    <body>
+        <div style="padding-left:50px;width:240px"  id="test_container">
+        </div>
+
+        <script>
+            var dropdown_data = {
+                dropdown_list:[{
+                        value: "1",
+                        text: "计划列表",
+                        selected:true
+                    },
+                    {
+                        value: "2",
+                        text: "计划列表2",
+                        color:'red'
+                    },
+                    {
+                        value: "3",
+                        text: "计划列表3"
+                    },
+                    {
+                        value: "4",
+                        text: "计划列表4"
+                    }]
+            }
+        </script>
+        <script type="text/template" id="tmpl_dropdown">
+            <div id="brick13" bx-name="dropdown" bx-datakey="dropdown_list" bx-tmpl="dropdown" class="dropdown">
+                {{#dropdown_list}}
+                {{#selected}}
+                <span class="dropdown-hd">
+                    <span class="dropdown-text" value="{{value}}">{{text}}</span>
+                    <i class="iconfont icon-arrow-down">&#405</i>
+                </span>
+                {{/selected}}
+                {{/dropdown_list}}
+                <ul class="dropdown-list">
+                    {{#dropdown_list}}
+                    <li class="dropdown-item{{#selected}} dropdown-itemselected{{/selected}}"><span value="{{value}}">{{text}}</span><i class="iconfont icon-ok">&#126</i></li>
+                    {{/dropdown_list}}
+                </ul>
+                {{#dropdown_list}}
+                {{#selected}}
+                <input value="{{value}}" type="hidden" />
+                {{/selected}}
+                {{/dropdown_list}}
+            </div>
+        </script>
+        
+        
+        
+        
+        
+
+        <script>
+            KISSY.ready(function(S) {
+                KISSY.use("brix/gallery/dropdown/, brix/gallery/dropdown/dropdown.css", function(S, DropdownBrick) {
+                    var config = {
+                        container:'#test_container',//容器节点
+                        tmpl: S.one("#tmpl_dropdown").html(),//需要的模板
+                        data: dropdown_data,  //这个数据会被重新clone一份，所以更新原始数据不会对内部产生影响
+                        events:{ //自定义事件代理
+                            ".dropdown-a": {
+                                mousedown: function(e) {
+                                    /*alert(this);
+                                    alert(1);*/
+                                }
+                            }
+                    }
+                    };
+                    //删除节点，有用吗？
+                    S.one("#tmpl_dropdown").remove();
+                    var dropdownBrick = new DropdownBrick(config);
+                    dropdownBrick.render();
+            
+                    //数据更新刷新子模板
+                    S.later(function(){
+                        dropdown_data.dropdown_list.push({
+                            value: "5",
+                            text: "计划列表5"
+                        });
+                        dropdownBrick.setChunkData('dropdown_list',dropdown_data.dropdown_list);
+                    },3000);
+            
+                    S.later(function(){
+                        delete dropdown_data.dropdown_list[0]["selected"];
+                        dropdown_data.dropdown_list[2]["selected"] = true;
+                        dropdownBrick.setChunkData('dropdown_list',dropdown_data.dropdown_list);
+                        dropdownBrick.focus();
+                    },5000);
+            
+            
+                    S.later(function(){
+                        //dropdownBrick.destroy();
+                    },8000);
+            
+                    //方法调用
+                    dropdownBrick.focus();
+            
+                    //事件注册
+                    dropdownBrick.on('selected',function(e){
+                        top.console.log('selected:value='+e.value+';text='+e.text);
+                    });
+                });
+            });
+        </script>
+        
+    </body>
+</html>

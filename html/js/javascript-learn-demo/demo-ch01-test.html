@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+            
+        </style>
+    </head>
+    <body>
+        <div class="test">
+            
+        </div>
+        <script>
+            function answerCorrect(){
+                var correct = false;
+                if(answer == answers[questionNumber])
+                    correct = true;
+                return correct;
+            }
+
+            var questions = new Array();
+            var answers = new Array();
+
+            //define question1
+            questions[0] = new Array();
+            //the question
+            questions[0][0] = "The Bealtes were";
+            //the choices
+            questions[0][1] = "A sixties rock group from Livepool";
+            questions[0][2] = "Four musically gifted insects";
+            questions[0][3] = "German cars";
+            questions[0][4] = "I don't know. Can I have the questions on baseball please?";
+            //define question1's answer
+            answers[0] = "A";
+
+            //define question2
+            questions[1] = new Array;
+            //the question
+            questions[1][0] = "Homer Simpson's favorite food is";
+            //the choices
+            questions[1][1] = "fresh salad";
+            questions[1][2] = "Doughnuts";
+            questions[1][3] = "Bread and water";
+            questions[1][4] = "Apples";
+            //define question2's answer
+            answers[1] = "B";
+
+            //define question3
+            questions[2] = new Array;
+            //the question
+            questions[2][0] = "Lisa Simpson plays which musical instrument";
+            //the choices
+            questions[2][1] = "Clarinet";
+            questions[2][2] = "Oboe";
+            questions[2][3] = "Saxophone";
+            questions[2][4] = "Tubular bells";
+            //define question3's answer
+            answers[2] = "C";
+            
+            //alert("The array Initialized");
+
+
+            //var firstNumber = prompt("Enter the first number","");
+            //var secondNumber = prompt("Enter the second number","");
+            //var theTotal = parseInt(firstNumber) + parseInt(secondNumber);
+            //var theTotal = firstNumber + secondNumber;
+            //document.write("theTotal: " + theTotal)
+        </script>
+    </body>
+</html>

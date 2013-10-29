@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="gbk">
+<title>mvc_tab</title>
+</head>
+<body>
+<p id="content">
+这里是一段文字，你需要把这段文字里的小王小王a小王，小李变成粗体。
+</p>
+<script>
+    function Animal(){
+        this.species = "动物";
+    }
+    
+    function Cat(name,color){
+        this.name = name;
+        this.color = color;
+    }
+    
+    function Cat(name,color){
+        Animal.apply(this, arguments);
+        this.name = name;
+        this.color = color;
+    }
+    var cat1 = new Cat("大毛","黄色");
+    alert(cat1.species); // 动物
+    
+
+
+
+//(function(){
+//    var a = ["小王","小郑","小张","小李"];
+//    // your code
+//    var content = document.getElementById('content').innerHTML;
+//    var last_cnt;
+//    console.log(content);
+//    for (var i = 0; i < a.length; i++) {
+//        if(content.indexOf(a[i]) > -1){
+//            content = content.replace(a[i], '<strong>'+a[i]+'</strong>');
+//            a.splice(i,1);
+//        }
+//    }
+//        document.getElementById('content').innerHTML = content;
+//        console.log(a);
+//})();
+</script>
+
+<script>
+    //var obj = {};
+    //var search = window.location.search;
+    //var last = search.substring(1);
+    //console.log(last);
+    //var search_arr = last.split('&');
+    //console.log(search_arr);
+    //for (var i = 0; i < search_arr.length; i++) {
+    //    var single_arr = search_arr[i].split('=');
+    //    obj[single_arr[0]] = single_arr[1];
+    //}
+    //console.log(obj);
+
+
+
+    //String.prototype.trim = function(){
+    //    return this.replace(/(^\s*)/g,"").replace(/(\s*$)/g,"");
+    //}
+    //console.log(' taobao '.trim())
+</script>
+</body>
+</html>
+

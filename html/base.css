@@ -1,0 +1,193 @@
+#etao-nav-bd,
+#etao-header {
+    width: 990px;
+    margin: 0 auto;
+}
+#etao-footer {
+    text-align: center;
+}
+
+.content {
+    width: 990px;
+    margin: 0 auto;
+}
+
+.box {
+    padding: 13px 20px 0;
+    *padding-bottom: 20px;
+    _padding-bottom: 0;
+    margin-bottom: 20px;
+    border: 1px solid #ededed;
+}
+.box h3 {
+    position: relative;
+    margin-bottom: 20px;
+    color: #5b5b5b;
+    font-size: 18px;
+}
+.box h3 b {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 140px;
+    height: 30px;
+}
+.box-nav {
+    border: solid #e5e5e5;
+    border-width: 1px 0 0 1px;
+}
+.box-nav li {
+    float: left;
+    width: 157px;
+    color: #8a8a8a;
+    line-height: 32px;
+    text-align: center;
+    font-weight: 700;
+    border: solid #e5e5e5;
+    border-width: 0 1px 1px 0;
+    background-color: #f7f8fb;
+    outline: none;
+}
+.box-nav .last {
+    width: 156px;
+}
+.box-nav .ks-active {
+    color: #0ea9df;
+    border-bottom: 1px solid #fff;
+    background-color: #fff;
+}
+
+.box-con {
+    margin-top: 20px;
+}
+.box-con li {
+    _display: inline; /* fix IE6 margin加倍的bug */
+}
+.box-con .title {
+    display: block;
+    padding: 3px 0;
+    color: #636363;
+    line-height: 18px;
+}
+.box-con .title:hover {
+    color: #f44;
+}
+
+/* 单品推荐 */
+.product .box-con {
+    margin-right: -22px;
+}
+.product .box-con li {
+    float: left;
+    width: 172px;
+    margin: 0 22px 20px 0;
+}
+.product .pic {
+    border: 1px solid #e4e4e4;
+}
+.product .title {
+    height: 36px;
+}
+.product .price span, 
+.product .price strong {
+    display: block;
+    float: left;
+}
+.product .price strong {
+    padding: 0 5px 0 10px;
+    color: #fc2b02;
+    font-size: 15px;
+    font-family: tahoma;
+}
+.product .shop {
+    color: #10a9e0;
+    line-height: 22px;
+}
+.product .rebate {
+    color: #989898;
+    padding: 2px 0 2px 43px;
+}
+.product .rebate em {
+    padding: 0 2px 0 1px;
+    color: #fc2b02;
+    font-weight: 700;
+}
+
+/* 品牌推荐 */
+.brand .box-con {
+    margin: 10px -20px 10px -10px;
+    _margin-bottom: 20px;
+}
+.brand .box-con li {
+    float: left;
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #e4e4e4;
+}
+.brand .pic {
+    float: left;
+    margin-right: 5px;
+}
+.brand .attr {
+    float: left;
+    width: 115px;
+}
+.brand .rebate {
+    display: block;
+    padding-left: 43px;
+    color: #fc2b02;
+}
+
+/* 商家推荐 */
+.merchant .box-con ul {
+    margin-right: -20px;
+}
+.merchant .box-con li {
+    float: left;
+    width: 120px;
+    height: 80px;
+    padding: 10px;
+    margin: 0 20px 20px 0;
+    border: 1px solid #e5e5e5;
+}
+.merchant .box-con .last-col {
+    padding: 10px 8px;
+}
+.merchant .box-con li a {
+    display: block;
+}
+.merchant .rebate {
+    color: #838383;
+    text-align: center;
+}
+.merchant .rebate:hover {
+    color: #f44;
+}
+
+.banner span {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 30px;
+    font-size: 0;
+}
+.banner a,
+.banner a:hover {
+    text-decoration: none;
+}
+
+.banner i {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    color: #fff;
+    font-size: 12px;
+    font-style: normal;
+    text-shadow:1px 1px 1px #000
+}
+.bot {
+    margin-right: -20px;
+}
+.bot span {
+    margin-right: 16px;
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>brix demo 02</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+            
+        </style>
+        <script src="https://s.tbcdn.cn/s/kissy/1.2.0/kissy.js"></script>
+        <script type="text/javascript" src="http://a.tbcdn.cn/apps/e/brix/brix-min.js"></script>
+    </head>
+    <body>
+        <div id="container" class="container">
+        </div>
+        <hr />
+        <div id="container2" class="container">
+        </div>
+        <hr />
+        <div id="container3" class="container">
+        </div>
+
+        <script>
+            var S = KISSY, D = S.DOM, E = S.Event;
+            var list_data = {
+                "empty": true,
+                "header": "Colors_html",
+                "items": [
+                    {"name": "red", "first": true, "url": "#Red"},
+                    {"name": "green", "link": true, "url": "#Green"},
+                    {"name": "blue", "link": true, "url": "#Blue"}
+                ]
+            };
+
+            KISSY.use('brix/core/pagelet', function(S, Pagelet){
+                //container1
+                S.io.get('ajax/demo02.do' + '?t=' + S.now(), function(data){
+                    data = S.JSON.parse(data);
+                    var config = {
+                        container: '#container',
+                        tmpl: S.one('#tmpl_list').html(),
+                        data: data
+                    };
+                    var pagelet = new Pagelet(config);
+                });
+
+                //container2
+                var pagelet = new Pagelet({container: '#container2', tmpl: S.one('#tmpl_list').html(), data: list_data});
+
+                //container3
+                S.ajax({
+                    type: 'get',
+                    url: 'ajax/demo01.do',
+                    dataType: 'json',
+                    data: {
+                        t: S.now()
+                    },
+                    success: function(result){
+                        var config = {
+                            container: '#container3',
+                            tmpl: S.one('#tmpl_list1').html(),
+                            data: result 
+                        };
+                        //var pagelet = new Pagelet();
+                        var pagelet = new Pagelet({container: '#container3', tmpl: S.one('#tmpl_list1').html(), data: result});
+                    }
+                });
+            });
+        </script>
+        <script type="text/template" id="tmpl_list">
+            <h1>{{header}}</h1>
+            {{#bug}}
+            {{/bug}}
+            
+            {{#items}}
+              {{#first}}
+                <li><strong>{{name}}</strong></li>
+              {{/first}}
+              {{#link}}
+                <li><a href="{{url}}">{{name}}</a></li>
+              {{/link}}
+            {{/items}}
+            
+            {{#empty}}
+              <p>The list is empty.</p>
+            {{/empty}}
+        </script>
+        <script type="text/template" id="tmpl_list1">
+            <tr>
+                <td>一周</td>
+                <td>{{aweek.total_user_count}}</td>
+                <td>{{aweek.total_reg_user_count}}</td>
+                <td>{{aweek.avg_uv}}</td>
+                <td class="last-td">{{aweek.avg_run_time}}</td>
+            </tr>
+            <tr>
+                <td>一月</td>
+                <td>{{aMonth.total_user_count}}</td>
+                <td>{{aMonth.total_reg_user_count}}</td>
+                <td>{{aMonth.avg_uv}}</td>
+                <td class="last-td">{{aMonth.avg_run_time}}</td>
+            </tr>
+        </script>
+    </body>
+</html>

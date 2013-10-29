@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+
+            .event3 {
+                width:100px;
+                height:50px;
+                padding:10px;
+                margin:10px;
+                background-color:#f00;
+            }
+            .event-over {
+                background-color:#00f;
+            }
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.1.6/kissy-min.js?t=20111130.js"></script>
+    </head>
+    <body>
+        <h2>1.监听一个按钮的单击事件</h2>
+        <input type="button" name="some_name" value="监听事件" id="button1"/>
+        <h2>2.取消监听按钮的单击事件</h2>
+        <input type="button" name="some_name" value="取消监听事件" id="button2"/>
+        <h2>3.目标对象同时监听多个事件</h2>
+        <div id="event3" class="event3">
+            <p>这是一个用于测试的层</p>
+        </div>
+        <h2>4.取消特定监听函数的监听</h2>
+        <input type="button" name="some_name" value="弹出2个对话框" id="button3"/>
+        <input type="button" name="some_name" value="取消第二个监听函数的监听" id="button4"/>
+        <h2>5.修改监听函数内部this的指向</h2>
+        <input type="button" name="some_name" value="button5" id="button5"/>
+        <h2>6.target与currentTarget的区别</h2>
+        <p>请点击下面的li</p>
+        <ol id="list6">
+            <li>测试1</li>
+            <li>测试2</li>
+            <li>测试3</li>
+            <li>测试4</li>
+            <li>测试5</li>
+        </ol>
+        <script>
+            (function(S){
+                S.use('core',function(){
+                    var DOM = S.DOM,
+                        Event = S.Event;
+                    Event.add('#button1','click',function(ev){
+                        alert("你触发了" + ev.type + "事件，目标对象id为" + ev.target.id);
+                    });
+                    Event.add('#button2','click',function(ev){
+                        Event.remove('#button1','click');
+                        alert("你取消对目标对象#" + ev.target.id + "的" + ev.type + "监听。");
+                    });
+                    Event.add('#event3','mouseover mouseout',function(ev){
+                        DOM[ev.type == 'mouseover' && 'addClass' || ev.type == 'mouseout' && 'removeClass']('.event3','event-over');
+                        //if(ev.type == 'mouseover') {
+                        //    DOM.addClass('.event3','event-over');
+                        //}else if(ev.type == 'mouseout') {
+                        //    DOM.removeClass('.event3','event-over');
+                        //}
+                    });
+
+                    Event.add('#button3','click',click1);
+                    Event.add('#button3','click',click2);
+                    function click1(ev){
+                        alert("事件1");
+                    }
+                    function click2(ev){
+                        alert("事件2");
+                    }
+                    Event.add('#button4','click',function(){
+                        Event.remove('#button3','click',click2);
+                        alert("已经取消了第二个函数的事件监听！");
+                    });
+
+                    Event.add('#button5','click',function(ev){
+                        alert("你触发了" + ev.type + "事件，目标对象id为" + ev.target.id + ",但是this指向id为" +this.id+ "的对象");
+                    },DOM.get('#button3'));
+
+                    Event.add('#list6','click',function(ev){
+                        alert(DOM.text(ev.currentTarget));
+                        alert(DOM.text(ev.target));
+                    })
+                });
+            })(KISSY);
+        </script>
+
+    </body>
+</html>

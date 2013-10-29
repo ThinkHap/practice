@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>template-demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+            
+        </style>
+        <script src="https://s.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+    </head>
+    <body>
+        <h2>KISSY Template Demo</h2>
+        <div id="tpl-content">
+        
+        </div>
+        <script>
+            KISSY.use('template', function(S,Template){
+                Template('template here.').render(data);
+            });
+
+
+        </script>
+<script type="text/x-kissy-template" id="tpl-p4p-new" data-href="http://tmatch.simba.taobao.com/?name=tbuad&catid=&pid=420434_1006,420435_1006&count=5&rct=100&o=j&keyword=iphone&offset=0&ip=121.0.29.237&frontcatid=1512%2C50008090%2C50019321%2C50018909%2C1201%2C11&type=0&refpid=&propertyid=&lid=&gprice=&loc=&sort=&q2cused=0&sbid=18&p4p=__p4p_sidebar__">
+        <div class="fav-recommend gird" id="J_RRFavCollect">
+            <h2 class="recommend-title">喜欢此宝贝的人还喜欢：</h2>
+            <div class="switch-content">
+                <ul class="marketing J_RecommandListUl">
+                    {{#each p4p_sidebar}}
+                        <li>
+                            <div>
+                                <span class="pro-img">
+                                    <a target="_blank" href="{{_ks_value.EURL}}"><img src="{{_ks_value.TBGOODSLINK}}"></a></span>
+                                <span class="pro-name"><a title="{{_ks_value.EURL.TITLE}}" href="{{_ks_value.EURL}}" target="_blank">{{_ks_value.TITLE}}</a></span>
+                                <div class="pro-price">￥<em>{{_ks_value.SELL}}</em></div>
+                            </div>
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+            <div class="switch">
+                <span class="J_Prev disable-prev">上一页</span>
+                <span class="J_Next">下一页</span>
+            </div>
+            <div id="other-rec">
+                <a target="_blank" href="">其它推荐&nbsp;<span class="arrow">&gt;&gt;</span></a>
+            </div>
+        </div>
+    </script>
+        
+    </body>
+</html>

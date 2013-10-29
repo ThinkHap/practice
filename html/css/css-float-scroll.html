@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>css-float-scroll demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+            
+            .main {
+                width:400px;
+                margin:50px 0 0 100px;
+                border:1px solid #000;
+            }
+            .main ul {
+                height:132px;
+                overflow:hidden;
+            }
+            .main li {
+                height:20px;
+                line-height:20px;
+                border:1px solid #f60;
+                overflow:hidden;
+                vertical-align:middle;  /* 给<IE8浏览器添加此属性，触发haslayout, 解决li里面元素浮动导致的3px bug */
+            }
+            .main li p {
+                float:left;
+                width:180px;
+                height:22px;
+                line-height:22px;
+                overflow:hidden;
+                margin: 0 9px;
+            }
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+    </head>
+    <body>
+        <div class="main">
+            <ul class="clear-fix">
+                <li>
+                    <p class="first">第一条文字</p>
+                    <p class="last">右侧的文字</p>
+                </li>
+                <li>
+                    <p class="first">第一条文字</p>
+                    <p class="last">右侧的文字</p>
+                </li>
+                <li>
+                    <p class="first">第一条文字</p>
+                    <p class="last">右侧的文字</p>
+                </li>
+                <li>
+                    <p class="first">第一条文字</p>
+                    <p class="last">右侧的文字</p>
+                </li>
+                <li>
+                    <p class="first">第一条文字</p>
+                    <p class="last">右侧的文字</p>
+                </li>
+                <li>
+                    <p class="first">第一条文字</p>
+                    <p class="last">右侧的文字</p>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

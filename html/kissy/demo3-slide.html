@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+
+
+  .demo ol {
+            margin: 0;
+            padding: 0;
+        }
+        .demo li {
+            list-style: none;
+            margin-bottom: 0;
+        }
+        #demo1 { position: relative; width: 470px; height: 150px; border: 1px solid #B6D1E6; overflow: hidden; }
+        #demo1 .ks-switchable-nav { position: absolute; bottom: 5px; right: 5px; z-index: 99; margin: 0; }
+        #demo1 .ks-switchable-nav li {
+            float: left;
+            width: 16px;
+            height: 16px;
+            line-height: 16px;
+            margin-left: 3px;
+            background-color: #FCF2CF;
+            border: 1px solid #F47500;
+            color: #D94B01;
+            text-align: center;
+            cursor: pointer;
+            list-style: none;
+        }
+        #demo1 .ks-switchable-nav li.ks-active {
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            margin-top: -1px;
+            color: #FFF;
+            background-color: #FFB442;
+            font-weight: bold;
+        }
+        #demo1 .ks-switchable-content li { height: 150px; width: 470px; overflow: hidden; }
+  
+
+    
+            
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.1.6/kissy-min.js?t=20111130.js"></script>
+    </head>
+    <body>
+        <div id="demo1" class="section loading">
+            <ol class="ks-switchable-content">
+                <li><a href="#" target="_blank"><img alt="" src="http://img01.taobaocdn.com/tps/i1/T1dqdJXeJqXXXXXXXX-470-150.jpg"/></a></li>
+                <li><a target="_blank" href="#"><img alt="" width="470" height="150" border="0" src="http://img03.taobaocdn.com/tps/i3/T1dHlJXcRDXXXXXXXX-470-150.gif"/></a></li>
+                <li><a target="_blank" href="#"><img alt="" width="470" height="150" border="0" src="http://img.alimama.cn/bcrm/adboard/picture/2010-09-17/100917152855813.jpg"/></a></li>
+                <li><a href="#" target="_blank"><img alt="" src="http://img.alimama.cn/bcrm/adboard/picture/2010-08-20/100820101156005.jpg"/></a></li>
+                <li><a href="#" target="_blank"><img alt="" src="http://img01.taobaocdn.com/tps/i1/T1uQNLXjNeXXXXXXXX-470-150.jpg"/></a></li>
+            </ol>
+        </div>
+
+        <script>
+            (function(S){
+                    var DOM = S.DOM, 
+                        Event = S.Event;
+                    S.use('switchable', function(S){
+                        S.Slide('#demo1', {
+                            effect: 'fade',  // 指定哪种效果, 可选: 'scrollx', 'scrolly', 'fade'
+                            easing: 'easeOutStrong' // 设置平滑函数
+                        });
+                    });
+               
+            })(KISSY);
+        </script>
+
+    </body>
+</html>

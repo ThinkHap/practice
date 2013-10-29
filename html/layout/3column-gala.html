@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+            
+            body {
+                width:100%;
+                text-align:center;
+            }
+            .header {
+                width:100%;
+                height:100px;
+                background-color:#DB5838;
+            }
+            .container {
+                height:500px;
+            }
+            .content {
+                height: 100%;
+            }
+            .content .center {
+                width: 100%;
+                height: 100%;
+                background-color:#6ACEEB;
+                float:left;
+                margin-right:-100%;
+            }
+            .content .center .wrap {
+                margin-left: 200px;
+                margin-right: 250px;
+                text-align:left;
+            }
+            .content .left {
+                width: 200px;
+                height: 100%;
+                background-color:#C2BFA5;
+                float:left;
+            }
+            .content .right {
+                width: 250px;
+                height: 100%;
+                background-color:#C2BFA5;
+                float:right;
+            }
+            .footer {
+                width:100%;
+                height:100px;
+                background-color:#A9C0A9;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header" class="header">header</div>        
+        <div id="container" class="container">
+            <div id="content" class="content">
+                <div id="center" class="center">
+                    <div id="wrap" class="wrap">center</div>
+                </div>
+                <div id="left" class="left">left</div>
+                <div id="right" class="right">right</div>
+            </div>
+        </div>
+        <div id="footer" class="footer">footer</div>
+    </body>
+</html>

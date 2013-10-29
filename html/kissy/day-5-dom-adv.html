@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+
+            /*-----拆合菜单---*/
+            #menu{
+            	width:250px;
+            	background-color:#FFF;
+            	border:1px solid #CDC8CF;border-bottom:none;
+            }
+            #menu li{padding-left:0px !important;}
+            #menu .menu-item{
+            	display:inline;
+            }
+            #menu .menu-item div{
+            	height:27px;
+            	background:url(http://www.36ria.com/demo/ks/style/images/menu-header-bg.jpg) 0px 0px repeat-x #99F;
+            	border-bottom:1px solid #CDC8CF;
+            	padding-top:3px;
+            	cursor:pointer;
+            }
+            #menu .menu-item div a{
+            	font-size:14px;font-weight:bold;color:#765D97;
+            	margin-left:10px;
+            	background:url(http://www.36ria.com/demo/ks/style/images/menu-arrow.gif) 0px -24px no-repeat;padding-left:20px;
+            }
+            #menu .menu-item div a:hover{
+            	text-decoration:none;
+            }
+            #menu .menu-item  ul{
+            	border-bottom:1px solid #CDC8CF;
+            	padding:5px 10px;
+                margin:0px !important;
+            }
+            #menu .menu-item  ul li{
+            	padding:2px 20px !important;
+            	border:1px solid #FFF;
+                color:#7958D1;
+                background:url(http://www.36ria.com/wp-content/themes/36ria3.0/images/li-icon.png) no-repeat 0 5px;
+            }
+            #menu .menu-item  ul li a{
+            	color:#666;
+            }
+            #menu .menu-item  ul li a:hover{
+            	color:#06C;
+            }
+            .arrow-down{
+            	background-position:0px 2px !important;
+            }
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.1.6/kissy-min.js?t=20111130.js"></script>
+    </head>
+    <body>
+        <div id="demo1" class="demo">
+            <ul id="menu" class="menu">
+                <li class="menu-item">
+                    <div>
+                        <a class="cur" href="#" title="" target="_blank" onclick="return false;">jQuery</a>
+                    </div>
+                    <ul>
+                        <li><a href="#" title="" target="_blank">jquery插件</a></li>
+                        <li><a href="#" title="" target="_blank">jquery教程</a></li>
+                        <li><a href="#" title="" target="_blank">jquery与ajax</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <div>
+                        <a href="#" title="" target="_blank" onclick="return false;">flex</a>
+                    </div>
+                    <ul>
+                        <li><a href="#" title="" target="_blank">flex插件</a></li>
+                        <li><a href="#" title="" target="_blank">flex教程</a></li>
+                        <li><a href="#" title="" target="_blank">flex与ajax</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <div>
+                        <a href="#" title="" target="_blank" onclick="return false;">javascript</a>
+                    </div>
+                    <ul>
+                        <li><a href="#" title="" target="_blank">javascript插件</a></li>
+                        <li><a href="#" title="" target="_blank">javascript教程</a></li>
+                        <li><a href="#" title="" target="_blank">javascript与ajax</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <input type="button" name="some_name" value="获取拆合菜单的父节点" id="button1"/>
+            <br />
+            <input type="button" name="some_name" value="拆合菜单的子节点length" id="button2"/>
+            <br />
+            <input type="button" name="some_name" value="获取拆合菜单下第二个子节点的前一个和后一个节点的文本值" id="button3"/>
+            <br />
+            <input type="button" name="some_name" value="拆合菜单的next节点" id="button4"/>
+            <br />
+            <input type="button" name="some_name" value="隐藏除了第二个子菜单外的子菜单" id="button5"/>
+            <br />
+            <input type="button" name="some_name" value="向第二个子菜单添加新的菜单项" id="button6"/>
+            <br />
+            <input type="button" name="some_name" value="删除新添加的菜单项" id="button7"/>
+            <br />
+            <input type="button" name="some_name" value="替换第二个子菜单的菜单项" id="button8"/>
+            <br />
+        </div>
+        <script>
+            (function(S){
+                S.use('core',function(){
+                    var Event = S.Event, DOM = S.DOM;
+                    var menu = S.get("#menu");
+
+                    Event.on('#button1','click',function(ev){
+                        var menuParent = DOM.parent(menu); 
+                        alert("拆合菜单的父节点的id为" +menuParent.id);
+                    });
+
+                    Event.on('#button2','click',function(ev){
+                        var menuChildren = DOM.children(menu); 
+                        alert("拆合菜单的子节点的length为" +menuChildren.length);
+                    });
+
+                    Event.on('#button3','click',function(ev){
+                        var menuChildren = DOM.children(menu); 
+                        var itemPrev = DOM.prev(menuChildren[1]); 
+                        var itemNext = DOM.next(menuChildren[1]); 
+                        var prevTitle = DOM.children(itemPrev,'div');
+                        var nextTitle = DOM.children(itemNext,'div');
+                        alert("菜单下第二个子节点的前后节点的标题为" +DOM.text(prevTitle)+ "和" +DOM.text(nextTitle))
+                    });
+
+                    Event.on('#button4','click',function(ev){
+                        var menuNext = DOM.next(menu); 
+                        alert("拆合菜单的下一个相邻节点的id为" +menuNext.id);
+                    });
+
+                    Event.on('#button5','click',function(ev){
+                        var menuChildren = DOM.children(menu);
+                        var sibItems = DOM.siblings(menuChildren[1]);
+                        S.each(sibItems, function(v){
+                            DOM.hide(DOM.children(v,'ul'));
+                        });
+                    });
+
+                    Event.on('#button6','click',function(){
+                        var menuChildren = DOM.children(menu);
+                        var secondUl = DOM.children(menuChildren[1],'ul');
+                        var newLi = DOM.create('<li class="new"><a href="#">newLi</a></li>');
+                        secondUl[0].appendChild(newLi);
+                    });
+
+                    Event.on('#button7','click',function(){
+                        var menuChildren = DOM.children(menu);
+                        var secondUl = DOM.children(menuChildren[1],'ul');
+                        var newLi = DOM.children(secondUl,'.new');
+                        DOM.remove(newLi);
+                    });
+
+                    Event.on('#button8','click',function(){
+                        var menuChildren = DOM.children(menu);
+                        var secondUl = DOM.children(menuChildren[1],'ul');
+                        DOM.html(secondUl,'<li class="new"><a href="#">newLi</a></li>');
+                        alert(DOM.html(secondUl));
+                    });
+
+                    var menuHeader = S.query('#menu div');
+                    Event.on(menuHeader,'click',function(ev){
+                        //console.log(ev.currentTarget);
+                        var pareItem = DOM.parent(ev.currentTarget);
+                        var sibItems = DOM.siblings(pareItem);
+                        S.each(sibItems, function(v){
+                            DOM.hide(DOM.children(v,'ul'));
+                        });
+                        var curItem = DOM.next(ev.currentTarget,'ul');
+                        DOM.show(curItem);
+                        return false;
+                    });
+                });
+            })(KISSY);
+        </script>
+    </body>
+</html>

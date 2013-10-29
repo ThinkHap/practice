@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>slider滑块 demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+            
+            .container {
+                position:relative;
+                width:400px;
+                margin:50px 0 0 100px;
+                border:1px solid #000;
+            }
+            .container .slider-bar {
+                display: inline-block;
+                width: 300px;
+                height: 4px;
+                margin:10px 11px;
+                border-radius:2px;
+                background-color:#666;
+            }
+            .container .slider-knob {
+                position:absolute;
+                top: 2px;
+                left: 40px;
+                display:block;
+                width:10px;
+                height:20px;
+                background-color:#f60;
+                cursor:pointer;
+            }
+
+            .range {
+                margin: 50px 0 0 100px;
+            }
+            .range input[type="range"] {
+                width: 200px;
+            }
+            .range .range-current {
+                color:#f60;
+                margin-left:5px;
+            }
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.2.0/kissy.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.js"></script>
+    </head>
+    <body>
+        <div class="container" id="J_container">
+            <span class="slider-start">40px</span>
+            <span class="slider-bar"></span>
+            <span class="slider-knob" style="left:40px; top:2px;"></span>
+            <span class="slider-end">200px</span>
+        </div>
+        <div class="range">
+            <span class="range-start">40px</span>
+            <input type="range" name="range" value="" id="J_range" min="40" max="200" />
+            <span class="range-end">200px</span>
+            <span class="range-current"></span>
+        </div>
+        <script>
+            var S = KISSY, D = S.DOM, E = S.Event;
+
+            range = D.get('#J_range'); 
+            current = S.one('.range-current');
+
+            range.addEventListener('change', function(e){
+                var val = e.target.value;
+                current.text('Current='+ val + 'px');
+            });
+            document.addEventListener('DOMContentLoaded', function(e){
+                var val = S.one(range).val();
+                current.text('Current='+ val + 'px');
+            });
+            
+
+
+
+
+
+
+
+
+            var knob_start = S.one('.slider-start');
+            var knob_end = S.one('.slider-end');
+            var knob_bar = S.one('.slider-bar');
+            var knob = S.one('.slider-knob');
+
+            var Drag = {
+                //config: {
+                //    trigger: id,
+                //    start: start,
+                //    end: end,
+                //    horizonal: true,
+                //    vertical: true
+                //},
+                init: function(id){
+                    var o = D.get(id);
+                    console.log(o);
+                    o.onmousedown = Drag.start;
+                },
+                start: function(e){
+                    var o = Drag.obj = this;
+
+                    console.log(this);
+                    console.log(o);
+                    console.log(Drag);
+                    console.log(Drag.obj);
+                    //记录上次鼠标的位置
+                    o.lastMouseX = Drag.getEvent(e).x;
+                    o.lastMouseY = Drag.getEvent(e).y;
+
+                    //当onmousemove开始移动
+                    document.onmousemove = Drag.move;
+                    //当onmouseup终止拖拽
+                    document.onmouseup = Drag.end;
+                },
+                move: function(e){
+                    var o = Drag.obj;
+                    console.log(o);
+                    console.log(o.style);
+                    //dx,dy表示移动的距离
+                    var dx = Drag.getEvent(e).x - o.lastMouseX;
+                    var dy = Drag.getEvent(e).y - o.lastMouseY;
+                    var left = parseInt(o.style.left) + dx;
+                    var top = parseInt(o.style.top) + dy;
+                    console.log(left);
+                    console.log(top);
+                    o.style.left = left + 'px';
+                    //o.style.top = top + 'px';
+                    o.lastMouseX = Drag.getEvent(e).x;
+                    o.lastMouseY = Drag.getEvent(e).y;
+                },
+                end: function(e){
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                },
+                getEvent: function(e){
+                    if(typeof e == 'undefined'){
+                        e = window.event;
+                    }
+                    if(typeof e.x == 'undefined'){
+                        e.x = e.layerX;
+                    }
+                    if(typeof e.y == 'undefined'){
+                        e.y = e.layerY;
+                    }
+                    return e;
+                }
+            }
+            Drag.init('.slider-knob');
+        </script>
+    </body>
+</html>

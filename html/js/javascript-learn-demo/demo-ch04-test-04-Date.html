@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+            
+        </style>
+    </head>
+    <body>
+        <div class="test">
+            
+        </div>
+        <script>
+            var date1 = new Date();
+            var month = date1.getMonth() + 1;
+            document.write("Today is: " + date1.getFullYear() + "/"+ month + "/" + date1.getDate() + "<br />");
+            document.write("Today is " +date1.getDay()+ " in the week<br />");
+
+            var greeting;
+            var nowDate = new Date();
+            var nowHour = nowDate.getHours();
+            var nowMinute = nowDate.getMinutes();
+            var nowSecond = nowDate.getSeconds();
+            if (nowHour < 10){
+                nowHour = "0" + nowHour;
+            }
+            if (nowMinute < 10){
+                nowMinute = "0" + nowMinute;
+            }
+            if (nowSecond < 10){
+                nowSecond = "0" + nowSecond;
+            }
+            if (nowHour < 12){
+                greeting = "Good Morning";
+            }else if (nowHour <18){
+                greeting = "Good Afternoon";
+            }else {
+                greeting = "Good Evening" 
+            }
+            document.write("<h2>"+ greeting + " and welcome to my website.</h2>");
+            document.write("According to your clock, the time is " +nowHour+":"+nowMinute+":"+nowSecond);
+
+        </script>
+    </body>
+</html>

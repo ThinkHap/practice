@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+            body{
+                padding:5px;
+            }
+             #accordion1 {
+                width: 300px;
+                border: 1px solid #ccc;
+            }
+            
+            #accordion1 .ks-switchable-trigger {
+                padding: 3px 10px;
+                cursor: pointer;
+                border-bottom: 1px solid #ddd;
+                background: #f3f3f3;
+                overflow: hidden;
+                height: 18px;
+            }
+            
+            #accordion1 .ks-switchable-trigger h3 {
+                float: left;
+                width: 100px;
+                margin-left: 5px;
+            }
+            
+            #accordion1 .ks-switchable-panel {
+                height: 80px;
+                padding: 3px 10px;
+                border-bottom: 1px solid #ddd;
+            }
+            
+            #accordion1 .ks-icon {
+                float: left;
+                width: 12px;
+                height: 12px;
+                overflow: hidden;
+                margin-top: 2px;
+                font-size: 0;
+                vertical-align: middle;
+                background: url(http://docs.kissyui.com/docs/html/static/demo/switchable/assets/accordion-sprite.png) no-repeat 0 0;
+            }
+            
+            #accordion1 .ks-active .ks-icon {
+                background-position: -20px 0;
+            }
+            
+            #accordion1 .last-trigger {
+                border-bottom-width: 0
+            }
+            
+            #accordion1 .ks-active {
+                border-bottom-width: 1px
+            }
+            
+            #accordion1 .last-panel {
+                border-bottom: none
+            }
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.1.6/kissy-min.js?t=20111130.js"></script>
+    </head>
+    <body>
+        <div id="accordion1" class="s-demo">
+            <div class="ks-switchable-trigger"><i class="ks-icon"></i><h3>标题A</h3></div>
+                <div class="ks-switchable-panel" style="display:none;">
+                    1、支持鼠标滑过和点击触点两种方式<br/>
+                    2、支持同时展开多个面板
+                </div>
+                <div class="ks-switchable-trigger"><i class="ks-icon"></i><h3>标题B</h3></div>
+                <div class="ks-switchable-panel" style="display:none;">内容B</div>
+                <div class="ks-switchable-trigger"><i class="ks-icon"></i><h3>标题C</h3></div>
+                <div class="ks-switchable-panel" style="display:none;">内容C<br/>输入：<input/></div>
+                <div class="ks-switchable-trigger last-trigger"><i class="ks-icon"></i><h3>标题D</h3>
+                </div>
+                <div class="ks-switchable-panel last-panel" style="display:none;">内容D<br/>输入：<input/></div>
+            </div>
+        </div>
+        <script>
+            (function(S){
+                    var DOM = S.DOM, 
+                        Event = S.Event;
+                    S.use("dom, event, anim, switchable", function(S, DOM, Event, Anim, Switchable){
+                        var Accordion = S.Accordion,
+                            Easing = S.Easing;
+                        S.ready(function(S){
+                            //通过DOM元素#accordion1新建一个手风琴
+                            window.accordion = Accordion('#accordion1', {
+                                //multiple: true, //是否开启同时展开多个面板功能.
+                                //autoplay: true,
+                                switchTo: 1  //默认开启第1个区域
+                                //'activeTriggrCls': 'collapse'
+                            }
+                            );
+                        });
+                    });
+            })(KISSY);
+        </script>
+    </body>
+</html>

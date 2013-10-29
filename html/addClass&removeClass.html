@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+
+            .main, .main a {border:1px solid #f00;}
+            ..mask {background-color:#000;filter:Alpha(opacity=50);-moz-opacity:0.5;opacity:0.5;}
+        </style>
+    </head>
+    <body>
+        <div id="main" class="main">
+            <h1>TEST addClass & removeClass</h1>
+            <a href="#" title="" target="_blank">addClass</a>
+            <a href="#" title="" target="_blank">removeClass</a>
+        </div>
+        <script type="text/javascript">
+            var main = document.getElementById('main');
+            var clicks = document.getElementsByTagName('a');
+            function addClass(element,value){
+                if(!element.className){
+                    element.className = value;
+                } else if(element.className.indexOf(value)<0){
+                    newClassName = element.className;
+                    newClassName+= " ";
+                    newClassName+= value;
+                    element.className = newClassName;
+                }
+            } 
+
+            function removeClass(element,value){
+                if(element.className == value) {
+                    element.className = "";
+                } else if(element.className.indexOf(value)>0) {
+                    var clsValue = element.className;
+                    var reg = new RegExp('(\\s|^)'+value);
+                    element.className = clsValue.replace(reg,'');
+                }
+            }
+
+            
+            clicks[0].onclick = function(){
+                addClass(main,'mask test');
+                return false;
+            }
+            clicks[1].onclick = function(){
+                removeClass(main,'mask');
+                return false;
+            }
+        </script>
+    </body>
+</html>

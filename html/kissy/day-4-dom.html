@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+
+            .event3 {
+                width:100px;
+                height:50px;
+                padding:10px;
+                margin:10px;
+                background-color:#f00;
+            }
+            .event-over {
+                background-color:#00f;
+            }
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.1.6/kissy-min.js?t=20111130.js"></script>
+    </head>
+    <body>
+        <div id="demo1" class="demo">
+            <ul id="menu" class="menu">
+                <li class="menu-item">
+                    <div>
+                        <a href="#" title="" target="_blank" onclick="return false;">jQuery</a>
+                    </div>
+                    <ul>
+                        <li><a href="#" title="" target="_blank">jquery插件</a></li>
+                        <li><a href="#" title="" target="_blank">jquery教程</a></li>
+                        <li><a href="#" title="" target="_blank">jquery与ajax</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <div>
+                        <a href="#" title="" target="_blank" onclick="return false;">flex</a>
+                    </div>
+                    <ul>
+                        <li><a href="#" title="" target="_blank">flex插件</a></li>
+                        <li><a href="#" title="" target="_blank">flex教程</a></li>
+                        <li><a href="#" title="" target="_blank">flex与ajax</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <div>
+                        <a href="#" title="" target="_blank" onclick="return false;">javascript</a>
+                    </div>
+                    <ul>
+                        <li><a href="#" title="" target="_blank">javascript插件</a></li>
+                        <li><a href="#" title="" target="_blank">javascript教程</a></li>
+                        <li><a href="#" title="" target="_blank">javascript与ajax</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <input type="button" name="some_name" value="点击menuItem获取个数" id="button1"/>
+            <input type="button" name="some_name" value="隐藏子菜单列表" id="button2"/>
+            <input type="button" name="some_name" value="显示子菜单列表" id="button3"/>
+        </div>
+        <script>
+            (function(S){
+                S.use('core',function(){
+                    var Event = S.Event, DOM = S.DOM;
+                    var menu = S.get("#menu");
+                    var menuItem = S.query(".menu-item");
+                    var childrenMenus = S.query("#menu ul");
+                    var menuItemHeader = S.query('#menu div');
+                    Event.on(S.get("#button1"),'click',function(){
+                        alert(menuItem.length);
+                    });
+                    Event.on(S.get("#button2"),'click',function(){
+                        DOM.hide(childrenMenus);
+                    });
+                    Event.on(S.get("#button3"),'click',function(){
+                        DOM.show(childrenMenus);
+                    });
+                    //Event.on(menuItemHeader,'click',function(ev){
+                    //    var nextMenu = DOM.next(ev.currentTarget);
+                    //    DOM.show(nextMenu);
+                    //    var children = DOM.children(ev.currentTarget);
+                    //    DOM.addClass(children,'arrow-down');
+                    //    return false;
+                    //});
+                    Event.on(menuItemHeader,'click',function(ev){
+                        var nextMenu = DOM.next(ev.currentTarget);
+                        var children = DOM.children(ev.currentTarget);
+                        var display = DOM.css(nextMenu,'display');
+                        if(display == 'none'){
+                            DOM.show(nextMenu);
+                            DOM.addClass(children,'arrow-down');
+                        }else{
+                            DOM.hide(nextMenu);
+                            DOM.removeClass(children,'arrow-down');
+                        }
+                        return false;
+                    });
+                    DOM.hide(childrenMenus);
+                    var arrowDownLink = DOM.query("#menu .arrow-down")
+                    DOM.removeClass(arrowDownLink,'arrow-down');
+                });
+            })(KISSY);
+        </script>
+
+    </body>
+</html>

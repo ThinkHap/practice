@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="gbk">
+<title>mvc_tab</title>
+</head>
+<body>
+<div id="content">
+    <ul id="tab-nav">
+        <li class="active"><a href="#tab/0">潮流服装</a></li>
+        <li><a href="#tab/1">数码家电</a></li>
+        <li><a href="#tab/2">名品鞋包</a></li>
+        <li><a href="#tab/3">运动户外</a></li>
+        <li><a href="#tab/4">母婴食品</a></li>
+        <li><a href="#tab/5">彩妆珠宝</a></li>
+    </ul>
+    <div id="tab-con">
+        <ul></ul>
+    </div>
+</div>
+
+<script>
+    String.prototype.trim = function(){
+        return this.replace(/(^\s*)/g,"").replace(/(\s*$)/g,"");
+    }
+    console.log(' taobao '.trim())
+</script>
+</body>
+</html>
+

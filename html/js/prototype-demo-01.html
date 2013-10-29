@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li {list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .clear-fix:after {display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .clear-fix {zoom:1;}
+		    a {color:#000;text-decoration:none;}
+		    a:hover {color:#f44;text-decoration:underline;}
+            
+        </style>
+        <script src="https://s.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+    </head>
+    <body>
+        <script>
+            var Person = function(){
+                this.name = 'Hap',
+                this.age = '26'
+            }
+            Person.getName = function(){
+                console.log(this.name);
+            }
+            
+            Person.prototype = {
+                getAge: function(){
+                            console.log(this.age);
+                    return this.age;        
+                }
+            }
+            
+            Person.prototype.getName = function(){
+                console.log(this.name);
+                return this.name;        
+            }
+            
+            var p = new Person();
+            
+            console.log(p.getAge);
+            console.log(p.getName);
+            console.log('p instanceof Person: ');
+            console.log(p instanceof Person);
+            console.log('p instanceof Object: ');
+            console.log(p instanceof Object);
+            console.log('p.constructor == Object');
+            console.log(p.constructor == Object);
+            console.log("p.hasOwnProperty('age')");
+            console.log(p.hasOwnProperty('age'));
+            console.log(p);
+            console.log(Person.prototype.hasOwnProperty('getAge'));
+            console.log(Person.prototype.isPrototypeOf(p));
+            console.log(p.__proto__.__proto__);
+            console.log(p.constructor);
+            console.log(Person.constructor);
+        </script>        
+    </body>
+</html>

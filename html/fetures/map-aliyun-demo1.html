@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;"/>
+<meta charset="gbk" />
+<title>阿里巴巴地图演示</title>
+<style type="text/css">
+    .map-zoom {
+        position:relative;
+        top: -20px;
+        left: 180px;
+        z-index:201;
+        width: 16px;
+        height: 16px;
+        background:url("http://api.ditu.aliyun.com/v1.1/res/Ali.Map.Utils.Groupon_view.png") no-repeat left top;
+        cursor:pointer;
+    }
+</style>
+<script src="https://s.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+<script language="javascript" src="http://api.ditu.aliyun.com/map.js" ></script>
+</head>
+<body>
+
+
+   
+<div class="map">
+    <p>测试</p>
+    <script charset='utf-8'>
+        var data1 = {
+            children:[{
+                nodeName: "Placemark",
+                Point:{
+                    "coordinates": "120.11828045654296,30.27171772741701"
+                },
+                type: "Point",
+    	        name: '清水湾假日酒店中餐厅',
+    	        description: '潮王路177号清水湾假日酒店2楼'
+            }]
+        };
+        Jla.require('Ali.Map.Utils.Groupon', 3, null, [data1, {
+            div: AliUtils.writeElement('div'),
+            mapSize: {
+                x: 200,
+                y: 200
+            },
+            defaultIcon: new AliIcon('|Icon4:cyan.png', {
+                x: 31,
+                y: 31
+            },
+            {
+                x: 12,
+                y: 31
+            }),
+            labelOffset:{
+                x: -3,
+                y: -26
+            },
+            fieldList:'Map,Overview'
+        }]);
+    </script>
+    <div class="map-zoom map-zoom1 J_zoom" title="查看完整地图" data-lat="30.27171772741701" data-lng="120.11828045654296" data-name="清水湾假日酒店中餐厅" data-desc="潮王路177号清水湾假日酒店2楼"></div>
+</div>
+
+<div id="div1">
+<div class="div1" class="">
+    <div class="mapDiv" style="width:200px;height:200px"></div>
+</div>   
+<div class="div1" class="">
+    <div class="mapDiv" style="width:200px;height:200px"></div>
+</div>   
+<div class="div1" class="">
+    <div class="mapDiv" style="width:200px;height:200px"></div>
+</div>   
+</div>
+ 
+<div class="map-zoom map-zoom2 J_zoom" title="查看完整地图" data-lat="30.27171772741701" data-lng="122.11828045654296" data-name="餐厅" data-desc="假日酒店2楼"></div>
+
+<script>
+    var S = KISSY, E = S.Event, D = S.DOM;
+    S.all('.J_zoom').each(function(ev){
+        E.on(ev,'click',function(){
+            //var lat = encodeURI(ev.attr('data-lat')),
+            //    lng = encodeURI(ev.attr('data-lng')),
+            //    name = encodeURI(ev.attr('data-name')),
+            //    desc = encodeURI(ev.attr('data-desc')),
+            //    url = 'http://ditu.aliyun.com/#sps=';
+            var lat = ev.attr('data-lat'),
+                lng = ev.attr('data-lng'),
+                name = ev.attr('data-name'),
+                desc = ev.attr('data-desc'),
+                url = 'http://ditu.aliyun.com/#sps=';
+            url += lat + '~' + lng + '_' + name + '_' + desc;
+            url = encodeURI(url)
+            window.open(url);
+        });
+    })
+
+    var div= S.one('#div1');
+
+    div.all('.div1').each(function(ev){
+        E.on(ev,'mouseenter',function(){
+            console.log(this)
+            console.log(ev)
+            var alimap = D.get('.mapDiv',ev);
+            var alimap = D.get('.mapDiv',ev);
+
+            var data2 = {
+                children:[{
+                    nodeName: "Placemark",
+                    Point:{
+                        "coordinates": "122.11828045654296,30.27171772741701"
+                    },
+                    type: "Point",
+	                name: '餐厅',
+	                description: '假日酒店2楼'
+                }]
+            };
+            Jla.require('Ali.Map.Utils.Groupon', 3, null, [data2, {
+                //div: AliUtils.writeElement('div'),
+                div: alimap,
+                mapSize: {
+                    x: 200,
+                    y: 200
+                },
+                defaultIcon: new AliIcon('|Icon4:cyan.png', {
+                    x: 31,
+                    y: 31
+                },
+                {
+                    x: 12,
+                    y: 31
+                }),
+                labelOffset:{
+                    x: -3,
+                    y: -26
+                },
+                fieldList:'Map,Overview'
+            }]);
+        });
+    });
+
+</script>
+
+</body>
+</html>

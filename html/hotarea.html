@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+            
+            /* 圆盘 {{{ */
+            .disc {
+                position: relative;
+                margin: 20px 0 0 10px;
+                width: 264px;
+                height: 264px;
+                background: url(http://img03.taobaocdn.com/tps/i3/T1hzC3Xn4cXXXXXXXX-264-264.png) no-repeat 0 0;
+            }
+            .disc-ie {
+                background: url(http://img04.taobaocdn.com/tps/i4/T18kq3XdNfXXXXXXXX-858-1778.png) no-repeat 0 0;
+                _background: url(http://img03.taobaocdn.com/tps/i3/T1fAe3XklfXXXXXXXX-858-1778.gif) no-repeat 0 0;
+            }
+            .disc_on {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                width: 264px;
+                height: 264px;
+                background: url(http://img02.taobaocdn.com/tps/i2/T18JO3XodqXXXXXXXX-264-264.png) no-repeat 0 0;
+                transition: all 0.3s ease-in;
+                -ms-transition: all 0.3s ease-in;
+                -webkit-transition: all 0.3s ease-in;
+                -moz-transition: all 0.3s ease-in;
+                -o-transition: all 0.3s ease-in;
+                transform: rotate(30deg);
+                -ms-transform:rotate(30deg);
+                -moz-transform:rotate(30deg);
+                -webkit-transform:rotate(30deg);
+                -o-transform:rotate(30deg);
+
+                filter: progid:DXImageTransform.Microsoft.Matrix( M11=0.8660254037844387, M12=-0.49999999999999994, M21=0.49999999999999994, M22=0.8660254037844387, SizingMethod='auto expand')\9;
+                margin-left: -48px\9;
+                margin-top: -48px\9;
+                
+			
+                
+                
+            }
+            .disc_img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 9;
+            }
+            .css3 .disc_on {
+                background: url(http://img02.taobaocdn.com/tps/i2/T1nHK3XaXoXXXXXXXX-264-264.png) no-repeat 0 0;
+            }
+            .disc-core {
+                position: absolute;
+                top: 83px;
+                left: 83px;
+                width: 100px;
+                height: 100px;
+                text-align: center;
+                z-index: 10;
+            }
+            .disc-core span {
+                padding-top: 20px;
+                display: block;
+                color: #fff;
+                font-weight: 700;
+                font-size: 14px;
+            }
+            .disc-core strong {
+                color: #fff;
+                font-size: 25px;
+                font-family: tahoma;
+            }
+            /* }}} */
+        </style>
+        <script src="http://a.tbcdn.cn/s/kissy/1.1.6/kissy-min.js?t=20111231.js"></script>
+    </head>
+    <body>
+        <div class="disc" id="J_Disc">
+            <div class="disc_on"></div>
+            <div class="disc-core" id="J_DiscCore" data-cat-no="1" data-cat-deg="30"><span>箱包皮具</span><strong>-0.35%</strong></div>
+            <img class="disc_img" src="http://img03.taobaocdn.com/tps/i3/T1fxq3XltgXXXXXXXX-264-264.png" border="0" hidefocus="true" usemap="#Map" />
+            <map name="Map" id="discMap">
+                <area data-cat="cxb" data-cat-no="1" data-cat-ie="xb" data-lit="-0.35%" shape="poly" coords="135,-1,181,8,215,29,180,71,159,60,134,55" href="#" alt="箱包皮具">
+                <area data-cat="cfs" data-cat-no="2" data-cat-ie="fs" data-lit="+0.55%" shape="poly" coords="218,32,249,67,260,106,207,117,200,97,183,73" href="#" alt="服饰配件">
+                <area data-cat="cmr" data-cat-no="3" data-cat-ie="mr" data-lit="-0.35%" shape="poly" coords="261,111,263,154,248,195,200,167,207,143,208,122" href="#" alt="美容护肤">
+                <area data-cat="csm" data-cat-no="4" data-cat-ie="sm" data-lit="+0.88%" shape="poly" coords="246,199,220,228,181,253,161,201,182,188,197,171" href="#" alt="数码配件">
+                <area data-cat="csh" data-cat-no="5" data-cat-ie="sh" data-lit="-0.18%" shape="poly" coords="177,256,132,263,89,254,108,204,135,206,159,203" href="#" alt="生活电器">
+                <area data-cat="cmy" data-cat-no="6" data-cat-ie="my" data-lit="+0.85%" shape="poly" coords="85,254,48,231,20,199,67,170,85,191,104,202" href="#" alt="母婴奶粉">
+                <area data-cat="cls" data-cat-no="7" data-cat-ie="ls" data-lit="+0.39%" shape="poly" coords="16,194,4,155,4,112,56,121,58,147,64,167" href="#" alt="零食特产">
+                <area data-cat="cjj" data-cat-no="8" data-cat-ie="jj" data-lit="-0.48%" shape="poly" coords="4,105,18,67,46,31,82,74,65,94,57,115" href="#" alt="居家日用">
+                <area data-cat="cjz" data-cat-no="9" data-cat-ie="jz" data-lit="+0.65%" shape="poly" coords="49,29,86,8,130,-1,130,55,107,59,86,70" href="#" alt="家装主材">
+            </map>
+        </div>
+        <script>
+            var S = KISSY,
+                D = S.DOM,
+                E = S.Event,
+                disc = S.one('#J_Disc'),
+                disc_core = S.one('#J_DiscCore'),
+                disc_on = S.one('.disc_on');
+
+            if(S.UA.ie < 5){
+                // 圆盘@ie
+                var disc_img = S.one('.disc_img');
+                D.remove(disc_on);
+                disc.addClass('disc-ie');
+                D.attr(disc_img, 'src', 'http://img04.taobaocdn.com/tps/i4/T1X8q1XXVwXXXXXXXX-270-270.png');
+                alert('test');
+                var cor = D.text('#J_DiscCore strong'),
+                    cat = 'xb' + (cor.substring(0,1) == '-' ? '1' : '0');
+                disc.addClass(cat); //初始化圆盘颜色
+                E.on('#discMap', 'mouseover', function(e){
+                    var tar = S.one(e.target),
+                        alt = tar.attr('alt'),
+                        lit = tar.attr('data-lit'),
+                        cat = tar.attr('data-cat-ie') + (lit.substring(0,1) == '-' ? '1' : '0');
+                    disc.removeClass('mr0 sm0 sh0 ls0 jj0 jz0 xb0 fs0 my0 mr1 sm1 sh1 ls1 jj1 jz1 xb1 fs1 my1').addClass(cat);
+                    D.html('#J_DiscCore', '<span>'+ alt +'</span><strong>'+ lit +'</strong>');
+                });
+            }else{
+                // 圆盘@CSS3
+                var cor = D.text('#J_DiscCore strong'),
+                    cat = 'cxb' + (cor.substring(0,1) == '-' ? '1' : '0');
+                if(cor.substring(0,1) == '-'){
+                    disc.addClass('css3');
+                }
+                E.on('#discMap', 'mouseover load', function(e){
+                    var tar = S.one(e.target),
+                        alt = tar.attr('alt'),
+                        no1 = disc_core.attr('data-cat-no'),
+                        deg1 = parseInt(disc_core.attr('data-cat-deg')),
+                        deg,
+                        no2 = tar.attr('data-cat-no'),
+                        len = no2 - no1,
+                        lit = tar.attr('data-lit'),
+                        cat = tar.attr('data-cat') + (lit.substring(0,1) == '-' ? '1' : '0');
+                    if(len>4){
+                        deg = deg1 + (len - 9)*40;
+                    }else if(len<=4 && len>=-4){
+                        deg = deg1 + len*40;
+                    }else if(len<-4){
+                        deg = deg1 + (len + 9)*40;
+                    }
+                    disc.removeClass('css3');
+                    if(lit.substring(0,1) == '-'){
+                        disc.addClass('css3');
+                    }
+                    D.html('#J_DiscCore', '<span>'+ alt +'</span><strong>'+ lit +'</strong>');
+                    disc_core.attr('data-cat-no', no2);
+                    disc_core.attr('data-cat-deg', deg);
+                    var cos =  Math.cos(deg*Math.PI/180),
+                        sin =  Math.sin(deg*Math.PI/180);
+                    if(S.UA.ie < 9){
+                        D.css(disc_on, 'filter', 'progid:DXImageTransform.Microsoft.Matrix(M11='+cos+', M12='+ -1*sin+', M21='+ sin +', M22='+ cos +')');
+                        D.css(disc_on, {'margin-top': '-48px', 'margin-left': '-48px'});
+                        //console.log(D.css(D.parent(disc_on), 'margin-left'));
+                        //console.log(D.offset(D.parent(disc_on)));
+                        //console.log(D.offset(disc_on).left);
+                        //console.log(D.offset(disc_on).top);
+
+                        console.log('cos:'+cos);
+                        console.log('sin:'+sin);
+                        //var left =  disc_on.offsetWidth; 
+                        //console.log(disc_on.offsetWidth);
+                        //D.css(disc_on, 'position', 'absolute');
+                        //D.css(disc_on, 'left', 'absolute');
+                        //D.css(disc_on, 'right', 'absolute');
+                        //img.style.left = (img.parent._clientWidth - img.offsetWidth)/2 + 'px';
+                        //img.style.top = (img.parent._clientHeight - img.offsetHeight)/2 + 'px';
+                        
+                        //disc_on.filters.item(0).M11 = cos;
+                        //disc_on.filters.item(0).M12 = sin;
+                        //disc_on.filters.item(0).M21 = -sin;
+                        //disc_on.filters.item(0).M22 = cos;
+                        //console.log(disc_on.style.filter);
+                    }else{
+                        //D.css(disc_on, '-ms-transform', 'matrix('+ cos +', '+ sin +', '+ sin*-1 +', '+ cos +', 0, 0)')
+                        //D.css(disc_on, '-webkit-transform', 'matrix('+ cos +', '+ sin +', '+ sin*-1 +', '+ cos +', 0, 0)')
+                        //D.css(disc_on, 'MozTransform', 'matrix('+ cos +', '+ sin +', '+ sin*-1 +', '+ cos +', 0, 0)')
+                        //D.css(disc_on, 'OTransform', 'matrix('+ cos +', '+ sin +', '+ sin*-1 +', '+ cos +', 0, 0)')
+                        D.css(disc_on, '-ms-transform', 'rotate('+ deg +'deg)');
+                        D.css(disc_on, 'WebkitTransform', 'rotate('+ deg +'deg)');
+                        D.css(disc_on, 'MozTransform', 'rotate('+ deg +'deg)');
+                        D.css(disc_on, 'OTransform', 'rotate('+ deg +'deg)');
+                    }
+
+                });
+            }
+            E.on('#discMap', 'click', function(e){
+                e.preventDefault();
+            }); 
+        </script>
+    </body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <meta charset="gbk" /> 
+        <title>shake shake</title> 
+        <!--
+        <script src="http://a.tbcdn.cn/mw/s/lib/jquery/jquery.1.3.2.min.js" type="text/javascript" ></script> 
+        -->
+        <script src="https://s.tbcdn.cn/s/kissy/1.2.0/kissy-min.js"></script>
+    </head>
+    <body> 
+        <div id="container" class="content"> 
+
+        </div> 
+        <script>
+            //shake 组件  2011.05.04
+            var setting = {
+            	//敏感系数
+                sensitivity : 18,
+            	//计时器，用于比对单位时间内加速度的改变
+            	timer : 200,
+            	//用户记录xyz三个方向的加速度
+            	position : {x1 : 0 , x2 : 0 , y1 : 0 , y2 : 0 , z1 : 0 , z2 : 0 },
+            	// action 是最为重要的一个配置项~ 主要功能是达到了敏感系数后去干嘛，干嘛就是这个action去做的事儿
+                action : {}
+            };
+            var SHAKE = {
+            	//定时器 用于记录id
+            	_timer : {
+            	},
+            	//检测测试是否支持DeviceMotionEvent ， 支持的话绑定devicemotion，并开始实时检测晃动该变量是否满足敏感系数
+                checkSupport : function(){
+            		if (typeof window.DeviceMotionEvent != 'undefined'){
+            			window.ondevicemotion = function(event){SHAKE.get(event)};	
+            			SHAKE.loop();
+                        console.log('SHAKE.loop');
+                        return true;
+            		}else{
+            			alert("对不起您的设备不支持DeviceMotionEvent");
+            			return false;
+            		}
+                },
+            	// 晃动时在 x y z 方向上的加速度
+                get : function(e){
+                    setting.position.x1 = e.accelerationIncludingGravity.x;
+                    setting.position.y1 = e.accelerationIncludingGravity.y;
+                    setting.position.z1 = e.accelerationIncludingGravity.z;
+            		//console.log(setting.position.x1);
+            		//console.log(setting.position.y1);
+            		//console.log(setting.position.z1);
+                },
+            	// 判断晃动是否满足敏感系数，满足的话更新 x2 y2 z2
+            	isMeetSensitivity : function(){
+            		var change = Math.abs(setting.position.x1 - setting.position.x2 + setting.position.y1 - setting.position.y2 + setting.position.z1 - setting.position.z2);
+            		//console.log(change);
+            	        document.getElementById("container").innerHTML = document.getElementById("container").innerHTML + "<br />" + change;
+                    if (change > setting.sensitivity && change < 100) {
+                        //alert('Shake!');
+            			setting.action();
+                        console.log('action start');
+            	        document.getElementById("container").innerHTML = document.getElementById("container").innerHTML + "<br />" + change;
+            			SHAKE.stop();
+            			//console.log(typeof(setting.action))
+                    }
+                    // 更新
+                    setting.position.x2 = setting.position.x1;
+                    setting.position.y2 = setting.position.y1;
+                    setting.position.z2 = setting.position.z1;		    
+            	},
+            	loop : function(){
+            	    SHAKE.start()
+                    //console.log('SHAKE.start');
+            	},
+            	// 开始轮询
+            	start : function(){
+            	    SHAKE._timer = setTimeout(function(){SHAKE.loop();SHAKE.isMeetSensitivity()} , setting.timer);
+            	},
+            	// 结束轮询
+            	stop : function(){
+            	    clearInterval(SHAKE._timer)
+            	}
+            };
+            //启动
+            SHAKE.checkSupport();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk" />
+        <title>demo</title>
+        <style type="text/css">
+            body, form, h1, h2, h3, h4, p, img, ul, li, ol, dl, dt, dd, a, span, input, tr, th, td{margin:0;padding:0;}
+		    body {font:normal 12px/1.5 "Arial","宋体","Simsun","Tahoma",sans-serif;}
+		    li{list-style:none;}
+		    img {border:0 none;vertical-align:top;}
+		    table {border-collapse:collapse;border-spacing:0;}
+            .cf:after{display:block;visibility:hidden;font-size:0;line-height:0;clear:both;content:"";}  
+            .cf{zoom:1;}
+		    a{color:#000;text-decoration:none;}
+		    a:visited{}
+		    a:hover{text-decoration:underline;}
+		    a:active{}
+
+            .main {width:990px;margin:0 auto;}
+            .msgbox {position:absolute;left:0;top:0;width:100%;height:100%;background-color:#000;filter:Alpha(opacity=50);-moz-opacity:0.5;opacity:0.5;}
+            .msg {position:absolute;left:50%;top:}
+            
+        </style>
+    </head>
+    <body>
+        <h1><a href="#" title="" target="_blank">CLICK ME</a></h1>        
+        <div class="main">
+            <h2>main</h2>
+            <div class=""></div>
+        </div>
+        <div id="J_mask" class="mask">
+            <div id="J_msg" class="msgbox">
+                <div id="J_msg" class="msg">
+                    <img alt="很遗憾，明天继续努力！" usemap="#map1" id="J_msg1" src="http://img04.taobaocdn.com/tps/i4/T1kIGFXb4tXXXXXXXX-333-165.gif">
+                    <map name="map1">
+                        <area shape="rect" coords="111,90,218,138" href="javascript:void(0);" alt="很遗憾，明天继续努力!" id="Regretclose">
+                        <area shape="rect" coords="295,7,325,35" href="javascript:void(0);" target="_self" alt="close" id="Closef">
+                    </map>
+                </div>
+            </div>
+        </div>
+<script>
+    var oBut = document.getElementById("oButton");
+    oBut.onclick = function(){	Onj();return false;}
+    function getRandomNum(){return new Date().getTime();} //时间戳
+    function AddcJ(boold){
+    	if (boold) {
+    		var urls = "http://promotion.taobao.com/tcp/takeOutAward.do?ruleId=605&result=sdan&type=2";
+    		urls=urls+document.getElementById("ConYzm").getAttribute("Dmid5");
+    		urls=urls+"&ua="+encodeURIComponent(ua);
+    		UA_Opt.Token=""+new Date().getTime()+":"+Math.random();
+    		UA_Opt.reload();
+    		urls=urls+"&RandomNum="+getRandomNum();
+    		KISSY.getScript(urls, CpcjData, "gbk");
+    	}else {
+    		ShowDiv("oSign","Closea");
+    	}
+    }
+    function CpcjData(data){
+    	if ("T"==sdan.is_success){
+    		var zjjf = sdan.user[0].value;
+    		if("1000"==zjjf){
+    			ShowDiv("oThousands","Closee");
+    		}else if("100"==zjjf){
+    			ShowDiv("oHundreds","Closed");
+    		}else if("10"==zjjf){
+    			ShowDiv("oTen","Closec");
+    		}else{
+    			alert("恭喜您获得了【"+zjjf+"】点商城积分！")	
+    		}			
+    	}
+    	else{
+    		var Fhxx = sdan.error;
+    		if(Fhxx == "E015"){
+    			ShowDiv("oOpportunity","Closeg");
+    			}else{
+    			ShowDiv("oRegret","Closef");
+    			}
+    	}	
+    }
+    
+    function ShowDiv(Imgid,oCloseid){
+    	  var oDiv = document.getElementById("Tcdiv");
+    	  oDiv.style.display = 'block' ;
+    	  
+    	  var Height = document.body.offsetHeight;
+    	  var Width = document.body.clientWidth;
+    	  var BodyDiv = document.getElementById("Bodybg");
+    
+    	  BodyDiv.style.width = Width + "px";
+    	  BodyDiv.style.height = Height + "px";
+    	  BodyDiv.style.display = "block";
+    	  
+    	  
+    	  var TabDIV = document .getElementById("DivMain");
+    	  var TabHeight = document.documentElement.clientHeight ;
+    	  var TabWidth = document.documentElement.clientWidth;
+    	  var Tabscroll = document.documentElement.scrollTop || document.body.scrollTop;
+    	  TabDIV.style.left = TabWidth / 2 - 333 / 2 + "px";
+    	  TabDIV.style.top = TabHeight / 2 - 165 / 2 + Tabscroll + "px";
+    	  TabDIV.style.display = "block";
+      
+      	  var oImg = document.getElementById(Imgid);
+    	  oImg.style.display = "block";
+    	  
+    	  var oClose = document.getElementById(oCloseid);
+    	  oClose.onclick = function(){
+    		  	Divclose(Imgid);
+    		};
+    		document.getElementById("Tenclose").onclick = function(){Divclose("oTen");return false;};
+    		document.getElementById("Hundredsclose").onclick = function(){Divclose("oHundreds");return false;};
+    		document.getElementById("Thousandsclose").onclick = function(){Divclose("oThousands");return false;};
+    		document.getElementById("Regretclose").onclick = function(){Divclose("oRegret");return false;};
+    		document.getElementById("oLose").onclick = function(){Divclose("oOpportunity");return false;};
+    		document.getElementById("oTmclose").onclick = function(){Divclose("oTm");return false;};
+    		function Divclose(closeimg){
+    			var Oimg = document.getElementById(closeimg);
+    			BodyDiv.style.display = "none" ;
+    			TabDIV.style.display = "none" ;
+    			Oimg.style.display = "none";
+    			oDiv.style.display = 'none' ;
+    		}
+    };
+</script>
+        
+    </body>
+</html>
