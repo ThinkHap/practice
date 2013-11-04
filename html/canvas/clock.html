@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>clock - canvas</title>
+    <style type="text/css">
+        #clock {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="clock" width="300" height="300"></canvas> 
+    <script>
+        var c = document.querySelector('#clock'), // 获取canvas元素
+            ctx = c.getContext('2d'), // 获取绘图环境
+            center = { // 中心点
+                x: c.width / 2,
+                y: c.height / 2
+            },
+            radius = 120,  // 半径
+            nums = [1,2,3,4,5,6,7,8,9,10,11,12];
+        ctx.font = '20px "Microsoft YaHei"'; // 声明绘图环境字号和字体
+
+        var gradient = ctx.createLinearGradient(0, 0, c.width, c.height); // 创建渐变色，并指定渐变色方向
+        gradient.addColorStop('0', 'yellow'); // 添加渐变色断点
+        gradient.addColorStop('1.0', 'green');
+
+        function drawCircle(){ //绘制表盘
+            ctx.beginPath(); // 开始一条路径，或重置当前的路径
+            // 以center为圆心，radius为半径画圆
+            ctx.arc(center.x, center.y, radius, 0, 2*Math.PI); 
+            ctx.lineWidth = '4'; // 线条宽度， 或路径宽度 
+            ctx.strokeStyle = '#000'; // 设置或返回用于笔触的颜色，渐变或模式
+            ctx.fillStyle = gradient; // 设置或返回用于填充绘画的颜色、渐变或模式
+            ctx.fill(); // 填充当前的图像(路径)
+            ctx.stroke(); // 绘制路径
+        }
+
+        function drawNums(){
+            nums.forEach(function(num){ 
+                // 当前数据所处的角度 
+                var angle = (2*Math.PI/12)*(num-3); 
+                var numW = ctx.measureText(num).width; // 获取文本绘制到画布上后的宽度
+                var numR = radius - 20; // 为让数字在表盘内
+                ctx.fillStyle = '#000';
+                // 在画布上绘制文本， 用三角函数与偏移量来确定位置
+                ctx.fillText(num, center.x + Math.cos(angle)*numR - numW/2, center.y + Math.sin(angle)*numR + 8); 
+            });
+        }
+
+        function drawCenter(){
+            ctx.beginPath();
+            ctx.arc(center.x, center.y, 5, 0, 2*Math.PI);
+            ctx.fillStyle = '#000';
+            ctx.fill();
+        }
+
+        function drawHand(loc, isHour, isMin){
+            var angle = (2*Math.PI) * (loc/60) - (2*Math.PI/4),
+                handR = isHour ? radius - c.width/25 - c.width/10 : radius - c.width/25;
+            handR = isMin ? radius - c.width/10 : handR;
+            
+            ctx.moveTo(center.x, center.y);
+            ctx.lineTo(center.x + Math.cos(angle)*handR, center.y + Math.sin(angle)*handR);
+            ctx.strokeStyle = '#ccc';
+            ctx.stroke();
+        }
+
+        function drawHands(){
+            var date = new Date(),
+                hour = date.getHours();
+            hour = hour > 12 ? hour - 12 : hour;
+            drawHand(hour*5+(date.getMinutes()/60)*5, true, false);
+            drawHand(date.getMinutes(), false, true);
+            drawHand(date.getSeconds(), false, false)
+        }
+
+        var t = new Date().getTime();
+        var t2;
+        function drawClock(){
+            t2 = new Date().getTime();
+
+            if((t2 - t) >= 1000){
+                t = t2;
+                ctx.clearRect(0, 0, c.width, c.height);
+                drawCircle();
+                drawNums();
+                drawHands();
+                drawCenter();
+            }
+            requestAnimationFrame(drawClock);
+        }
+        
+        drawClock();
+        //setInterval(drawClock, 1000);
+        //requestAnimationFrame(function(){
+        //        console.log((new Date().getTime() - t) >= 1000);
+        //    if((new Date().getTime() - t) >= 1000){
+        //        drawClock();
+        //    }
+        //});
+
+        //requestAnimationFrame(drawClock);
+
+        (function(){
+            var requestAnimationFrame =  window.requestAnimationFrame 
+                || window.mozRequestAnimationFrame 
+                || window.webkitRequestAnimationFrame
+                || window.oRequestAnimationFrame
+                || window.msRequestAnimationFrame;
+            window.requestAnimationFrame = requestAnimationFrame;
+        })();
+
+
+    </script>
+</body>
+</html>
